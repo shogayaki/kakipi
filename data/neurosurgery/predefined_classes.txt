@@ -1,0 +1,14 @@
+cerebrum
+cerebellum
+brainstem
+ventricle
+dura_mater
+artery
+vein
+cranial_nerve
+spinal_cord
+skull
+tumor
+hemorrhage
+pituitary_gland
+surgical_instrument

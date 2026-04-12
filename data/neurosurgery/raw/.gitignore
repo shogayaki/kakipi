@@ -1,0 +1,7 @@
+# Ignore raw downloaded images (too large for git).
+# Run download_neurosurgery_images.py to fetch them.
+*.jpg
+*.jpeg
+*.png
+*.tiff
+*.pdf

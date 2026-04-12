@@ -1,3 +1,5 @@
 numpy
 tensorflow
 matplotlib
+Pillow
+pdf2image
