@@ -1,0 +1,730 @@
+{
+  "source": "Gray's Anatomy of the Human Body, 20th U.S. edition (1918)",
+  "author": "Henry Gray",
+  "illustrator": "Henry Vandyke Carter",
+  "editor": "Warren H. Lewis",
+  "license": "Public Domain",
+  "wikimedia_category": "https://commons.wikimedia.org/wiki/Category:Gray%27s_Anatomy_plates_of_nervous_system",
+  "plates": [
+    {
+      "filename": "Gray516.png",
+      "figure_number": 516,
+      "title": "The arteries of the base of the brain",
+      "category": "brain_blood_supply",
+      "description": "Circle of Willis and arterial supply to the base of the brain",
+      "wikimedia_url": "https://commons.wikimedia.org/wiki/File:Gray516.png",
+      "direct_download_url": "https://upload.wikimedia.org/wikipedia/commons/b/b6/Gray516.png"
+    },
+    {
+      "filename": "Gray517.png",
+      "figure_number": 517,
+      "title": "The internal carotid and vertebral arteries (right side)",
+      "category": "brain_blood_supply",
+      "description": "Internal carotid and vertebral arteries, right side view",
+      "wikimedia_url": "https://commons.wikimedia.org/wiki/File:Gray517.png",
+      "direct_download_url": "https://upload.wikimedia.org/wikipedia/commons/2/25/Gray517.png"
+    },
+    {
+      "filename": "Gray518.png",
+      "figure_number": 518,
+      "title": "Diagram of the arterial circulation at the base of the brain",
+      "category": "brain_blood_supply",
+      "description": "Schematic diagram of arterial circulation at the base of the brain",
+      "wikimedia_url": "https://commons.wikimedia.org/wiki/File:Gray518.png",
+      "direct_download_url": "https://upload.wikimedia.org/wikipedia/commons/3/35/Gray518.png"
+    },
+    {
+      "filename": "Gray519.png",
+      "figure_number": 519,
+      "title": "The middle meningeal artery",
+      "category": "brain_blood_supply",
+      "description": "Outer surface of the dura mater showing the middle meningeal artery",
+      "wikimedia_url": "https://commons.wikimedia.org/wiki/File:Gray519.png",
+      "direct_download_url": "https://upload.wikimedia.org/wikipedia/commons/1/1e/Gray519.png"
+    },
+    {
+      "filename": "Gray520.png",
+      "figure_number": 520,
+      "title": "The ophthalmic artery and its branches",
+      "category": "brain_blood_supply",
+      "description": "Ophthalmic artery and its branches",
+      "wikimedia_url": "https://commons.wikimedia.org/wiki/File:Gray520.png",
+      "direct_download_url": "https://upload.wikimedia.org/wikipedia/commons/1/10/Gray520.png"
+    },
+    {
+      "filename": "Gray521.png",
+      "figure_number": 521,
+      "title": "The internal carotid artery (right side, cavernous portion)",
+      "category": "brain_blood_supply",
+      "description": "Internal carotid artery viewed from the right side",
+      "wikimedia_url": "https://commons.wikimedia.org/wiki/File:Gray521.png",
+      "direct_download_url": "https://upload.wikimedia.org/wikipedia/commons/3/33/Gray521.png"
+    },
+    {
+      "filename": "Gray488.png",
+      "figure_number": 488,
+      "title": "Transverse section of a thoracic vertebra (venous drainage reference)",
+      "category": "brain_venous",
+      "description": "Reference for spinal venous system",
+      "wikimedia_url": "https://commons.wikimedia.org/wiki/File:Gray488.png",
+      "direct_download_url": "https://upload.wikimedia.org/wikipedia/commons/1/1c/Gray488.png"
+    },
+    {
+      "filename": "Gray564.png",
+      "figure_number": 564,
+      "title": "Dural sinuses and veins of the brain (sagittal section)",
+      "category": "brain_venous",
+      "description": "Superior sagittal sinus and great cerebral vein",
+      "wikimedia_url": "https://commons.wikimedia.org/wiki/File:Gray564.png",
+      "direct_download_url": "https://upload.wikimedia.org/wikipedia/commons/a/a5/Gray564.png"
+    },
+    {
+      "filename": "Gray565.png",
+      "figure_number": 565,
+      "title": "The sinuses at the base of the skull",
+      "category": "brain_venous",
+      "description": "Dural venous sinuses at the base of the skull",
+      "wikimedia_url": "https://commons.wikimedia.org/wiki/File:Gray565.png",
+      "direct_download_url": "https://upload.wikimedia.org/wikipedia/commons/1/15/Gray565.png"
+    },
+    {
+      "filename": "Gray566.png",
+      "figure_number": 566,
+      "title": "Cavernous sinus (cross-section)",
+      "category": "brain_venous",
+      "description": "Cross-section of the cavernous sinus showing internal carotid artery and cranial nerves",
+      "wikimedia_url": "https://commons.wikimedia.org/wiki/File:Gray566.png",
+      "direct_download_url": "https://upload.wikimedia.org/wikipedia/commons/9/9f/Gray566.png"
+    },
+    {
+      "filename": "Gray567.png",
+      "figure_number": 567,
+      "title": "Veins of the diploë",
+      "category": "brain_venous",
+      "description": "Diploic veins of the skull",
+      "wikimedia_url": "https://commons.wikimedia.org/wiki/File:Gray567.png",
+      "direct_download_url": "https://upload.wikimedia.org/wikipedia/commons/1/10/Gray567.png"
+    },
+    {
+      "filename": "Gray568.png",
+      "figure_number": 568,
+      "title": "Emissary veins of the skull",
+      "category": "brain_venous",
+      "description": "Sagittal section showing emissary veins",
+      "wikimedia_url": "https://commons.wikimedia.org/wiki/File:Gray568.png",
+      "direct_download_url": "https://upload.wikimedia.org/wikipedia/commons/9/9f/Gray568.png"
+    },
+    {
+      "filename": "Gray689.png",
+      "figure_number": 689,
+      "title": "Median sagittal section of the brain",
+      "category": "brain_stem",
+      "description": "Median sagittal section of the brain showing major structures",
+      "wikimedia_url": "https://commons.wikimedia.org/wiki/File:Gray689.png",
+      "direct_download_url": "https://upload.wikimedia.org/wikipedia/commons/e/e9/Gray689.png"
+    },
+    {
+      "filename": "Gray694.png",
+      "figure_number": 694,
+      "title": "Transverse section of medulla oblongata (decussation of pyramids)",
+      "category": "brain_stem",
+      "description": "Transverse section through the medulla oblongata at the level of decussation of the pyramids",
+      "wikimedia_url": "https://commons.wikimedia.org/wiki/File:Gray694.png",
+      "direct_download_url": "https://upload.wikimedia.org/wikipedia/commons/9/94/Gray694.png"
+    },
+    {
+      "filename": "Gray695.png",
+      "figure_number": 695,
+      "title": "Transverse section of medulla oblongata (middle of olive)",
+      "category": "brain_stem",
+      "description": "Transverse section through the medulla oblongata at about the middle of the olive",
+      "wikimedia_url": "https://commons.wikimedia.org/wiki/File:Gray695.png",
+      "direct_download_url": "https://upload.wikimedia.org/wikipedia/commons/9/93/Gray695.png"
+    },
+    {
+      "filename": "Gray696.png",
+      "figure_number": 696,
+      "title": "Transverse section of medulla oblongata (inferior portion of fourth ventricle)",
+      "category": "brain_stem",
+      "description": "Section of medulla oblongata at about the level of the inferior portion of the fourth ventricle",
+      "wikimedia_url": "https://commons.wikimedia.org/wiki/File:Gray696.png",
+      "direct_download_url": "https://upload.wikimedia.org/wikipedia/commons/3/30/Gray696.png"
+    },
+    {
+      "filename": "Gray697.png",
+      "figure_number": 697,
+      "title": "Transverse section of medulla oblongata near ponto-medullary junction",
+      "category": "brain_stem",
+      "description": "Section at or near the ponto-medullary junction",
+      "wikimedia_url": "https://commons.wikimedia.org/wiki/File:Gray697.png",
+      "direct_download_url": "https://upload.wikimedia.org/wikipedia/commons/8/82/Gray697.png"
+    },
+    {
+      "filename": "Gray698.png",
+      "figure_number": 698,
+      "title": "Transverse section through the pons (lower part)",
+      "category": "brain_stem",
+      "description": "Transverse section through the lower part of the pons",
+      "wikimedia_url": "https://commons.wikimedia.org/wiki/File:Gray698.png",
+      "direct_download_url": "https://upload.wikimedia.org/wikipedia/commons/6/67/Gray698.png"
+    },
+    {
+      "filename": "Gray699.png",
+      "figure_number": 699,
+      "title": "Transverse section through the pons (upper part)",
+      "category": "brain_stem",
+      "description": "Transverse section through the upper part of the pons",
+      "wikimedia_url": "https://commons.wikimedia.org/wiki/File:Gray699.png",
+      "direct_download_url": "https://upload.wikimedia.org/wikipedia/commons/9/98/Gray699.png"
+    },
+    {
+      "filename": "Gray702.png",
+      "figure_number": 702,
+      "title": "Upper surface of the cerebellum",
+      "category": "cerebellum",
+      "description": "Superior surface of the cerebellum",
+      "wikimedia_url": "https://commons.wikimedia.org/wiki/File:Gray702.png",
+      "direct_download_url": "https://upload.wikimedia.org/wikipedia/commons/8/8d/Gray702.png"
+    },
+    {
+      "filename": "Gray703.png",
+      "figure_number": 703,
+      "title": "Under surface of the cerebellum",
+      "category": "cerebellum",
+      "description": "Inferior surface of the cerebellum",
+      "wikimedia_url": "https://commons.wikimedia.org/wiki/File:Gray703.png",
+      "direct_download_url": "https://upload.wikimedia.org/wikipedia/commons/e/e4/Gray703.png"
+    },
+    {
+      "filename": "Gray704.png",
+      "figure_number": 704,
+      "title": "Sagittal section of the cerebellum",
+      "category": "cerebellum",
+      "description": "Sagittal section through the cerebellum near the middle line",
+      "wikimedia_url": "https://commons.wikimedia.org/wiki/File:Gray704.png",
+      "direct_download_url": "https://upload.wikimedia.org/wikipedia/commons/9/97/Gray704.png"
+    },
+    {
+      "filename": "Gray705.png",
+      "figure_number": 705,
+      "title": "Deep connections of the cerebellum",
+      "category": "cerebellum",
+      "description": "Dissection showing the deep connections of the cerebellum",
+      "wikimedia_url": "https://commons.wikimedia.org/wiki/File:Gray705.png",
+      "direct_download_url": "https://upload.wikimedia.org/wikipedia/commons/2/2b/Gray705.png"
+    },
+    {
+      "filename": "Gray706.png",
+      "figure_number": 706,
+      "title": "Scheme of the cerebellum",
+      "category": "cerebellum",
+      "description": "Schematic representation of cerebellar organization",
+      "wikimedia_url": "https://commons.wikimedia.org/wiki/File:Gray706.png",
+      "direct_download_url": "https://upload.wikimedia.org/wikipedia/commons/7/7c/Gray706.png"
+    },
+    {
+      "filename": "Gray707.png",
+      "figure_number": 707,
+      "title": "Fourth ventricle and cerebellum (posterior view)",
+      "category": "cerebellum",
+      "description": "Posterior view of the fourth ventricle and its relation to the cerebellum",
+      "wikimedia_url": "https://commons.wikimedia.org/wiki/File:Gray707.png",
+      "direct_download_url": "https://upload.wikimedia.org/wikipedia/commons/2/23/Gray707.png"
+    },
+    {
+      "filename": "Gray710.png",
+      "figure_number": 710,
+      "title": "Transverse section of mid-brain (superior colliculus)",
+      "category": "midbrain",
+      "description": "Transverse section through the mid-brain at the level of the superior colliculus",
+      "wikimedia_url": "https://commons.wikimedia.org/wiki/File:Gray710.png",
+      "direct_download_url": "https://upload.wikimedia.org/wikipedia/commons/9/90/Gray710.png"
+    },
+    {
+      "filename": "Gray711.png",
+      "figure_number": 711,
+      "title": "Transverse section of mid-brain (inferior colliculus)",
+      "category": "midbrain",
+      "description": "Transverse section through the mid-brain at the level of the inferior colliculus",
+      "wikimedia_url": "https://commons.wikimedia.org/wiki/File:Gray711.png",
+      "direct_download_url": "https://upload.wikimedia.org/wikipedia/commons/2/26/Gray711.png"
+    },
+    {
+      "filename": "Gray712.png",
+      "figure_number": 712,
+      "title": "Corpora quadrigemina and geniculate bodies",
+      "category": "midbrain",
+      "description": "Dorsal view of the corpora quadrigemina and medial and lateral geniculate bodies",
+      "wikimedia_url": "https://commons.wikimedia.org/wiki/File:Gray712.png",
+      "direct_download_url": "https://upload.wikimedia.org/wikipedia/commons/b/b6/Gray712.png"
+    },
+    {
+      "filename": "Gray713.png",
+      "figure_number": 713,
+      "title": "The thalamus (dorsal view)",
+      "category": "diencephalon",
+      "description": "Dorsal view of the thalami with third ventricle",
+      "wikimedia_url": "https://commons.wikimedia.org/wiki/File:Gray713.png",
+      "direct_download_url": "https://upload.wikimedia.org/wikipedia/commons/4/46/Gray713.png"
+    },
+    {
+      "filename": "Gray714.png",
+      "figure_number": 714,
+      "title": "Scheme of thalamic nuclei",
+      "category": "diencephalon",
+      "description": "Schematic diagram of the thalamic nuclei",
+      "wikimedia_url": "https://commons.wikimedia.org/wiki/File:Gray714.png",
+      "direct_download_url": "https://upload.wikimedia.org/wikipedia/commons/7/7e/Gray714.png"
+    },
+    {
+      "filename": "Gray715.png",
+      "figure_number": 715,
+      "title": "Connections of thalamus",
+      "category": "diencephalon",
+      "description": "Dissection showing the connection of the thalamus with cortex",
+      "wikimedia_url": "https://commons.wikimedia.org/wiki/File:Gray715.png",
+      "direct_download_url": "https://upload.wikimedia.org/wikipedia/commons/d/d7/Gray715.png"
+    },
+    {
+      "filename": "Gray716.png",
+      "figure_number": 716,
+      "title": "The third ventricle (lateral view)",
+      "category": "ventricles",
+      "description": "Third ventricle seen from the lateral aspect",
+      "wikimedia_url": "https://commons.wikimedia.org/wiki/File:Gray716.png",
+      "direct_download_url": "https://upload.wikimedia.org/wikipedia/commons/0/01/Gray716.png"
+    },
+    {
+      "filename": "Gray717.png",
+      "figure_number": 717,
+      "title": "Coronal section of lateral and third ventricles",
+      "category": "ventricles",
+      "description": "Coronal section through the lateral and third ventricles",
+      "wikimedia_url": "https://commons.wikimedia.org/wiki/File:Gray717.png",
+      "direct_download_url": "https://upload.wikimedia.org/wikipedia/commons/2/20/Gray717.png"
+    },
+    {
+      "filename": "Gray718.png",
+      "figure_number": 718,
+      "title": "Corpus callosum from above",
+      "category": "ventricles",
+      "description": "Dissection of corpus callosum from above",
+      "wikimedia_url": "https://commons.wikimedia.org/wiki/File:Gray718.png",
+      "direct_download_url": "https://upload.wikimedia.org/wikipedia/commons/8/84/Gray718.png"
+    },
+    {
+      "filename": "Gray719.png",
+      "figure_number": 719,
+      "title": "The fornix and corpus callosum from below",
+      "category": "ventricles",
+      "description": "Dissection showing the fornix and hippocampal commissure",
+      "wikimedia_url": "https://commons.wikimedia.org/wiki/File:Gray719.png",
+      "direct_download_url": "https://upload.wikimedia.org/wikipedia/commons/0/0b/Gray719.png"
+    },
+    {
+      "filename": "Gray720.png",
+      "figure_number": 720,
+      "title": "Dissection showing the ventricles of the brain",
+      "category": "ventricles",
+      "description": "Lateral ventricles exposed from above after removal of corpus callosum",
+      "wikimedia_url": "https://commons.wikimedia.org/wiki/File:Gray720.png",
+      "direct_download_url": "https://upload.wikimedia.org/wikipedia/commons/2/22/Gray720.png"
+    },
+    {
+      "filename": "Gray721.png",
+      "figure_number": 721,
+      "title": "Central part of the lateral ventricles (from above)",
+      "category": "ventricles",
+      "description": "Central part of the lateral ventricles exposed from above",
+      "wikimedia_url": "https://commons.wikimedia.org/wiki/File:Gray721.png",
+      "direct_download_url": "https://upload.wikimedia.org/wikipedia/commons/f/fa/Gray721.png"
+    },
+    {
+      "filename": "Gray722.png",
+      "figure_number": 722,
+      "title": "Posterior and inferior horns of lateral ventricle",
+      "category": "ventricles",
+      "description": "Posterior and inferior horns of the right lateral ventricle exposed",
+      "wikimedia_url": "https://commons.wikimedia.org/wiki/File:Gray722.png",
+      "direct_download_url": "https://upload.wikimedia.org/wikipedia/commons/c/c0/Gray722.png"
+    },
+    {
+      "filename": "Gray723.png",
+      "figure_number": 723,
+      "title": "Diagram showing relations of the ventricles",
+      "category": "ventricles",
+      "description": "Diagram showing the relations of the ventricles to the surface of the brain",
+      "wikimedia_url": "https://commons.wikimedia.org/wiki/File:Gray723.png",
+      "direct_download_url": "https://upload.wikimedia.org/wikipedia/commons/6/60/Gray723.png"
+    },
+    {
+      "filename": "Gray724.png",
+      "figure_number": 724,
+      "title": "Scheme of roof of fourth ventricle",
+      "category": "ventricles",
+      "description": "Scheme showing the relation of the fourth ventricle",
+      "wikimedia_url": "https://commons.wikimedia.org/wiki/File:Gray724.png",
+      "direct_download_url": "https://upload.wikimedia.org/wikipedia/commons/d/d7/Gray724.png"
+    },
+    {
+      "filename": "Gray725.png",
+      "figure_number": 725,
+      "title": "Choroid plexus of the fourth ventricle",
+      "category": "ventricles",
+      "description": "Choroid plexus of the fourth ventricle seen from behind",
+      "wikimedia_url": "https://commons.wikimedia.org/wiki/File:Gray725.png",
+      "direct_download_url": "https://upload.wikimedia.org/wikipedia/commons/2/20/Gray725.png"
+    },
+    {
+      "filename": "Gray726.png",
+      "figure_number": 726,
+      "title": "Lateral surface of left cerebral hemisphere",
+      "category": "cerebrum",
+      "description": "Lateral surface of the left cerebral hemisphere viewed from the side",
+      "wikimedia_url": "https://commons.wikimedia.org/wiki/File:Gray726.png",
+      "direct_download_url": "https://upload.wikimedia.org/wikipedia/commons/3/35/Gray726.png"
+    },
+    {
+      "filename": "Gray727.png",
+      "figure_number": 727,
+      "title": "Medial surface of left cerebral hemisphere",
+      "category": "cerebrum",
+      "description": "Medial surface of the left cerebral hemisphere",
+      "wikimedia_url": "https://commons.wikimedia.org/wiki/File:Gray727.png",
+      "direct_download_url": "https://upload.wikimedia.org/wikipedia/commons/9/9b/Gray727.png"
+    },
+    {
+      "filename": "Gray728.png",
+      "figure_number": 728,
+      "title": "Diagram of principal fissures and lobes (lateral surface)",
+      "category": "cerebrum",
+      "description": "Diagram showing the principal fissures and lobes of the cerebrum on its lateral surface",
+      "wikimedia_url": "https://commons.wikimedia.org/wiki/File:Gray728.png",
+      "direct_download_url": "https://upload.wikimedia.org/wikipedia/commons/4/44/Gray728.png"
+    },
+    {
+      "filename": "Gray729.png",
+      "figure_number": 729,
+      "title": "Diagram of principal fissures and lobes (medial surface)",
+      "category": "cerebrum",
+      "description": "Diagram showing the principal fissures and lobes of the cerebrum on its medial surface",
+      "wikimedia_url": "https://commons.wikimedia.org/wiki/File:Gray729.png",
+      "direct_download_url": "https://upload.wikimedia.org/wikipedia/commons/b/b4/Gray729.png"
+    },
+    {
+      "filename": "Gray730.png",
+      "figure_number": 730,
+      "title": "Tentorial surface of the cerebrum",
+      "category": "cerebrum",
+      "description": "The tentorial surface of the cerebrum",
+      "wikimedia_url": "https://commons.wikimedia.org/wiki/File:Gray730.png",
+      "direct_download_url": "https://upload.wikimedia.org/wikipedia/commons/9/91/Gray730.png"
+    },
+    {
+      "filename": "Gray731.png",
+      "figure_number": 731,
+      "title": "Orbital surface of the cerebrum",
+      "category": "cerebrum",
+      "description": "The orbital surface (base) of the cerebrum",
+      "wikimedia_url": "https://commons.wikimedia.org/wiki/File:Gray731.png",
+      "direct_download_url": "https://upload.wikimedia.org/wikipedia/commons/2/2b/Gray731.png"
+    },
+    {
+      "filename": "Gray732.png",
+      "figure_number": 732,
+      "title": "The insula (Island of Reil)",
+      "category": "cerebrum",
+      "description": "The insula of the left side, exposed by removing opercula",
+      "wikimedia_url": "https://commons.wikimedia.org/wiki/File:Gray732.png",
+      "direct_download_url": "https://upload.wikimedia.org/wikipedia/commons/4/4d/Gray732.png"
+    },
+    {
+      "filename": "Gray733.png",
+      "figure_number": 733,
+      "title": "Cerebral sulci (lateral surface)",
+      "category": "cerebrum",
+      "description": "Detailed view of cerebral sulci on the lateral surface",
+      "wikimedia_url": "https://commons.wikimedia.org/wiki/File:Gray733.png",
+      "direct_download_url": "https://upload.wikimedia.org/wikipedia/commons/a/aa/Gray733.png"
+    },
+    {
+      "filename": "Gray734.png",
+      "figure_number": 734,
+      "title": "Cerebral sulci (medial surface)",
+      "category": "cerebrum",
+      "description": "Detailed view of cerebral sulci on the medial surface",
+      "wikimedia_url": "https://commons.wikimedia.org/wiki/File:Gray734.png",
+      "direct_download_url": "https://upload.wikimedia.org/wikipedia/commons/7/7d/Gray734.png"
+    },
+    {
+      "filename": "Gray735.png",
+      "figure_number": 735,
+      "title": "Coronal section through the brain (anterior commissure)",
+      "category": "cerebrum_internal",
+      "description": "Coronal section of the brain through the anterior commissure",
+      "wikimedia_url": "https://commons.wikimedia.org/wiki/File:Gray735.png",
+      "direct_download_url": "https://upload.wikimedia.org/wikipedia/commons/b/b7/Gray735.png"
+    },
+    {
+      "filename": "Gray736.png",
+      "figure_number": 736,
+      "title": "Horizontal section showing the internal capsule",
+      "category": "cerebrum_internal",
+      "description": "Horizontal section of the brain showing the lentiform nucleus and internal capsule",
+      "wikimedia_url": "https://commons.wikimedia.org/wiki/File:Gray736.png",
+      "direct_download_url": "https://upload.wikimedia.org/wikipedia/commons/2/22/Gray736.png"
+    },
+    {
+      "filename": "Gray737.png",
+      "figure_number": 737,
+      "title": "Scheme showing the course of fibers in the internal capsule",
+      "category": "cerebrum_internal",
+      "description": "Scheme showing the positions of fibers in the internal capsule",
+      "wikimedia_url": "https://commons.wikimedia.org/wiki/File:Gray737.png",
+      "direct_download_url": "https://upload.wikimedia.org/wikipedia/commons/e/e9/Gray737.png"
+    },
+    {
+      "filename": "Gray738.png",
+      "figure_number": 738,
+      "title": "Horizontal section showing the corona radiata",
+      "category": "cerebrum_internal",
+      "description": "Horizontal section of the brain at the level of the corona radiata",
+      "wikimedia_url": "https://commons.wikimedia.org/wiki/File:Gray738.png",
+      "direct_download_url": "https://upload.wikimedia.org/wikipedia/commons/9/93/Gray738.png"
+    },
+    {
+      "filename": "Gray739.png",
+      "figure_number": 739,
+      "title": "Dissection of the cortical association fibers",
+      "category": "cerebrum_internal",
+      "description": "Dissection of the lateral aspect of the cerebral hemisphere showing association fibers",
+      "wikimedia_url": "https://commons.wikimedia.org/wiki/File:Gray739.png",
+      "direct_download_url": "https://upload.wikimedia.org/wikipedia/commons/9/96/Gray739.png"
+    },
+    {
+      "filename": "Gray740.png",
+      "figure_number": 740,
+      "title": "Commissural fibers of the cerebral hemispheres",
+      "category": "cerebrum_internal",
+      "description": "Dissection showing the commissural fibers of the telencephalon",
+      "wikimedia_url": "https://commons.wikimedia.org/wiki/File:Gray740.png",
+      "direct_download_url": "https://upload.wikimedia.org/wikipedia/commons/1/11/Gray740.png"
+    },
+    {
+      "filename": "Gray741.png",
+      "figure_number": 741,
+      "title": "The rhinencephalon and hippocampal formation",
+      "category": "cerebrum_internal",
+      "description": "The rhinencephalon seen on the inferior surface of the brain",
+      "wikimedia_url": "https://commons.wikimedia.org/wiki/File:Gray741.png",
+      "direct_download_url": "https://upload.wikimedia.org/wikipedia/commons/f/fc/Gray741.png"
+    },
+    {
+      "filename": "Gray766.png",
+      "figure_number": 766,
+      "title": "Diagrammatic section of the skull and meninges",
+      "category": "meninges",
+      "description": "Diagrammatic representation of a section across the top of the skull, showing the meninges",
+      "wikimedia_url": "https://commons.wikimedia.org/wiki/File:Gray766.png",
+      "direct_download_url": "https://upload.wikimedia.org/wikipedia/commons/7/70/Gray766.png"
+    },
+    {
+      "filename": "Gray767.png",
+      "figure_number": 767,
+      "title": "Dura mater and its processes",
+      "category": "meninges",
+      "description": "Dura mater and its processes seen from the inner surface of the skull",
+      "wikimedia_url": "https://commons.wikimedia.org/wiki/File:Gray767.png",
+      "direct_download_url": "https://upload.wikimedia.org/wikipedia/commons/a/a0/Gray767.png"
+    },
+    {
+      "filename": "Gray768.png",
+      "figure_number": 768,
+      "title": "Tentorium cerebelli (seen from above)",
+      "category": "meninges",
+      "description": "The tentorium cerebelli seen from above, showing falx cerebri and tentorium",
+      "wikimedia_url": "https://commons.wikimedia.org/wiki/File:Gray768.png",
+      "direct_download_url": "https://upload.wikimedia.org/wikipedia/commons/3/36/Gray768.png"
+    },
+    {
+      "filename": "Gray769.png",
+      "figure_number": 769,
+      "title": "Superior sagittal sinus opened up",
+      "category": "meninges",
+      "description": "The superior sagittal sinus opened after removal of the skull cap",
+      "wikimedia_url": "https://commons.wikimedia.org/wiki/File:Gray769.png",
+      "direct_download_url": "https://upload.wikimedia.org/wikipedia/commons/f/f8/Gray769.png"
+    },
+    {
+      "filename": "Gray770.png",
+      "figure_number": 770,
+      "title": "The sinuses at the base of the skull",
+      "category": "meninges",
+      "description": "The dural venous sinuses at the base of the skull",
+      "wikimedia_url": "https://commons.wikimedia.org/wiki/File:Gray770.png",
+      "direct_download_url": "https://upload.wikimedia.org/wikipedia/commons/6/65/Gray770.png"
+    },
+    {
+      "filename": "Gray776.png",
+      "figure_number": 776,
+      "title": "Scheme showing cranial nerve nuclei",
+      "category": "cranial_nerves",
+      "description": "Scheme showing the motor and sensory nuclei of the cranial nerves",
+      "wikimedia_url": "https://commons.wikimedia.org/wiki/File:Gray776.png",
+      "direct_download_url": "https://upload.wikimedia.org/wikipedia/commons/6/69/Gray776.png"
+    },
+    {
+      "filename": "Gray778.png",
+      "figure_number": 778,
+      "title": "The optic nerve and optic tract",
+      "category": "cranial_nerves",
+      "description": "The left optic nerve and the optic tracts",
+      "wikimedia_url": "https://commons.wikimedia.org/wiki/File:Gray778.png",
+      "direct_download_url": "https://upload.wikimedia.org/wikipedia/commons/8/83/Gray778.png"
+    },
+    {
+      "filename": "Gray784.png",
+      "figure_number": 784,
+      "title": "The trigeminal nerve (semilunar ganglion and branches)",
+      "category": "cranial_nerves",
+      "description": "Distribution of the trigeminal nerve",
+      "wikimedia_url": "https://commons.wikimedia.org/wiki/File:Gray784.png",
+      "direct_download_url": "https://upload.wikimedia.org/wikipedia/commons/2/20/Gray784.png"
+    },
+    {
+      "filename": "Gray788.png",
+      "figure_number": 788,
+      "title": "Nerves of the orbit (seen from above)",
+      "category": "cranial_nerves",
+      "description": "Nerves of the orbit and ophthalmic division of the trigeminal",
+      "wikimedia_url": "https://commons.wikimedia.org/wiki/File:Gray788.png",
+      "direct_download_url": "https://upload.wikimedia.org/wikipedia/commons/6/6b/Gray788.png"
+    },
+    {
+      "filename": "Gray789.png",
+      "figure_number": 789,
+      "title": "The facial nerve and its branches",
+      "category": "cranial_nerves",
+      "description": "Plan of the facial nerve",
+      "wikimedia_url": "https://commons.wikimedia.org/wiki/File:Gray789.png",
+      "direct_download_url": "https://upload.wikimedia.org/wikipedia/commons/7/7d/Gray789.png"
+    },
+    {
+      "filename": "Gray790.png",
+      "figure_number": 790,
+      "title": "The hypoglossal nerve and its branches",
+      "category": "cranial_nerves",
+      "description": "The hypoglossal nerve, cervical plexus, and their branches",
+      "wikimedia_url": "https://commons.wikimedia.org/wiki/File:Gray790.png",
+      "direct_download_url": "https://upload.wikimedia.org/wikipedia/commons/8/8d/Gray790.png"
+    },
+    {
+      "filename": "Gray791.png",
+      "figure_number": 791,
+      "title": "The glossopharyngeal, vagus, and accessory nerves",
+      "category": "cranial_nerves",
+      "description": "Plan of the glossopharyngeal, vagus, and accessory nerves",
+      "wikimedia_url": "https://commons.wikimedia.org/wiki/File:Gray791.png",
+      "direct_download_url": "https://upload.wikimedia.org/wikipedia/commons/5/5e/Gray791.png"
+    },
+    {
+      "filename": "Gray792.png",
+      "figure_number": 792,
+      "title": "Course and distribution of the glossopharyngeal, vagus, and accessory nerves",
+      "category": "cranial_nerves",
+      "description": "Upper portions of the glossopharyngeal, vagus, and accessory nerves",
+      "wikimedia_url": "https://commons.wikimedia.org/wiki/File:Gray792.png",
+      "direct_download_url": "https://upload.wikimedia.org/wikipedia/commons/f/fd/Gray792.png"
+    },
+    {
+      "filename": "Gray188.png",
+      "figure_number": 188,
+      "title": "Side view of the skull",
+      "category": "skull",
+      "description": "Side view of the skull (norma lateralis)",
+      "wikimedia_url": "https://commons.wikimedia.org/wiki/File:Gray188.png",
+      "direct_download_url": "https://upload.wikimedia.org/wikipedia/commons/2/2c/Gray188.png"
+    },
+    {
+      "filename": "Gray190.png",
+      "figure_number": 190,
+      "title": "The skull from the front",
+      "category": "skull",
+      "description": "The skull viewed from the front (norma frontalis)",
+      "wikimedia_url": "https://commons.wikimedia.org/wiki/File:Gray190.png",
+      "direct_download_url": "https://upload.wikimedia.org/wikipedia/commons/8/86/Gray190.png"
+    },
+    {
+      "filename": "Gray193.png",
+      "figure_number": 193,
+      "title": "Base of the skull (interior surface)",
+      "category": "skull",
+      "description": "Base of the skull, upper surface showing anterior, middle and posterior cranial fossae",
+      "wikimedia_url": "https://commons.wikimedia.org/wiki/File:Gray193.png",
+      "direct_download_url": "https://upload.wikimedia.org/wikipedia/commons/8/81/Gray193.png"
+    },
+    {
+      "filename": "Gray194.png",
+      "figure_number": 194,
+      "title": "Base of the skull (exterior surface)",
+      "category": "skull",
+      "description": "Base of the skull, exterior surface",
+      "wikimedia_url": "https://commons.wikimedia.org/wiki/File:Gray194.png",
+      "direct_download_url": "https://upload.wikimedia.org/wikipedia/commons/2/27/Gray194.png"
+    },
+    {
+      "filename": "Gray197.png",
+      "figure_number": 197,
+      "title": "Median sagittal section of the skull",
+      "category": "skull",
+      "description": "Sagittal section of the skull",
+      "wikimedia_url": "https://commons.wikimedia.org/wiki/File:Gray197.png",
+      "direct_download_url": "https://upload.wikimedia.org/wikipedia/commons/b/b3/Gray197.png"
+    },
+    {
+      "filename": "Gray664.png",
+      "figure_number": 664,
+      "title": "The spinal cord (posterior view)",
+      "category": "spinal_cord",
+      "description": "Posterior view of the spinal cord showing nerve roots",
+      "wikimedia_url": "https://commons.wikimedia.org/wiki/File:Gray664.png",
+      "direct_download_url": "https://upload.wikimedia.org/wikipedia/commons/f/f8/Gray664.png"
+    },
+    {
+      "filename": "Gray665.png",
+      "figure_number": 665,
+      "title": "Cross-section of the spinal cord",
+      "category": "spinal_cord",
+      "description": "Transverse section of the spinal cord",
+      "wikimedia_url": "https://commons.wikimedia.org/wiki/File:Gray665.png",
+      "direct_download_url": "https://upload.wikimedia.org/wikipedia/commons/1/19/Gray665.png"
+    },
+    {
+      "filename": "Gray666.png",
+      "figure_number": 666,
+      "title": "Spinal cord cross-sections at different levels",
+      "category": "spinal_cord",
+      "description": "Cross-sections of the spinal cord at various levels",
+      "wikimedia_url": "https://commons.wikimedia.org/wiki/File:Gray666.png",
+      "direct_download_url": "https://upload.wikimedia.org/wikipedia/commons/1/11/Gray666.png"
+    },
+    {
+      "filename": "Gray667.png",
+      "figure_number": 667,
+      "title": "Spinal cord (anterior view)",
+      "category": "spinal_cord",
+      "description": "Anterior median fissure of the spinal cord",
+      "wikimedia_url": "https://commons.wikimedia.org/wiki/File:Gray667.png",
+      "direct_download_url": "https://upload.wikimedia.org/wikipedia/commons/0/0b/Gray667.png"
+    },
+    {
+      "filename": "Gray668.png",
+      "figure_number": 668,
+      "title": "Meninges of the spinal cord",
+      "category": "spinal_cord",
+      "description": "The spinal cord with dura mater and arachnoid opened",
+      "wikimedia_url": "https://commons.wikimedia.org/wiki/File:Gray668.png",
+      "direct_download_url": "https://upload.wikimedia.org/wikipedia/commons/e/e4/Gray668.png"
+    }
+  ]
+}
