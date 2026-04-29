@@ -18,7 +18,7 @@ from pathlib import Path
 import numpy as np
 
 sys.path.insert(0, str(Path(__file__).parent))
-from qfd import FrequentDirections, QuantizedFD  # noqa: E402
+from qfd import FrequentDirections, QuantizedFD, MixedPrecisionFD  # noqa: E402
 from baselines import truncated_svd, randomized_svd  # noqa: E402
 from datasets import low_rank_plus_noise, power_law_spectrum  # noqa: E402
 
@@ -107,8 +107,9 @@ def run_dataset(name: str, A: np.ndarray, k: int, ells: list[int]) -> list[dict]
     for ell in ells:
         out.append(evaluate_sketch("FD-fp32", FrequentDirections(d, ell), A, k, sigma_true, V_true))
         out.append(evaluate_sketch("QFD-int8", QuantizedFD(d, ell, "int8"), A, k, sigma_true, V_true))
-        out.append(evaluate_sketch("QFD-int4-g64", QuantizedFD(d, ell, "int4", group_size=64), A, k, sigma_true, V_true))
         out.append(evaluate_sketch("QFD-int4-g32", QuantizedFD(d, ell, "int4", group_size=32), A, k, sigma_true, V_true))
+        out.append(evaluate_sketch("QFD-nf4-g32", QuantizedFD(d, ell, "nf4", group_size=32), A, k, sigma_true, V_true))
+        out.append(evaluate_sketch("MP-FD-int8/nf4", MixedPrecisionFD(d, ell, group_size=32), A, k, sigma_true, V_true))
 
     rows = [asdict(r) for r in out]
     for r in rows:

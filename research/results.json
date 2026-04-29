@@ -16,7 +16,7 @@
       "topk_sigma_err": 0.0,
       "subspace_err": 0.0011451210593804717,
       "persistent_bytes": 12024000,
-      "wall_seconds": 0.057627760000059425
+      "wall_seconds": 0.04908327099997223
     },
     {
       "method": "FD-fp32",
@@ -25,7 +25,7 @@
       "topk_sigma_err": 0.014360196888446808,
       "subspace_err": 0.0008457279182039201,
       "persistent_bytes": 38400,
-      "wall_seconds": 0.3836001089999854
+      "wall_seconds": 0.3728241939999748
     },
     {
       "method": "QFD-int8",
@@ -34,16 +34,7 @@
       "topk_sigma_err": 0.07591839879751205,
       "subspace_err": 0.11043309420347214,
       "persistent_bytes": 19328,
-      "wall_seconds": 0.44735652000008486
-    },
-    {
-      "method": "QFD-int4-g64",
-      "ell": 32,
-      "covariance_err": 106287.765625,
-      "topk_sigma_err": 6.59331750869751,
-      "subspace_err": 0.9978716373443604,
-      "persistent_bytes": 15360,
-      "wall_seconds": 0.4924520609999945
+      "wall_seconds": 0.42947829499996715
     },
     {
       "method": "QFD-int4-g32",
@@ -52,7 +43,25 @@
       "topk_sigma_err": 3.8191802501678467,
       "subspace_err": 0.999994158744812,
       "persistent_bytes": 16000,
-      "wall_seconds": 0.5121981629999937
+      "wall_seconds": 0.4898629539999888
+    },
+    {
+      "method": "QFD-nf4-g32",
+      "ell": 32,
+      "covariance_err": 186260.53125,
+      "topk_sigma_err": 6.453887462615967,
+      "subspace_err": 0.9996228218078613,
+      "persistent_bytes": 16000,
+      "wall_seconds": 0.6971541990000105
+    },
+    {
+      "method": "MP-FD-int8/nf4",
+      "ell": 32,
+      "covariance_err": 359.7201843261719,
+      "topk_sigma_err": 0.06481517851352692,
+      "subspace_err": 0.11012257635593414,
+      "persistent_bytes": 17664,
+      "wall_seconds": 0.6002294369999959
     },
     {
       "method": "FD-fp32",
@@ -61,7 +70,7 @@
       "topk_sigma_err": 0.004972711205482483,
       "subspace_err": 0.0007720404537394643,
       "persistent_bytes": 76800,
-      "wall_seconds": 0.8144004550000545
+      "wall_seconds": 0.7946383500000138
     },
     {
       "method": "QFD-int8",
@@ -70,16 +79,7 @@
       "topk_sigma_err": 0.020205169916152954,
       "subspace_err": 0.07848124206066132,
       "persistent_bytes": 29056,
-      "wall_seconds": 0.8737964250000232
-    },
-    {
-      "method": "QFD-int4-g64",
-      "ell": 64,
-      "covariance_err": 20158.669921875,
-      "topk_sigma_err": 1.6430444717407227,
-      "subspace_err": 0.9607789516448975,
-      "persistent_bytes": 21120,
-      "wall_seconds": 0.9253367049999497
+      "wall_seconds": 0.8331897440000375
     },
     {
       "method": "QFD-int4-g32",
@@ -88,7 +88,25 @@
       "topk_sigma_err": 1.7666642665863037,
       "subspace_err": 0.9947431087493896,
       "persistent_bytes": 22400,
-      "wall_seconds": 0.9411301879999883
+      "wall_seconds": 0.9055463469999836
+    },
+    {
+      "method": "QFD-nf4-g32",
+      "ell": 64,
+      "covariance_err": 19061.818359375,
+      "topk_sigma_err": 1.5426087379455566,
+      "subspace_err": 0.9998964071273804,
+      "persistent_bytes": 22400,
+      "wall_seconds": 1.1195385919999694
+    },
+    {
+      "method": "MP-FD-int8/nf4",
+      "ell": 64,
+      "covariance_err": 285.595458984375,
+      "topk_sigma_err": 0.03074091300368309,
+      "subspace_err": 0.07613156735897064,
+      "persistent_bytes": 25728,
+      "wall_seconds": 1.0273037509999767
     },
     {
       "method": "FD-fp32",
@@ -97,7 +115,7 @@
       "topk_sigma_err": 0.00209731119684875,
       "subspace_err": 0.0008457279182039201,
       "persistent_bytes": 153600,
-      "wall_seconds": 1.649517478000007
+      "wall_seconds": 1.523583095000049
     },
     {
       "method": "QFD-int8",
@@ -106,16 +124,7 @@
       "topk_sigma_err": 0.008293041959404945,
       "subspace_err": 0.059688761830329895,
       "persistent_bytes": 48512,
-      "wall_seconds": 1.6205177610000874
-    },
-    {
-      "method": "QFD-int4-g64",
-      "ell": 128,
-      "covariance_err": 4244.89404296875,
-      "topk_sigma_err": 0.7825291156768799,
-      "subspace_err": 0.8200313448905945,
-      "persistent_bytes": 32640,
-      "wall_seconds": 1.6649571860000378
+      "wall_seconds": 1.545412682999995
     },
     {
       "method": "QFD-int4-g32",
@@ -124,7 +133,25 @@
       "topk_sigma_err": 0.6135790348052979,
       "subspace_err": 0.9838070869445801,
       "persistent_bytes": 35200,
-      "wall_seconds": 1.631398521000051
+      "wall_seconds": 1.5938828379999563
+    },
+    {
+      "method": "QFD-nf4-g32",
+      "ell": 128,
+      "covariance_err": 7587.22509765625,
+      "topk_sigma_err": 0.8768793344497681,
+      "subspace_err": 0.9242321848869324,
+      "persistent_bytes": 35200,
+      "wall_seconds": 1.799505651000004
+    },
+    {
+      "method": "MP-FD-int8/nf4",
+      "ell": 128,
+      "covariance_err": 233.15509033203125,
+      "topk_sigma_err": 0.012256115674972534,
+      "subspace_err": 0.06212647259235382,
+      "persistent_bytes": 41856,
+      "wall_seconds": 1.712495611999998
     }
   ],
   "power_law_slow_decay": [
@@ -144,7 +171,7 @@
       "topk_sigma_err": 0.0005041069816797972,
       "subspace_err": 0.03604775667190552,
       "persistent_bytes": 4824000,
-      "wall_seconds": 0.02419894199999817
+      "wall_seconds": 0.023972248999996282
     },
     {
       "method": "FD-fp32",
@@ -153,7 +180,7 @@
       "topk_sigma_err": 0.5867441296577454,
       "subspace_err": 0.16055472195148468,
       "persistent_bytes": 76800,
-      "wall_seconds": 0.3320818910000298
+      "wall_seconds": 0.31821329399997467
     },
     {
       "method": "QFD-int8",
@@ -162,16 +189,7 @@
       "topk_sigma_err": 0.5961858034133911,
       "subspace_err": 0.16514430940151215,
       "persistent_bytes": 29056,
-      "wall_seconds": 0.34982794400002604
-    },
-    {
-      "method": "QFD-int4-g64",
-      "ell": 64,
-      "covariance_err": 0.2505255937576294,
-      "topk_sigma_err": 0.6026313900947571,
-      "subspace_err": 0.5452896952629089,
-      "persistent_bytes": 21120,
-      "wall_seconds": 0.38749190800001543
+      "wall_seconds": 0.3637878179999916
     },
     {
       "method": "QFD-int4-g32",
@@ -180,7 +198,25 @@
       "topk_sigma_err": 0.5963517427444458,
       "subspace_err": 0.5006117224693298,
       "persistent_bytes": 22400,
-      "wall_seconds": 0.3843349549999857
+      "wall_seconds": 0.3843964160000155
+    },
+    {
+      "method": "QFD-nf4-g32",
+      "ell": 64,
+      "covariance_err": 0.33717307448387146,
+      "topk_sigma_err": 0.6502585411071777,
+      "subspace_err": 0.5642245411872864,
+      "persistent_bytes": 22400,
+      "wall_seconds": 0.4690577599999983
+    },
+    {
+      "method": "MP-FD-int8/nf4",
+      "ell": 64,
+      "covariance_err": 0.11272528767585754,
+      "topk_sigma_err": 0.6087012887001038,
+      "subspace_err": 0.16884155571460724,
+      "persistent_bytes": 25728,
+      "wall_seconds": 0.40374112700004616
     },
     {
       "method": "FD-fp32",
@@ -189,7 +225,7 @@
       "topk_sigma_err": 0.19514255225658417,
       "subspace_err": 0.023321500048041344,
       "persistent_bytes": 153600,
-      "wall_seconds": 0.639801604000013
+      "wall_seconds": 0.6000091180000027
     },
     {
       "method": "QFD-int8",
@@ -198,16 +234,7 @@
       "topk_sigma_err": 0.19438765943050385,
       "subspace_err": 0.040641166269779205,
       "persistent_bytes": 48512,
-      "wall_seconds": 0.623076570999956
-    },
-    {
-      "method": "QFD-int4-g64",
-      "ell": 128,
-      "covariance_err": 0.20858030021190643,
-      "topk_sigma_err": 0.12319973111152649,
-      "subspace_err": 0.705953061580658,
-      "persistent_bytes": 32640,
-      "wall_seconds": 0.6616604530000814
+      "wall_seconds": 0.6212559779999651
     },
     {
       "method": "QFD-int4-g32",
@@ -216,7 +243,25 @@
       "topk_sigma_err": 0.09914903342723846,
       "subspace_err": 0.43707165122032166,
       "persistent_bytes": 35200,
-      "wall_seconds": 0.6669851980000203
+      "wall_seconds": 0.6273638509999842
+    },
+    {
+      "method": "QFD-nf4-g32",
+      "ell": 128,
+      "covariance_err": 0.25722768902778625,
+      "topk_sigma_err": 0.18832208216190338,
+      "subspace_err": 0.7709265947341919,
+      "persistent_bytes": 35200,
+      "wall_seconds": 0.7074362530000258
+    },
+    {
+      "method": "MP-FD-int8/nf4",
+      "ell": 128,
+      "covariance_err": 0.06148023158311844,
+      "topk_sigma_err": 0.2036333978176117,
+      "subspace_err": 0.05695021525025368,
+      "persistent_bytes": 41856,
+      "wall_seconds": 0.6602187619999995
     },
     {
       "method": "FD-fp32",
@@ -225,7 +270,7 @@
       "topk_sigma_err": 0.07089323550462723,
       "subspace_err": 0.004846053197979927,
       "persistent_bytes": 307200,
-      "wall_seconds": 0.43140824199997496
+      "wall_seconds": 0.41669593300002816
     },
     {
       "method": "QFD-int8",
@@ -234,16 +279,7 @@
       "topk_sigma_err": 0.07039327919483185,
       "subspace_err": 0.029732078313827515,
       "persistent_bytes": 87424,
-      "wall_seconds": 0.46769814499998574
-    },
-    {
-      "method": "QFD-int4-g64",
-      "ell": 256,
-      "covariance_err": 0.19397039711475372,
-      "topk_sigma_err": 0.07642684131860733,
-      "subspace_err": 0.4919155538082123,
-      "persistent_bytes": 55680,
-      "wall_seconds": 0.46002658700001575
+      "wall_seconds": 0.4334262770000237
     },
     {
       "method": "QFD-int4-g32",
@@ -252,7 +288,25 @@
       "topk_sigma_err": 0.04498469829559326,
       "subspace_err": 0.3675655424594879,
       "persistent_bytes": 60800,
-      "wall_seconds": 0.4668685760000244
+      "wall_seconds": 0.4631460360000119
+    },
+    {
+      "method": "QFD-nf4-g32",
+      "ell": 256,
+      "covariance_err": 0.22740530967712402,
+      "topk_sigma_err": 0.05746936798095703,
+      "subspace_err": 0.7931833863258362,
+      "persistent_bytes": 60800,
+      "wall_seconds": 0.52903810600003
+    },
+    {
+      "method": "MP-FD-int8/nf4",
+      "ell": 256,
+      "covariance_err": 0.035813745111227036,
+      "topk_sigma_err": 0.0765417069196701,
+      "subspace_err": 0.03192552924156189,
+      "persistent_bytes": 74112,
+      "wall_seconds": 0.4926715320000312
     }
   ],
   "power_law_fast_decay": [
@@ -272,7 +326,7 @@
       "topk_sigma_err": 0.0,
       "subspace_err": 0.0009765625,
       "persistent_bytes": 4824000,
-      "wall_seconds": 0.02490435200002139
+      "wall_seconds": 0.023389139000016712
     },
     {
       "method": "FD-fp32",
@@ -281,7 +335,7 @@
       "topk_sigma_err": 0.11919540166854858,
       "subspace_err": 0.0026294749695807695,
       "persistent_bytes": 38400,
-      "wall_seconds": 0.1534348369999634
+      "wall_seconds": 0.14590827799997896
     },
     {
       "method": "QFD-int8",
@@ -290,16 +344,7 @@
       "topk_sigma_err": 0.05351323261857033,
       "subspace_err": 0.9778839349746704,
       "persistent_bytes": 19328,
-      "wall_seconds": 0.18142459599994254
-    },
-    {
-      "method": "QFD-int4-g64",
-      "ell": 32,
-      "covariance_err": 0.1209462583065033,
-      "topk_sigma_err": 1.0684592723846436,
-      "subspace_err": 0.9999622702598572,
-      "persistent_bytes": 15360,
-      "wall_seconds": 0.19790422899995974
+      "wall_seconds": 0.1698034719999555
     },
     {
       "method": "QFD-int4-g32",
@@ -308,7 +353,25 @@
       "topk_sigma_err": 1.2293375730514526,
       "subspace_err": 0.9999794363975525,
       "persistent_bytes": 16000,
-      "wall_seconds": 0.23449132000007467
+      "wall_seconds": 0.20166938800002754
+    },
+    {
+      "method": "QFD-nf4-g32",
+      "ell": 32,
+      "covariance_err": 0.12772071361541748,
+      "topk_sigma_err": 1.9976304769515991,
+      "subspace_err": 0.9998659491539001,
+      "persistent_bytes": 16000,
+      "wall_seconds": 0.28070332900000494
+    },
+    {
+      "method": "MP-FD-int8/nf4",
+      "ell": 32,
+      "covariance_err": 0.04159514605998993,
+      "topk_sigma_err": 0.8298845887184143,
+      "subspace_err": 0.9984369874000549,
+      "persistent_bytes": 17664,
+      "wall_seconds": 0.24947302500004298
     },
     {
       "method": "FD-fp32",
@@ -317,7 +380,7 @@
       "topk_sigma_err": 0.007013324182480574,
       "subspace_err": 0.001091830083169043,
       "persistent_bytes": 76800,
-      "wall_seconds": 0.33026583599996684
+      "wall_seconds": 0.31441674300003797
     },
     {
       "method": "QFD-int8",
@@ -326,16 +389,7 @@
       "topk_sigma_err": 0.03018895722925663,
       "subspace_err": 0.9657878875732422,
       "persistent_bytes": 29056,
-      "wall_seconds": 0.3460017079999034
-    },
-    {
-      "method": "QFD-int4-g64",
-      "ell": 64,
-      "covariance_err": 0.1236368715763092,
-      "topk_sigma_err": 0.9273067712783813,
-      "subspace_err": 0.9999751448631287,
-      "persistent_bytes": 21120,
-      "wall_seconds": 0.38332018300002346
+      "wall_seconds": 0.366149159000031
     },
     {
       "method": "QFD-int4-g32",
@@ -344,7 +398,25 @@
       "topk_sigma_err": 0.6706430912017822,
       "subspace_err": 0.9999740719795227,
       "persistent_bytes": 22400,
-      "wall_seconds": 0.38199508000002425
+      "wall_seconds": 0.38115200900000445
+    },
+    {
+      "method": "QFD-nf4-g32",
+      "ell": 64,
+      "covariance_err": 0.12030667066574097,
+      "topk_sigma_err": 1.1297491788864136,
+      "subspace_err": 0.9999797344207764,
+      "persistent_bytes": 22400,
+      "wall_seconds": 0.47561940999997887
+    },
+    {
+      "method": "MP-FD-int8/nf4",
+      "ell": 64,
+      "covariance_err": 0.034341659396886826,
+      "topk_sigma_err": 0.4243318736553192,
+      "subspace_err": 0.9984607100486755,
+      "persistent_bytes": 25728,
+      "wall_seconds": 0.4217406369999708
     },
     {
       "method": "FD-fp32",
@@ -353,7 +425,7 @@
       "topk_sigma_err": 0.0004296190745662898,
       "subspace_err": 0.0009765625,
       "persistent_bytes": 153600,
-      "wall_seconds": 0.6326525250000259
+      "wall_seconds": 0.6067161349999992
     },
     {
       "method": "QFD-int8",
@@ -362,16 +434,7 @@
       "topk_sigma_err": 0.038058213889598846,
       "subspace_err": 0.9504166841506958,
       "persistent_bytes": 48512,
-      "wall_seconds": 0.6732205800000202
-    },
-    {
-      "method": "QFD-int4-g64",
-      "ell": 128,
-      "covariance_err": 0.11966572701931,
-      "topk_sigma_err": 0.9574102759361267,
-      "subspace_err": 0.9981549382209778,
-      "persistent_bytes": 32640,
-      "wall_seconds": 0.6801663459999645
+      "wall_seconds": 0.6037319760000059
     },
     {
       "method": "QFD-int4-g32",
@@ -380,7 +443,25 @@
       "topk_sigma_err": 1.0551866292953491,
       "subspace_err": 0.9999982118606567,
       "persistent_bytes": 35200,
-      "wall_seconds": 0.6885131269999647
+      "wall_seconds": 0.6552084580000042
+    },
+    {
+      "method": "QFD-nf4-g32",
+      "ell": 128,
+      "covariance_err": 0.10363785922527313,
+      "topk_sigma_err": 0.9757521152496338,
+      "subspace_err": 0.9997805953025818,
+      "persistent_bytes": 35200,
+      "wall_seconds": 0.7145666690000212
+    },
+    {
+      "method": "MP-FD-int8/nf4",
+      "ell": 128,
+      "covariance_err": 0.027965214103460312,
+      "topk_sigma_err": 0.22376513481140137,
+      "subspace_err": 0.9982454180717468,
+      "persistent_bytes": 41856,
+      "wall_seconds": 0.6638976620000108
     }
   ],
   "tall_low_rank": [
@@ -400,7 +481,7 @@
       "topk_sigma_err": 7.059627193939377e-08,
       "subspace_err": 0.0009765625,
       "persistent_bytes": 40016000,
-      "wall_seconds": 0.21879535000005035
+      "wall_seconds": 0.2062227240000425
     },
     {
       "method": "FD-fp32",
@@ -409,7 +490,7 @@
       "topk_sigma_err": 0.04838816821575165,
       "subspace_err": 0.0009765625,
       "persistent_bytes": 25600,
-      "wall_seconds": 1.17496862400003
+      "wall_seconds": 1.1000220660000082
     },
     {
       "method": "QFD-int8",
@@ -418,16 +499,7 @@
       "topk_sigma_err": 0.129897341132164,
       "subspace_err": 0.22107401490211487,
       "persistent_bytes": 12928,
-      "wall_seconds": 1.453143726999997
-    },
-    {
-      "method": "QFD-int4-g64",
-      "ell": 32,
-      "covariance_err": 503070458904576.0,
-      "topk_sigma_err": 385987.34375,
-      "subspace_err": 0.9999995827674866,
-      "persistent_bytes": 11008,
-      "wall_seconds": 1.6874988920000078
+      "wall_seconds": 1.3232901110000057
     },
     {
       "method": "QFD-int4-g32",
@@ -436,7 +508,25 @@
       "topk_sigma_err": 48229.9921875,
       "subspace_err": 0.999966561794281,
       "persistent_bytes": 10880,
-      "wall_seconds": 1.7266287260000581
+      "wall_seconds": 1.5792708400000492
+    },
+    {
+      "method": "QFD-nf4-g32",
+      "ell": 32,
+      "covariance_err": 26982496600064.0,
+      "topk_sigma_err": 89391.453125,
+      "subspace_err": 0.9999710321426392,
+      "persistent_bytes": 10880,
+      "wall_seconds": 2.2412437699999828
+    },
+    {
+      "method": "MP-FD-int8/nf4",
+      "ell": 32,
+      "covariance_err": 775.0887451171875,
+      "topk_sigma_err": 0.1090938076376915,
+      "subspace_err": 0.262742280960083,
+      "persistent_bytes": 11904,
+      "wall_seconds": 1.9421497140000383
     },
     {
       "method": "FD-fp32",
@@ -445,7 +535,7 @@
       "topk_sigma_err": 0.01635671965777874,
       "subspace_err": 0.0009134905994869769,
       "persistent_bytes": 51200,
-      "wall_seconds": 2.7521213900000703
+      "wall_seconds": 2.598909565999975
     },
     {
       "method": "QFD-int8",
@@ -454,16 +544,7 @@
       "topk_sigma_err": 0.07579942047595978,
       "subspace_err": 0.15577855706214905,
       "persistent_bytes": 19456,
-      "wall_seconds": 3.0329692010000144
-    },
-    {
-      "method": "QFD-int4-g64",
-      "ell": 64,
-      "covariance_err": 422640448.0,
-      "topk_sigma_err": 352.7898254394531,
-      "subspace_err": 0.9999954700469971,
-      "persistent_bytes": 15616,
-      "wall_seconds": 3.203952089999916
+      "wall_seconds": 2.82992587800004
     },
     {
       "method": "QFD-int4-g32",
@@ -472,7 +553,25 @@
       "topk_sigma_err": 160.28961181640625,
       "subspace_err": 0.999262273311615,
       "persistent_bytes": 15360,
-      "wall_seconds": 3.2770347860000584
+      "wall_seconds": 3.021530604000077
+    },
+    {
+      "method": "QFD-nf4-g32",
+      "ell": 64,
+      "covariance_err": 7.614295703427849e+20,
+      "topk_sigma_err": 474869888.0,
+      "subspace_err": 0.9997965693473816,
+      "persistent_bytes": 15360,
+      "wall_seconds": 3.6828704100000778
+    },
+    {
+      "method": "MP-FD-int8/nf4",
+      "ell": 64,
+      "covariance_err": 475.0586853027344,
+      "topk_sigma_err": 0.13215000927448273,
+      "subspace_err": 0.15873853862285614,
+      "persistent_bytes": 17408,
+      "wall_seconds": 3.4666788339999357
     },
     {
       "method": "FD-fp32",
@@ -481,7 +580,7 @@
       "topk_sigma_err": 0.007105340715497732,
       "subspace_err": 0.0007720404537394643,
       "persistent_bytes": 102400,
-      "wall_seconds": 4.561186014999976
+      "wall_seconds": 4.3361595090000264
     },
     {
       "method": "QFD-int8",
@@ -490,16 +589,7 @@
       "topk_sigma_err": 0.0697278305888176,
       "subspace_err": 0.11276944726705551,
       "persistent_bytes": 32512,
-      "wall_seconds": 4.739642985999922
-    },
-    {
-      "method": "QFD-int4-g64",
-      "ell": 128,
-      "covariance_err": 769345.5625,
-      "topk_sigma_err": 20.32248306274414,
-      "subspace_err": 0.9991154670715332,
-      "persistent_bytes": 24832,
-      "wall_seconds": 4.869606353000108
+      "wall_seconds": 4.514940209999963
     },
     {
       "method": "QFD-int4-g32",
@@ -508,7 +598,25 @@
       "topk_sigma_err": 11.739958763122559,
       "subspace_err": 0.9998361468315125,
       "persistent_bytes": 24320,
-      "wall_seconds": 4.997414746999993
+      "wall_seconds": 4.730802985999958
+    },
+    {
+      "method": "QFD-nf4-g32",
+      "ell": 128,
+      "covariance_err": 1129420.75,
+      "topk_sigma_err": 17.975322723388672,
+      "subspace_err": 0.9963703155517578,
+      "persistent_bytes": 24320,
+      "wall_seconds": 5.3769001609999805
+    },
+    {
+      "method": "MP-FD-int8/nf4",
+      "ell": 128,
+      "covariance_err": 438.2258605957031,
+      "topk_sigma_err": 0.027615543454885483,
+      "subspace_err": 0.12909731268882751,
+      "persistent_bytes": 28416,
+      "wall_seconds": 5.03616685999998
     }
   ]
 }

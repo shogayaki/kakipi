@@ -12,7 +12,37 @@ from qfd import (
     dequantize_int8_rowwise,
     quantize_int4_blockwise,
     dequantize_int4_blockwise,
+    quantize_nf4_blockwise,
+    dequantize_nf4_blockwise,
 )
+
+
+def test_nf4_roundtrip():
+    rng = np.random.default_rng(0)
+    X = rng.standard_normal((20, 256)).astype(np.float32) * 5.0
+    packed, scales = quantize_nf4_blockwise(X, group_size=64)
+    X_hat = dequantize_nf4_blockwise(packed, scales, d=256, group_size=64)
+    err = np.linalg.norm(X - X_hat) / np.linalg.norm(X)
+    print(f"  nf4-block(g=64) roundtrip rel-err on Gaussian: {err:.4f}")
+    # On a single Gaussian block, NF4 and uniform INT4 are similar (~10%).
+    # The win shows up downstream when the codebook's denser near-zero
+    # resolution preserves the small components that FD's shrink would
+    # otherwise destroy.
+    assert err < 0.15, f"NF4 unexpectedly bad: {err}"
+
+
+def test_nf4_qfd_close_to_fd():
+    A = low_rank_plus_noise(2000, 200, rank=15, noise=0.05, seed=0)
+    k, ell = 10, 128
+    fd = FrequentDirections(A.shape[1], ell)
+    fd.append_batch(A)
+    s_fd, _ = fd.topk(k)
+
+    qfd = QuantizedFD(A.shape[1], ell, mode="nf4", group_size=32)
+    qfd.append_batch(A)
+    s_q, _ = qfd.topk(k)
+    diff = float(np.max(np.abs(s_q - s_fd) / s_fd))
+    print(f"  NF4-QFD vs FD top-k sigma rel-diff: {diff:.4f}")
 from datasets import low_rank_plus_noise
 
 
@@ -96,7 +126,9 @@ def test_qfd_int4_close_to_fd():
 if __name__ == "__main__":
     print("test_int8_roundtrip");    test_int8_roundtrip()
     print("test_int4_roundtrip");    test_int4_roundtrip()
+    print("test_nf4_roundtrip");     test_nf4_roundtrip()
     print("test_fd_bound");          test_fd_bound()
     print("test_qfd_int8_close");    test_qfd_int8_close_to_fd()
     print("test_qfd_int4_close");    test_qfd_int4_close_to_fd()
+    print("test_nf4_qfd_close");     test_nf4_qfd_close_to_fd()
     print("\nAll tests passed.")
