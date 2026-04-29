@@ -1,0 +1,514 @@
+{
+  "low_rank_plus_noise": [
+    {
+      "method": "truncated_svd",
+      "ell": 0,
+      "covariance_err": 0.0,
+      "topk_sigma_err": 0.0,
+      "subspace_err": 0.0,
+      "persistent_bytes": 12000000,
+      "wall_seconds": 0.0
+    },
+    {
+      "method": "randomized_svd",
+      "ell": 0,
+      "covariance_err": 125.3478775024414,
+      "topk_sigma_err": 0.0,
+      "subspace_err": 0.0011451210593804717,
+      "persistent_bytes": 12024000,
+      "wall_seconds": 0.057627760000059425
+    },
+    {
+      "method": "FD-fp32",
+      "ell": 32,
+      "covariance_err": 6.163463592529297,
+      "topk_sigma_err": 0.014360196888446808,
+      "subspace_err": 0.0008457279182039201,
+      "persistent_bytes": 38400,
+      "wall_seconds": 0.3836001089999854
+    },
+    {
+      "method": "QFD-int8",
+      "ell": 32,
+      "covariance_err": 467.9920959472656,
+      "topk_sigma_err": 0.07591839879751205,
+      "subspace_err": 0.11043309420347214,
+      "persistent_bytes": 19328,
+      "wall_seconds": 0.44735652000008486
+    },
+    {
+      "method": "QFD-int4-g64",
+      "ell": 32,
+      "covariance_err": 106287.765625,
+      "topk_sigma_err": 6.59331750869751,
+      "subspace_err": 0.9978716373443604,
+      "persistent_bytes": 15360,
+      "wall_seconds": 0.4924520609999945
+    },
+    {
+      "method": "QFD-int4-g32",
+      "ell": 32,
+      "covariance_err": 49886.43359375,
+      "topk_sigma_err": 3.8191802501678467,
+      "subspace_err": 0.999994158744812,
+      "persistent_bytes": 16000,
+      "wall_seconds": 0.5121981629999937
+    },
+    {
+      "method": "FD-fp32",
+      "ell": 64,
+      "covariance_err": 2.1445813179016113,
+      "topk_sigma_err": 0.004972711205482483,
+      "subspace_err": 0.0007720404537394643,
+      "persistent_bytes": 76800,
+      "wall_seconds": 0.8144004550000545
+    },
+    {
+      "method": "QFD-int8",
+      "ell": 64,
+      "covariance_err": 345.5117492675781,
+      "topk_sigma_err": 0.020205169916152954,
+      "subspace_err": 0.07848124206066132,
+      "persistent_bytes": 29056,
+      "wall_seconds": 0.8737964250000232
+    },
+    {
+      "method": "QFD-int4-g64",
+      "ell": 64,
+      "covariance_err": 20158.669921875,
+      "topk_sigma_err": 1.6430444717407227,
+      "subspace_err": 0.9607789516448975,
+      "persistent_bytes": 21120,
+      "wall_seconds": 0.9253367049999497
+    },
+    {
+      "method": "QFD-int4-g32",
+      "ell": 64,
+      "covariance_err": 9527.6533203125,
+      "topk_sigma_err": 1.7666642665863037,
+      "subspace_err": 0.9947431087493896,
+      "persistent_bytes": 22400,
+      "wall_seconds": 0.9411301879999883
+    },
+    {
+      "method": "FD-fp32",
+      "ell": 128,
+      "covariance_err": 0.9073036313056946,
+      "topk_sigma_err": 0.00209731119684875,
+      "subspace_err": 0.0008457279182039201,
+      "persistent_bytes": 153600,
+      "wall_seconds": 1.649517478000007
+    },
+    {
+      "method": "QFD-int8",
+      "ell": 128,
+      "covariance_err": 215.7736358642578,
+      "topk_sigma_err": 0.008293041959404945,
+      "subspace_err": 0.059688761830329895,
+      "persistent_bytes": 48512,
+      "wall_seconds": 1.6205177610000874
+    },
+    {
+      "method": "QFD-int4-g64",
+      "ell": 128,
+      "covariance_err": 4244.89404296875,
+      "topk_sigma_err": 0.7825291156768799,
+      "subspace_err": 0.8200313448905945,
+      "persistent_bytes": 32640,
+      "wall_seconds": 1.6649571860000378
+    },
+    {
+      "method": "QFD-int4-g32",
+      "ell": 128,
+      "covariance_err": 2934.120361328125,
+      "topk_sigma_err": 0.6135790348052979,
+      "subspace_err": 0.9838070869445801,
+      "persistent_bytes": 35200,
+      "wall_seconds": 1.631398521000051
+    }
+  ],
+  "power_law_slow_decay": [
+    {
+      "method": "truncated_svd",
+      "ell": 0,
+      "covariance_err": 0.0,
+      "topk_sigma_err": 0.0,
+      "subspace_err": 0.0,
+      "persistent_bytes": 4800000,
+      "wall_seconds": 0.0
+    },
+    {
+      "method": "randomized_svd",
+      "ell": 0,
+      "covariance_err": 0.09090957045555115,
+      "topk_sigma_err": 0.0005041069816797972,
+      "subspace_err": 0.03604775667190552,
+      "persistent_bytes": 4824000,
+      "wall_seconds": 0.02419894199999817
+    },
+    {
+      "method": "FD-fp32",
+      "ell": 64,
+      "covariance_err": 0.08768074959516525,
+      "topk_sigma_err": 0.5867441296577454,
+      "subspace_err": 0.16055472195148468,
+      "persistent_bytes": 76800,
+      "wall_seconds": 0.3320818910000298
+    },
+    {
+      "method": "QFD-int8",
+      "ell": 64,
+      "covariance_err": 0.10627431422472,
+      "topk_sigma_err": 0.5961858034133911,
+      "subspace_err": 0.16514430940151215,
+      "persistent_bytes": 29056,
+      "wall_seconds": 0.34982794400002604
+    },
+    {
+      "method": "QFD-int4-g64",
+      "ell": 64,
+      "covariance_err": 0.2505255937576294,
+      "topk_sigma_err": 0.6026313900947571,
+      "subspace_err": 0.5452896952629089,
+      "persistent_bytes": 21120,
+      "wall_seconds": 0.38749190800001543
+    },
+    {
+      "method": "QFD-int4-g32",
+      "ell": 64,
+      "covariance_err": 0.2941342294216156,
+      "topk_sigma_err": 0.5963517427444458,
+      "subspace_err": 0.5006117224693298,
+      "persistent_bytes": 22400,
+      "wall_seconds": 0.3843349549999857
+    },
+    {
+      "method": "FD-fp32",
+      "ell": 128,
+      "covariance_err": 0.03572938218712807,
+      "topk_sigma_err": 0.19514255225658417,
+      "subspace_err": 0.023321500048041344,
+      "persistent_bytes": 153600,
+      "wall_seconds": 0.639801604000013
+    },
+    {
+      "method": "QFD-int8",
+      "ell": 128,
+      "covariance_err": 0.05477246642112732,
+      "topk_sigma_err": 0.19438765943050385,
+      "subspace_err": 0.040641166269779205,
+      "persistent_bytes": 48512,
+      "wall_seconds": 0.623076570999956
+    },
+    {
+      "method": "QFD-int4-g64",
+      "ell": 128,
+      "covariance_err": 0.20858030021190643,
+      "topk_sigma_err": 0.12319973111152649,
+      "subspace_err": 0.705953061580658,
+      "persistent_bytes": 32640,
+      "wall_seconds": 0.6616604530000814
+    },
+    {
+      "method": "QFD-int4-g32",
+      "ell": 128,
+      "covariance_err": 0.1993820071220398,
+      "topk_sigma_err": 0.09914903342723846,
+      "subspace_err": 0.43707165122032166,
+      "persistent_bytes": 35200,
+      "wall_seconds": 0.6669851980000203
+    },
+    {
+      "method": "FD-fp32",
+      "ell": 256,
+      "covariance_err": 0.01374150812625885,
+      "topk_sigma_err": 0.07089323550462723,
+      "subspace_err": 0.004846053197979927,
+      "persistent_bytes": 307200,
+      "wall_seconds": 0.43140824199997496
+    },
+    {
+      "method": "QFD-int8",
+      "ell": 256,
+      "covariance_err": 0.03026314452290535,
+      "topk_sigma_err": 0.07039327919483185,
+      "subspace_err": 0.029732078313827515,
+      "persistent_bytes": 87424,
+      "wall_seconds": 0.46769814499998574
+    },
+    {
+      "method": "QFD-int4-g64",
+      "ell": 256,
+      "covariance_err": 0.19397039711475372,
+      "topk_sigma_err": 0.07642684131860733,
+      "subspace_err": 0.4919155538082123,
+      "persistent_bytes": 55680,
+      "wall_seconds": 0.46002658700001575
+    },
+    {
+      "method": "QFD-int4-g32",
+      "ell": 256,
+      "covariance_err": 0.18525516986846924,
+      "topk_sigma_err": 0.04498469829559326,
+      "subspace_err": 0.3675655424594879,
+      "persistent_bytes": 60800,
+      "wall_seconds": 0.4668685760000244
+    }
+  ],
+  "power_law_fast_decay": [
+    {
+      "method": "truncated_svd",
+      "ell": 0,
+      "covariance_err": 0.0,
+      "topk_sigma_err": 0.0,
+      "subspace_err": 0.0,
+      "persistent_bytes": 4800000,
+      "wall_seconds": 0.0
+    },
+    {
+      "method": "randomized_svd",
+      "ell": 0,
+      "covariance_err": 6.830172060290352e-05,
+      "topk_sigma_err": 0.0,
+      "subspace_err": 0.0009765625,
+      "persistent_bytes": 4824000,
+      "wall_seconds": 0.02490435200002139
+    },
+    {
+      "method": "FD-fp32",
+      "ell": 32,
+      "covariance_err": 2.244948518637102e-05,
+      "topk_sigma_err": 0.11919540166854858,
+      "subspace_err": 0.0026294749695807695,
+      "persistent_bytes": 38400,
+      "wall_seconds": 0.1534348369999634
+    },
+    {
+      "method": "QFD-int8",
+      "ell": 32,
+      "covariance_err": 0.04047888517379761,
+      "topk_sigma_err": 0.05351323261857033,
+      "subspace_err": 0.9778839349746704,
+      "persistent_bytes": 19328,
+      "wall_seconds": 0.18142459599994254
+    },
+    {
+      "method": "QFD-int4-g64",
+      "ell": 32,
+      "covariance_err": 0.1209462583065033,
+      "topk_sigma_err": 1.0684592723846436,
+      "subspace_err": 0.9999622702598572,
+      "persistent_bytes": 15360,
+      "wall_seconds": 0.19790422899995974
+    },
+    {
+      "method": "QFD-int4-g32",
+      "ell": 32,
+      "covariance_err": 0.10445985198020935,
+      "topk_sigma_err": 1.2293375730514526,
+      "subspace_err": 0.9999794363975525,
+      "persistent_bytes": 16000,
+      "wall_seconds": 0.23449132000007467
+    },
+    {
+      "method": "FD-fp32",
+      "ell": 64,
+      "covariance_err": 1.4398867733689258e-06,
+      "topk_sigma_err": 0.007013324182480574,
+      "subspace_err": 0.001091830083169043,
+      "persistent_bytes": 76800,
+      "wall_seconds": 0.33026583599996684
+    },
+    {
+      "method": "QFD-int8",
+      "ell": 64,
+      "covariance_err": 0.03240642324090004,
+      "topk_sigma_err": 0.03018895722925663,
+      "subspace_err": 0.9657878875732422,
+      "persistent_bytes": 29056,
+      "wall_seconds": 0.3460017079999034
+    },
+    {
+      "method": "QFD-int4-g64",
+      "ell": 64,
+      "covariance_err": 0.1236368715763092,
+      "topk_sigma_err": 0.9273067712783813,
+      "subspace_err": 0.9999751448631287,
+      "persistent_bytes": 21120,
+      "wall_seconds": 0.38332018300002346
+    },
+    {
+      "method": "QFD-int4-g32",
+      "ell": 64,
+      "covariance_err": 0.1108669564127922,
+      "topk_sigma_err": 0.6706430912017822,
+      "subspace_err": 0.9999740719795227,
+      "persistent_bytes": 22400,
+      "wall_seconds": 0.38199508000002425
+    },
+    {
+      "method": "FD-fp32",
+      "ell": 128,
+      "covariance_err": 2.4682725552338525e-07,
+      "topk_sigma_err": 0.0004296190745662898,
+      "subspace_err": 0.0009765625,
+      "persistent_bytes": 153600,
+      "wall_seconds": 0.6326525250000259
+    },
+    {
+      "method": "QFD-int8",
+      "ell": 128,
+      "covariance_err": 0.02644241228699684,
+      "topk_sigma_err": 0.038058213889598846,
+      "subspace_err": 0.9504166841506958,
+      "persistent_bytes": 48512,
+      "wall_seconds": 0.6732205800000202
+    },
+    {
+      "method": "QFD-int4-g64",
+      "ell": 128,
+      "covariance_err": 0.11966572701931,
+      "topk_sigma_err": 0.9574102759361267,
+      "subspace_err": 0.9981549382209778,
+      "persistent_bytes": 32640,
+      "wall_seconds": 0.6801663459999645
+    },
+    {
+      "method": "QFD-int4-g32",
+      "ell": 128,
+      "covariance_err": 0.10094474256038666,
+      "topk_sigma_err": 1.0551866292953491,
+      "subspace_err": 0.9999982118606567,
+      "persistent_bytes": 35200,
+      "wall_seconds": 0.6885131269999647
+    }
+  ],
+  "tall_low_rank": [
+    {
+      "method": "truncated_svd",
+      "ell": 0,
+      "covariance_err": 0.0,
+      "topk_sigma_err": 0.0,
+      "subspace_err": 0.0,
+      "persistent_bytes": 40000000,
+      "wall_seconds": 0.0
+    },
+    {
+      "method": "randomized_svd",
+      "ell": 0,
+      "covariance_err": 126.12866973876953,
+      "topk_sigma_err": 7.059627193939377e-08,
+      "subspace_err": 0.0009765625,
+      "persistent_bytes": 40016000,
+      "wall_seconds": 0.21879535000005035
+    },
+    {
+      "method": "FD-fp32",
+      "ell": 32,
+      "covariance_err": 20.507814407348633,
+      "topk_sigma_err": 0.04838816821575165,
+      "subspace_err": 0.0009765625,
+      "persistent_bytes": 25600,
+      "wall_seconds": 1.17496862400003
+    },
+    {
+      "method": "QFD-int8",
+      "ell": 32,
+      "covariance_err": 1093.2694091796875,
+      "topk_sigma_err": 0.129897341132164,
+      "subspace_err": 0.22107401490211487,
+      "persistent_bytes": 12928,
+      "wall_seconds": 1.453143726999997
+    },
+    {
+      "method": "QFD-int4-g64",
+      "ell": 32,
+      "covariance_err": 503070458904576.0,
+      "topk_sigma_err": 385987.34375,
+      "subspace_err": 0.9999995827674866,
+      "persistent_bytes": 11008,
+      "wall_seconds": 1.6874988920000078
+    },
+    {
+      "method": "QFD-int4-g32",
+      "ell": 32,
+      "covariance_err": 6964070318080.0,
+      "topk_sigma_err": 48229.9921875,
+      "subspace_err": 0.999966561794281,
+      "persistent_bytes": 10880,
+      "wall_seconds": 1.7266287260000581
+    },
+    {
+      "method": "FD-fp32",
+      "ell": 64,
+      "covariance_err": 7.051275253295898,
+      "topk_sigma_err": 0.01635671965777874,
+      "subspace_err": 0.0009134905994869769,
+      "persistent_bytes": 51200,
+      "wall_seconds": 2.7521213900000703
+    },
+    {
+      "method": "QFD-int8",
+      "ell": 64,
+      "covariance_err": 537.0011596679688,
+      "topk_sigma_err": 0.07579942047595978,
+      "subspace_err": 0.15577855706214905,
+      "persistent_bytes": 19456,
+      "wall_seconds": 3.0329692010000144
+    },
+    {
+      "method": "QFD-int4-g64",
+      "ell": 64,
+      "covariance_err": 422640448.0,
+      "topk_sigma_err": 352.7898254394531,
+      "subspace_err": 0.9999954700469971,
+      "persistent_bytes": 15616,
+      "wall_seconds": 3.203952089999916
+    },
+    {
+      "method": "QFD-int4-g32",
+      "ell": 64,
+      "covariance_err": 54830324.0,
+      "topk_sigma_err": 160.28961181640625,
+      "subspace_err": 0.999262273311615,
+      "persistent_bytes": 15360,
+      "wall_seconds": 3.2770347860000584
+    },
+    {
+      "method": "FD-fp32",
+      "ell": 128,
+      "covariance_err": 3.075920820236206,
+      "topk_sigma_err": 0.007105340715497732,
+      "subspace_err": 0.0007720404537394643,
+      "persistent_bytes": 102400,
+      "wall_seconds": 4.561186014999976
+    },
+    {
+      "method": "QFD-int8",
+      "ell": 128,
+      "covariance_err": 285.9533386230469,
+      "topk_sigma_err": 0.0697278305888176,
+      "subspace_err": 0.11276944726705551,
+      "persistent_bytes": 32512,
+      "wall_seconds": 4.739642985999922
+    },
+    {
+      "method": "QFD-int4-g64",
+      "ell": 128,
+      "covariance_err": 769345.5625,
+      "topk_sigma_err": 20.32248306274414,
+      "subspace_err": 0.9991154670715332,
+      "persistent_bytes": 24832,
+      "wall_seconds": 4.869606353000108
+    },
+    {
+      "method": "QFD-int4-g32",
+      "ell": 128,
+      "covariance_err": 299924.8125,
+      "topk_sigma_err": 11.739958763122559,
+      "subspace_err": 0.9998361468315125,
+      "persistent_bytes": 24320,
+      "wall_seconds": 4.997414746999993
+    }
+  ]
+}
