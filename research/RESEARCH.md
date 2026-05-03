@@ -53,6 +53,13 @@ Concretely we predicted:
   full INT4. The intuition: kept rows encode integrated information sensitive
   to noise; raw new rows are individual samples that tolerate coarser
   quantization.
+* **H5 (added in iteration 3, then rejected).** A dynamic INT8 cap `m_t`
+  chosen per-shrink from the largest log-ratio σ-gap should beat fixed
+  `m = ℓ/2` by spending bits only where they matter. Empirically this is
+  *false in our implementation*: see §5.4. The σ-gap detector works, but
+  coupling it to shrink frequency multiplies cumulative quantization noise
+  faster than the precision win. The iteration 3 design is wrong; the right
+  one — decoupled cadence — is articulated in §8.
 
 ## 3. Method
 
@@ -87,7 +94,7 @@ Same buffer structure as block-INT4, but the 16 codebook levels match
 quantiles of `N(0, 1)` (the QLoRA codebook). This puts higher resolution
 near zero, where most values lie after per-block normalisation.
 
-### 3.4 Mixed-Precision FD (MP-FD, iteration 2)
+### 3.4 Mixed-Precision FD (MP-FD, iteration 2 — fixed boundary)
 
 `research/qfd.py:MixedPrecisionFD`. Splits the `ℓ × d` archive into two
 banks:
@@ -102,7 +109,29 @@ Per-element memory averages `(1 + 0.5) / 2 = 0.75 byte` plus scale overhead
 step dequantises both banks, runs SVD, and writes the kept top half into the
 INT8 bank (the NF4 bank starts empty for the next ingestion cycle).
 
-### 3.5 Metrics
+### 3.5 Dynamic MP-FD (iteration 3 — `m_t` chosen per-shrink from σ-gap)
+
+`research/qfd.py:DynamicMPFD`. Same memory budget as fixed MP-FD (`ℓ/2`
+INT8 slots + `ℓ/2` NF4 slots) but the INT8/NF4 partition is chosen per
+shrink. After each shrink we examine the kept singular values
+`s_new[:ℓ/2]` and pick
+
+```
+m_t  = argmax_m  ( log s[m-1] − log s[m] )      m ∈ [m_min, ℓ/2 − 2]
+```
+
+with two structural exclusions: (a) `m = ℓ/2 − 1` is excluded because
+the median-shrink delta makes `s_new[ℓ/2 − 1] ≈ 0`, producing a spurious
+"infinite" gap; (b) candidates whose `s[m]` is below `10⁻³ × s[0]` are
+excluded as gaps into the noise floor. If no gap is significantly
+larger than the average, the picker falls back to `m_t = ℓ/2`
+(equivalent to fixed MP-FD).
+
+The top `m_t` kept rows go to INT8; the remaining `ℓ/2 − m_t` kept rows
+share the NF4 bank with newly-ingested data — so shrink fires after
+exactly `m_t` new rows, not after `ℓ/2` like fixed MP-FD.
+
+### 3.6 Metrics
 
 * `covariance_err = ‖A^T A − B^T B‖_2` — FD's native bound metric.
 * `topk_sigma_err = max_i |σ̂_i − σ_i| / σ_i` for the top-k singular values.
@@ -183,7 +212,32 @@ is no "noise floor" for quantization noise to hide in, so quantization error
 recovery fails completely, though sigma values are still within 4% for INT8.
 **H3 is confirmed.** This is a fundamental limit, not a fixable bug.
 
-### 5.4 Tall mobile-shape data (50k × 200, ℓ=128) — the headline result
+### 5.4 Dynamic MP-FD (iteration 3) — picker works, side effect dominates
+
+| Dataset             | ℓ   | Fixed MP-FD subspace | Dyn MP-FD subspace | shrinks (fixed → dyn) | m_t |
+|---------------------|-----|----------------------|--------------------|-----------------------|-----|
+| low-rank+noise      | 128 | 0.062                | 0.097              | 155 → 597             | 22  |
+| power-law α=0.5     | 128 | 0.057                | 0.052              | 61  → 65              | 59  |
+| power-law α=0.5     | 256 | 0.032                | 0.043              | 30  → 31              | 126 |
+| power-law α=2.0     | 128 | 0.998                | 0.999              | 61  → 192             | 21  |
+| tall low-rank       | 64  | 0.159                | 0.229              | 1561 → 2846           | 22  |
+| tall low-rank       | 128 | 0.129                | 0.168              | 780  → 2057           | 13  |
+
+The σ-gap picker correctly identifies the natural rank of the synthetic
+generators (e.g. `m_t ≈ 13–22` on rank-15 data, `m_t ≈ 126` on the flat
+power-law-α=0.5 spectrum). However, **dynamic MP-FD is *worse* than fixed
+MP-FD in most regimes** because the small `m_t` drives shrink frequency up
+2–4× and the cumulative quantization noise (per §6.3's `√T · ε_q` argument)
+overwhelms the gain from a tighter precision boundary.
+
+**Lesson learned (negative result)**: σ-gap-driven precision is real but
+should NOT be coupled to shrink frequency. A correct dynamic design must
+*decouple* the two — vary the INT8/NF4 ratio while keeping shrink cadence at
+`ℓ/2` new rows. That requires letting INT8 capacity exceed `ℓ/2` (or NF4
+overflow into a third bank), at the cost of slightly more memory. We did not
+implement that variant; it is the obvious next experiment after this study.
+
+### 5.5 Tall mobile-shape data (50k × 200, ℓ=128) — the headline result
 
 | Method            | sigma_err | subspace_err | mem (KB) | mem ratio       |
 |-------------------|-----------|--------------|----------|------------------|
@@ -282,26 +336,33 @@ To turn this from a probe into a paper-grade contribution we would need:
    step.
 
 2. **Rank-aware mixed precision (MP-FD).** Implemented and validated in
-   iteration 2 — see §5.4. The natural next refinement is to make the
-   precision boundary `m` dynamic (e.g. tied to the singular-value gap at
-   each shrink) rather than fixed at `ℓ/2`.
+   iteration 2 — see §5.5.
 
-3. **5- or 6-bit quantization.** §6.3 predicts a sweet spot between 4 and 8
+3. **Decoupled dynamic MP-FD.** Iteration 3 (§5.4) showed that a naive
+   coupling — vary `m_t` AND let it determine shrink frequency — is a net
+   loss. The correct design holds shrink cadence fixed at `ℓ/2` new rows
+   per shrink while still letting `m_t` shrink: extra NF4 capacity (or a
+   small overflow bank) absorbs the `(ℓ/2 − m_t)` kept rows that fixed
+   MP-FD would have stored in INT8. Memory cost: at most `+0.25 ℓ d` bytes
+   over fixed MP-FD; expected quality: strictly better than fixed when the
+   spectrum has a real low-rank gap.
+
+4. **5- or 6-bit quantization.** §6.3 predicts a sweet spot between 4 and 8
    bits where the per-cycle perturbation is small enough to stay under
    `σ_{ℓ/2}` for the slow-decay regime. INT5 (e.g. via 5-bit packed codes
    with NF5-like nonuniform levels) deserves a benchmark.
 
-4. **Memory-bounded shrink**: replace `np.linalg.svd(B)` with eigendecomp of
+5. **Memory-bounded shrink**: replace `np.linalg.svd(B)` with eigendecomp of
    the Gram matrix `BB^T` (size `ℓ × ℓ` rather than `ℓ × d`). This is only a
    modest win at typical `ℓ < d` but combines well with streaming row
    re-projection. A more aggressive option is incremental rank-k SVD (Brand
    2003) as a separate baseline — its `O(k · d)` persistent state is far
    smaller than even Q-FD INT8 but trades FD's deterministic guarantees.
 
-5. **Real datasets**: text embeddings (slow decay, where Q-FD INT8 should
+6. **Real datasets**: text embeddings (slow decay, where Q-FD INT8 should
    shine), sensor streams, on-device LLM activations.
 
-6. **C++ / ARM-NEON microbenchmark** to confirm the wall-clock latency of the
+7. **C++ / ARM-NEON microbenchmark** to confirm the wall-clock latency of the
    dequantize–SVD–requantize cycle on actual mobile hardware.
 
 ## 9. Reproducibility

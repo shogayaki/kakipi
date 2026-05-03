@@ -18,7 +18,12 @@ from pathlib import Path
 import numpy as np
 
 sys.path.insert(0, str(Path(__file__).parent))
-from qfd import FrequentDirections, QuantizedFD, MixedPrecisionFD  # noqa: E402
+from qfd import (  # noqa: E402
+    FrequentDirections,
+    QuantizedFD,
+    MixedPrecisionFD,
+    DynamicMPFD,
+)
 from baselines import truncated_svd, randomized_svd  # noqa: E402
 from datasets import low_rank_plus_noise, power_law_spectrum  # noqa: E402
 
@@ -32,6 +37,7 @@ class Result:
     subspace_err: float
     persistent_bytes: int
     wall_seconds: float
+    note: str = ""
 
 
 def subspace_distance(V_true: np.ndarray, V_est: np.ndarray) -> float:
@@ -61,6 +67,12 @@ def evaluate_sketch(
     sigma_err = float(np.max(np.abs(s_est - sigma_true) / np.maximum(sigma_true, 1e-12)))
     sub_err = subspace_distance(V_true, V_est)
 
+    note = ""
+    if isinstance(sketch, DynamicMPFD):
+        note = f"shrinks={sketch.shrink_count} m={sketch.m_current}"
+    elif hasattr(sketch, "shrink_count"):
+        note = f"shrinks={sketch.shrink_count}"
+
     return Result(
         method=name,
         ell=getattr(sketch, "ell", 0),
@@ -69,6 +81,7 @@ def evaluate_sketch(
         subspace_err=sub_err,
         persistent_bytes=sketch.persistent_bytes(),
         wall_seconds=wall,
+        note=note,
     )
 
 
@@ -110,6 +123,7 @@ def run_dataset(name: str, A: np.ndarray, k: int, ells: list[int]) -> list[dict]
         out.append(evaluate_sketch("QFD-int4-g32", QuantizedFD(d, ell, "int4", group_size=32), A, k, sigma_true, V_true))
         out.append(evaluate_sketch("QFD-nf4-g32", QuantizedFD(d, ell, "nf4", group_size=32), A, k, sigma_true, V_true))
         out.append(evaluate_sketch("MP-FD-int8/nf4", MixedPrecisionFD(d, ell, group_size=32), A, k, sigma_true, V_true))
+        out.append(evaluate_sketch("Dyn-MP-FD", DynamicMPFD(d, ell, m_min=k, group_size=32), A, k, sigma_true, V_true))
 
     rows = [asdict(r) for r in out]
     for r in rows:
@@ -119,7 +133,8 @@ def run_dataset(name: str, A: np.ndarray, k: int, ells: list[int]) -> list[dict]
             f"sigma_err={r['topk_sigma_err']:.3e}  "
             f"subspace_err={r['subspace_err']:.3e}  "
             f"mem={r['persistent_bytes']/1024:.1f} KB  "
-            f"t={r['wall_seconds']:.2f}s"
+            f"t={r['wall_seconds']:.2f}s  "
+            f"{r.get('note', '')}"
         )
     return rows
 

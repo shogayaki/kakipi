@@ -475,3 +475,204 @@ class MixedPrecisionFD:
             + self.bot_codes.nbytes + self.bot_scales.nbytes
             + self.stage.nbytes
         )
+
+
+# -----------------------------------------------------------------------------
+# Dynamic MP-FD: rank chosen per-shrink from the singular-value gap.
+# -----------------------------------------------------------------------------
+
+def _pick_m_from_sigma_gap(
+    sigmas: np.ndarray, m_min: int, m_max: int
+) -> int:
+    """Choose m so that gap_at_m = log s[m-1] - log s[m] is maximised over
+    m in [m_min, m_max - 1]. Falls back to m_max when the spectrum is
+    essentially flat (all gaps within 1.5x of the mean gap).
+
+    Two structural exclusions are applied to avoid FD-shrink artifacts:
+
+      (a) m = m_max - 1 is excluded because s[m_max - 1] is often
+          shrink-induced near-zero (the median-shrink delta zeroes it),
+          which produces a spurious 'infinite' gap that is not a real
+          rank signal.
+      (b) Indices where s[m] is below 1e-3 of the largest singular value
+          are excluded from the search; gaps into the noise floor are not
+          informative for the natural rank.
+    """
+    s = np.maximum(sigmas, 1e-12)
+    log_s = np.log(s)
+    # Mask out indices where s[m] is below the noise floor (relative to max).
+    s_max = float(s.max())
+    floor = 1e-3 * s_max
+    # m ranges over [m_min, m_max - 2] so we never pick the last kept row.
+    upper = min(m_max - 2, len(s) - 1)
+    if upper < m_min:
+        return m_max
+    candidates = np.arange(m_min, upper + 1)
+    gap_at_m = log_s[candidates - 1] - log_s[candidates]
+    valid = s[candidates] >= floor
+    if not np.any(valid):
+        return m_max
+    gap_at_m = np.where(valid, gap_at_m, -np.inf)
+    finite = gap_at_m[np.isfinite(gap_at_m)]
+    if finite.size == 0:
+        return m_max
+    if finite.max() < 1.5 * finite.mean() + 1e-6:
+        return m_max
+    best = int(np.argmax(gap_at_m))
+    return int(candidates[best])
+
+
+class DynamicMPFD:
+    """Dynamic-rank Mixed-Precision FD.
+
+    Same memory budget as MixedPrecisionFD (ell/2 INT8 + ell/2 NF4), but the
+    INT8/NF4 partition is chosen per-shrink from the singular-value gap of
+    the kept top-half rows. Concretely, after each shrink:
+
+      * m_t = pick_m(s_new[:ell/2])  -- in [m_min, ell/2]
+      * top INT8 bank holds m_t kept rows (slots [0, m_t))
+      * bottom NF4 bank holds the remaining ell/2 - m_t kept rows (slots
+        [0, ell/2 - m_t)); new ingested rows fill slots [ell/2 - m_t, ell/2),
+        so the next shrink fires after exactly m_t new rows.
+
+    Predictions:
+      * On low-effective-rank streams, m_t < ell/2 -> more frequent shrinks
+        but each shrink discards quantization error before it accumulates.
+      * On flat-spectrum streams, m_t = ell/2 (the gap detector falls back),
+        recovering plain MP-FD behaviour.
+    """
+
+    def __init__(
+        self,
+        d: int,
+        ell: int,
+        m_min: int = 4,
+        group_size: int = 32,
+        stage_rows: int = 8,
+    ):
+        assert ell >= 4 and ell % 2 == 0
+        self.d = d
+        self.ell = ell
+        self.half = ell // 2
+        self.m_min = max(1, m_min)
+        self.m_max = self.half
+        self.group_size = group_size
+        self.stage_rows = min(stage_rows, ell)
+        self.shrink_count = 0
+        self.stage = np.zeros((self.stage_rows, d), dtype=np.float32)
+        self.stage_fill = 0
+
+        # State.
+        self.m_current = self.half  # initial: behave like fixed MP-FD.
+        self.n_top = 0       # filled INT8 slots (== m_current after shrink, fixed during ingestion)
+        self.n_bot_kept = 0  # NF4 slots holding kept-from-shrink rows: [0, n_bot_kept)
+        self.n_bot = 0       # NF4 slots populated overall (kept + new): [0, n_bot)
+
+        # Storage banks.
+        self.top_codes = np.zeros((self.half, d), dtype=np.int8)
+        self.top_scales = np.zeros((self.half,), dtype=np.float32)
+        self.n_groups = (d + group_size - 1) // group_size
+        packed_cols = (self.n_groups * group_size + 1) // 2
+        self.bot_codes = np.zeros((self.half, packed_cols), dtype=np.uint8)
+        self.bot_scales = np.zeros((self.half, self.n_groups), dtype=np.float32)
+
+    # -- ingestion --
+
+    def append(self, row: np.ndarray) -> None:
+        self.stage[self.stage_fill] = row.astype(np.float32, copy=False)
+        self.stage_fill += 1
+        if self.stage_fill == self.stage_rows:
+            self._flush_stage()
+
+    def append_batch(self, rows: np.ndarray) -> None:
+        for r in rows:
+            self.append(r)
+
+    def _flush_stage(self) -> None:
+        if self.stage_fill == 0:
+            return
+        slab = self.stage[: self.stage_fill]
+        # Repeatedly: write what fits in the NF4 bank, shrink if the bank fills.
+        offset = 0
+        while offset < slab.shape[0]:
+            free = self.half - self.n_bot
+            if free == 0:
+                self._shrink()
+                continue
+            take = min(free, slab.shape[0] - offset)
+            chunk = slab[offset : offset + take]
+            codes, scales = quantize_nf4_blockwise(chunk, self.group_size)
+            self.bot_codes[self.n_bot : self.n_bot + take] = codes
+            self.bot_scales[self.n_bot : self.n_bot + take] = scales
+            self.n_bot += take
+            offset += take
+            if self.n_bot == self.half:
+                self._shrink()
+        self.stage_fill = 0
+
+    # -- shrink --
+
+    def _dequantize_full(self) -> np.ndarray:
+        rows = self.n_top + self.n_bot
+        out = np.zeros((rows, self.d), dtype=np.float32)
+        if self.n_top > 0:
+            out[: self.n_top] = dequantize_int8_rowwise(
+                self.top_codes[: self.n_top], self.top_scales[: self.n_top]
+            )
+        if self.n_bot > 0:
+            out[self.n_top :] = dequantize_nf4_blockwise(
+                self.bot_codes[: self.n_bot],
+                self.bot_scales[: self.n_bot],
+                self.d,
+                self.group_size,
+            )
+        return out
+
+    def _shrink(self) -> None:
+        B = self._dequantize_full()
+        if B.shape[0] < self.half:
+            return
+        _, s, Vt = np.linalg.svd(B, full_matrices=False)
+        delta = s[self.half - 1] ** 2 if len(s) >= self.half else 0.0
+        s_new = np.sqrt(np.maximum(s ** 2 - delta, 0.0))
+        kept = (s_new[: self.half, None] * Vt[: self.half]).astype(np.float32)
+
+        # Choose m_t from the σ-gap of the kept singular values.
+        m_t = _pick_m_from_sigma_gap(s_new[: self.half], self.m_min, self.m_max)
+        self.m_current = m_t
+
+        # Reset banks and re-archive the kept rows.
+        self.top_codes[:] = 0
+        self.top_scales[:] = 0
+        self.bot_codes[:] = 0
+        self.bot_scales[:] = 0
+        codes, scales = quantize_int8_rowwise(kept[:m_t])
+        self.top_codes[:m_t] = codes
+        self.top_scales[:m_t] = scales
+        self.n_top = m_t
+
+        rest = kept[m_t : self.half]
+        if rest.shape[0] > 0:
+            codes_b, scales_b = quantize_nf4_blockwise(rest, self.group_size)
+            self.bot_codes[: rest.shape[0]] = codes_b
+            self.bot_scales[: rest.shape[0]] = scales_b
+        self.n_bot_kept = rest.shape[0]
+        self.n_bot = self.n_bot_kept
+        self.shrink_count += 1
+
+    # -- query --
+
+    def topk(self, k: int) -> tuple[np.ndarray, np.ndarray]:
+        self._flush_stage()
+        B = self._dequantize_full()
+        if B.shape[0] == 0:
+            return np.zeros(k), np.zeros((k, self.d))
+        _, s, Vt = np.linalg.svd(B, full_matrices=False)
+        return s[:k], Vt[:k]
+
+    def persistent_bytes(self) -> int:
+        return (
+            self.top_codes.nbytes + self.top_scales.nbytes
+            + self.bot_codes.nbytes + self.bot_scales.nbytes
+            + self.stage.nbytes
+        )

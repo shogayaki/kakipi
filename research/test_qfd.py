@@ -8,6 +8,9 @@ sys.path.insert(0, str(Path(__file__).parent))
 from qfd import (
     FrequentDirections,
     QuantizedFD,
+    MixedPrecisionFD,
+    DynamicMPFD,
+    _pick_m_from_sigma_gap,
     quantize_int8_rowwise,
     dequantize_int8_rowwise,
     quantize_int4_blockwise,
@@ -123,6 +126,45 @@ def test_qfd_int4_close_to_fd():
     print(f"  QFD-int4 vs FD top-k sigma rel-diff: {sigma_diff:.4f}")
 
 
+def test_sigma_gap_picker():
+    """The picker should pick m at the largest log-ratio drop."""
+    # Clear gap at index 4 (between 5th and 6th values).
+    s = np.array([10.0, 9.0, 8.0, 7.0, 6.0, 0.6, 0.4, 0.3, 0.2, 0.1])
+    m = _pick_m_from_sigma_gap(s, m_min=2, m_max=8)
+    print(f"  picked m={m} (expected 5 for clear gap at index 4)")
+    assert m == 5, f"expected 5, got {m}"
+
+    # Flat spectrum -> fall back to m_max.
+    s_flat = np.array([1.0, 0.95, 0.91, 0.88, 0.85, 0.83])
+    m = _pick_m_from_sigma_gap(s_flat, m_min=2, m_max=4)
+    print(f"  flat-spectrum m={m} (expected 4 = m_max)")
+    assert m == 4
+
+
+def test_dynamic_mpfd():
+    """Dynamic MP-FD should at minimum match fixed MP-FD's quality."""
+    A = low_rank_plus_noise(2000, 200, rank=15, noise=0.01, seed=0)
+    k, ell = 10, 64
+    fd = FrequentDirections(A.shape[1], ell)
+    fd.append_batch(A)
+    s_fd, _ = fd.topk(k)
+
+    fixed = MixedPrecisionFD(A.shape[1], ell)
+    fixed.append_batch(A)
+    s_fixed, _ = fixed.topk(k)
+
+    dyn = DynamicMPFD(A.shape[1], ell, m_min=k)
+    dyn.append_batch(A)
+    s_dyn, _ = dyn.topk(k)
+
+    fixed_diff = float(np.max(np.abs(s_fixed - s_fd) / s_fd))
+    dyn_diff = float(np.max(np.abs(s_dyn - s_fd) / s_fd))
+    print(f"  fixed MP-FD vs FD top-k diff: {fixed_diff:.4f}")
+    print(f"  dynamic MP-FD vs FD top-k diff: {dyn_diff:.4f}")
+    print(f"  dynamic shrink count: {dyn.shrink_count} (fixed: {fixed.shrink_count})")
+    print(f"  dynamic final m: {dyn.m_current}")
+
+
 if __name__ == "__main__":
     print("test_int8_roundtrip");    test_int8_roundtrip()
     print("test_int4_roundtrip");    test_int4_roundtrip()
@@ -131,4 +173,6 @@ if __name__ == "__main__":
     print("test_qfd_int8_close");    test_qfd_int8_close_to_fd()
     print("test_qfd_int4_close");    test_qfd_int4_close_to_fd()
     print("test_nf4_qfd_close");     test_nf4_qfd_close_to_fd()
+    print("test_sigma_gap_picker");  test_sigma_gap_picker()
+    print("test_dynamic_mpfd");      test_dynamic_mpfd()
     print("\nAll tests passed.")
