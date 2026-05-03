@@ -17,7 +17,7 @@
       "topk_sigma_err": 0.0,
       "subspace_err": 0.0011451210593804717,
       "persistent_bytes": 12024000,
-      "wall_seconds": 0.061641756000028636,
+      "wall_seconds": 0.07140692300001206,
       "note": ""
     },
     {
@@ -27,7 +27,7 @@
       "topk_sigma_err": 0.014360196888446808,
       "subspace_err": 0.0008457279182039201,
       "persistent_bytes": 38400,
-      "wall_seconds": 0.35257575600002156,
+      "wall_seconds": 0.37280908399998225,
       "note": "shrinks=623"
     },
     {
@@ -37,7 +37,7 @@
       "topk_sigma_err": 0.07591839879751205,
       "subspace_err": 0.11043309420347214,
       "persistent_bytes": 19328,
-      "wall_seconds": 0.4168432189999862,
+      "wall_seconds": 0.4259873329999948,
       "note": "shrinks=624"
     },
     {
@@ -47,7 +47,7 @@
       "topk_sigma_err": 3.8191802501678467,
       "subspace_err": 0.999994158744812,
       "persistent_bytes": 16000,
-      "wall_seconds": 0.5016244830000005,
+      "wall_seconds": 0.46899915099999134,
       "note": "shrinks=624"
     },
     {
@@ -57,7 +57,7 @@
       "topk_sigma_err": 6.453887462615967,
       "subspace_err": 0.9996228218078613,
       "persistent_bytes": 16000,
-      "wall_seconds": 0.6669764839999743,
+      "wall_seconds": 0.6482087920000197,
       "note": "shrinks=624"
     },
     {
@@ -67,7 +67,7 @@
       "topk_sigma_err": 0.06481517851352692,
       "subspace_err": 0.11012257635593414,
       "persistent_bytes": 17664,
-      "wall_seconds": 0.5454663679999499,
+      "wall_seconds": 0.558479062999993,
       "note": "shrinks=624"
     },
     {
@@ -77,8 +77,18 @@
       "topk_sigma_err": 0.06789510697126389,
       "subspace_err": 0.1135883778333664,
       "persistent_bytes": 17664,
-      "wall_seconds": 0.658410339999989,
+      "wall_seconds": 0.5963774770000043,
       "note": "shrinks=778 m=12"
+    },
+    {
+      "method": "Decoupled-MP-FD",
+      "ell": 32,
+      "covariance_err": 396.87994384765625,
+      "topk_sigma_err": 0.08347491919994354,
+      "subspace_err": 0.1140531376004219,
+      "persistent_bytes": 20864,
+      "wall_seconds": 0.6350646070000039,
+      "note": "shrinks=625 m=14"
     },
     {
       "method": "FD-fp32",
@@ -87,7 +97,7 @@
       "topk_sigma_err": 0.004972711205482483,
       "subspace_err": 0.0007720404537394643,
       "persistent_bytes": 76800,
-      "wall_seconds": 0.9592178230000172,
+      "wall_seconds": 0.9740972859999886,
       "note": "shrinks=311"
     },
     {
@@ -97,7 +107,7 @@
       "topk_sigma_err": 0.020205169916152954,
       "subspace_err": 0.07848124206066132,
       "persistent_bytes": 29056,
-      "wall_seconds": 0.9757174150000196,
+      "wall_seconds": 1.0463495340000009,
       "note": "shrinks=311"
     },
     {
@@ -107,7 +117,7 @@
       "topk_sigma_err": 1.7666642665863037,
       "subspace_err": 0.9947431087493896,
       "persistent_bytes": 22400,
-      "wall_seconds": 1.1303220210000404,
+      "wall_seconds": 1.1050104820000115,
       "note": "shrinks=311"
     },
     {
@@ -117,7 +127,7 @@
       "topk_sigma_err": 1.5426087379455566,
       "subspace_err": 0.9998964071273804,
       "persistent_bytes": 22400,
-      "wall_seconds": 1.2518886859999725,
+      "wall_seconds": 1.2662609989999964,
       "note": "shrinks=311"
     },
     {
@@ -127,7 +137,7 @@
       "topk_sigma_err": 0.03074091300368309,
       "subspace_err": 0.07613156735897064,
       "persistent_bytes": 25728,
-      "wall_seconds": 1.163797919999979,
+      "wall_seconds": 1.1830630940000049,
       "note": "shrinks=311"
     },
     {
@@ -137,8 +147,18 @@
       "topk_sigma_err": 0.03375710919499397,
       "subspace_err": 0.12435004860162735,
       "persistent_bytes": 25728,
-      "wall_seconds": 1.5947410669999726,
+      "wall_seconds": 1.6022404729999948,
       "note": "shrinks=690 m=20"
+    },
+    {
+      "method": "Decoupled-MP-FD",
+      "ell": 64,
+      "covariance_err": 304.12432861328125,
+      "topk_sigma_err": 0.016635874286293983,
+      "subspace_err": 0.08156270533800125,
+      "persistent_bytes": 32128,
+      "wall_seconds": 1.2484175040000025,
+      "note": "shrinks=312 m=13"
     },
     {
       "method": "FD-fp32",
@@ -147,7 +167,7 @@
       "topk_sigma_err": 0.00209731119684875,
       "subspace_err": 0.0008457279182039201,
       "persistent_bytes": 153600,
-      "wall_seconds": 1.8542598000000226,
+      "wall_seconds": 1.798140439000008,
       "note": "shrinks=155"
     },
     {
@@ -157,7 +177,7 @@
       "topk_sigma_err": 0.008293041959404945,
       "subspace_err": 0.059688761830329895,
       "persistent_bytes": 48512,
-      "wall_seconds": 1.9366609470000071,
+      "wall_seconds": 1.8548996660000228,
       "note": "shrinks=155"
     },
     {
@@ -167,7 +187,7 @@
       "topk_sigma_err": 0.6135790348052979,
       "subspace_err": 0.9838070869445801,
       "persistent_bytes": 35200,
-      "wall_seconds": 1.84372596999998,
+      "wall_seconds": 1.8652775599999813,
       "note": "shrinks=155"
     },
     {
@@ -177,7 +197,7 @@
       "topk_sigma_err": 0.8768793344497681,
       "subspace_err": 0.9242321848869324,
       "persistent_bytes": 35200,
-      "wall_seconds": 2.0753145659999745,
+      "wall_seconds": 2.120228382999983,
       "note": "shrinks=155"
     },
     {
@@ -187,7 +207,7 @@
       "topk_sigma_err": 0.012256115674972534,
       "subspace_err": 0.06212647259235382,
       "persistent_bytes": 41856,
-      "wall_seconds": 2.0564310020000107,
+      "wall_seconds": 1.9942718949999971,
       "note": "shrinks=155"
     },
     {
@@ -197,8 +217,18 @@
       "topk_sigma_err": 0.06205566227436066,
       "subspace_err": 0.09729363769292831,
       "persistent_bytes": 41856,
-      "wall_seconds": 3.476947891000009,
+      "wall_seconds": 3.493542740999999,
       "note": "shrinks=597 m=22"
+    },
+    {
+      "method": "Decoupled-MP-FD",
+      "ell": 128,
+      "covariance_err": 224.51010131835938,
+      "topk_sigma_err": 0.009190753102302551,
+      "subspace_err": 0.06441982090473175,
+      "persistent_bytes": 54656,
+      "wall_seconds": 2.101652889000036,
+      "note": "shrinks=156 m=13"
     }
   ],
   "power_law_slow_decay": [
@@ -219,7 +249,7 @@
       "topk_sigma_err": 0.0005041069816797972,
       "subspace_err": 0.03604775667190552,
       "persistent_bytes": 4824000,
-      "wall_seconds": 0.02836496800000532,
+      "wall_seconds": 0.02742942099996526,
       "note": ""
     },
     {
@@ -229,7 +259,7 @@
       "topk_sigma_err": 0.5867441296577454,
       "subspace_err": 0.16055472195148468,
       "persistent_bytes": 76800,
-      "wall_seconds": 0.3868362830000365,
+      "wall_seconds": 0.3743376350000176,
       "note": "shrinks=123"
     },
     {
@@ -239,7 +269,7 @@
       "topk_sigma_err": 0.5961858034133911,
       "subspace_err": 0.16514430940151215,
       "persistent_bytes": 29056,
-      "wall_seconds": 0.400229999999965,
+      "wall_seconds": 0.40867152399999895,
       "note": "shrinks=124"
     },
     {
@@ -249,7 +279,7 @@
       "topk_sigma_err": 0.5963517427444458,
       "subspace_err": 0.5006117224693298,
       "persistent_bytes": 22400,
-      "wall_seconds": 0.41757975299998407,
+      "wall_seconds": 0.4697463900000116,
       "note": "shrinks=124"
     },
     {
@@ -259,7 +289,7 @@
       "topk_sigma_err": 0.6502585411071777,
       "subspace_err": 0.5642245411872864,
       "persistent_bytes": 22400,
-      "wall_seconds": 0.49466792999999143,
+      "wall_seconds": 0.5185656730000119,
       "note": "shrinks=124"
     },
     {
@@ -269,7 +299,7 @@
       "topk_sigma_err": 0.6087012887001038,
       "subspace_err": 0.16884155571460724,
       "persistent_bytes": 25728,
-      "wall_seconds": 0.44813112600002114,
+      "wall_seconds": 0.4734695970000189,
       "note": "shrinks=124"
     },
     {
@@ -279,8 +309,18 @@
       "topk_sigma_err": 0.6953264474868774,
       "subspace_err": 0.237745463848114,
       "persistent_bytes": 25728,
-      "wall_seconds": 0.5224919610000143,
+      "wall_seconds": 0.5266337639999961,
       "note": "shrinks=173 m=30"
+    },
+    {
+      "method": "Decoupled-MP-FD",
+      "ell": 64,
+      "covariance_err": 0.10935211926698685,
+      "topk_sigma_err": 0.6093271970748901,
+      "subspace_err": 0.17080511152744293,
+      "persistent_bytes": 32128,
+      "wall_seconds": 0.49689701100004413,
+      "note": "shrinks=125 m=30"
     },
     {
       "method": "FD-fp32",
@@ -289,7 +329,7 @@
       "topk_sigma_err": 0.19514255225658417,
       "subspace_err": 0.023321500048041344,
       "persistent_bytes": 153600,
-      "wall_seconds": 0.7416466349999951,
+      "wall_seconds": 0.7396124229999828,
       "note": "shrinks=61"
     },
     {
@@ -299,7 +339,7 @@
       "topk_sigma_err": 0.19438765943050385,
       "subspace_err": 0.040641166269779205,
       "persistent_bytes": 48512,
-      "wall_seconds": 0.7433827479999877,
+      "wall_seconds": 0.7468055709999817,
       "note": "shrinks=61"
     },
     {
@@ -309,7 +349,7 @@
       "topk_sigma_err": 0.09914903342723846,
       "subspace_err": 0.43707165122032166,
       "persistent_bytes": 35200,
-      "wall_seconds": 0.754511215999969,
+      "wall_seconds": 0.7631096279999952,
       "note": "shrinks=61"
     },
     {
@@ -319,7 +359,7 @@
       "topk_sigma_err": 0.18832208216190338,
       "subspace_err": 0.7709265947341919,
       "persistent_bytes": 35200,
-      "wall_seconds": 0.8485877649999907,
+      "wall_seconds": 0.848121902999992,
       "note": "shrinks=61"
     },
     {
@@ -329,7 +369,7 @@
       "topk_sigma_err": 0.2036333978176117,
       "subspace_err": 0.05695021525025368,
       "persistent_bytes": 41856,
-      "wall_seconds": 0.8226750709999919,
+      "wall_seconds": 0.7897206899999674,
       "note": "shrinks=61"
     },
     {
@@ -339,8 +379,18 @@
       "topk_sigma_err": 0.20660525560379028,
       "subspace_err": 0.052235253155231476,
       "persistent_bytes": 41856,
-      "wall_seconds": 0.7991240359999665,
+      "wall_seconds": 0.813582107000002,
       "note": "shrinks=65 m=59"
+    },
+    {
+      "method": "Decoupled-MP-FD",
+      "ell": 128,
+      "covariance_err": 0.0616464801132679,
+      "topk_sigma_err": 0.20347215235233307,
+      "subspace_err": 0.043504323810338974,
+      "persistent_bytes": 54656,
+      "wall_seconds": 0.7722035700000447,
+      "note": "shrinks=62 m=62"
     },
     {
       "method": "FD-fp32",
@@ -349,7 +399,7 @@
       "topk_sigma_err": 0.07089323550462723,
       "subspace_err": 0.004846053197979927,
       "persistent_bytes": 307200,
-      "wall_seconds": 0.4500441879999926,
+      "wall_seconds": 0.45256402299997944,
       "note": "shrinks=30"
     },
     {
@@ -359,7 +409,7 @@
       "topk_sigma_err": 0.07039327919483185,
       "subspace_err": 0.029732078313827515,
       "persistent_bytes": 87424,
-      "wall_seconds": 0.5164629679999848,
+      "wall_seconds": 0.46540048299999626,
       "note": "shrinks=30"
     },
     {
@@ -369,7 +419,7 @@
       "topk_sigma_err": 0.04498469829559326,
       "subspace_err": 0.3675655424594879,
       "persistent_bytes": 60800,
-      "wall_seconds": 0.5046479500000487,
+      "wall_seconds": 0.4913285020000444,
       "note": "shrinks=30"
     },
     {
@@ -379,7 +429,7 @@
       "topk_sigma_err": 0.05746936798095703,
       "subspace_err": 0.7931833863258362,
       "persistent_bytes": 60800,
-      "wall_seconds": 0.5780416590000073,
+      "wall_seconds": 0.5634415600000011,
       "note": "shrinks=30"
     },
     {
@@ -389,7 +439,7 @@
       "topk_sigma_err": 0.0765417069196701,
       "subspace_err": 0.03192552924156189,
       "persistent_bytes": 74112,
-      "wall_seconds": 0.5186945589999823,
+      "wall_seconds": 0.5165874099999996,
       "note": "shrinks=30"
     },
     {
@@ -399,7 +449,17 @@
       "topk_sigma_err": 0.07451104372739792,
       "subspace_err": 0.043074045330286026,
       "persistent_bytes": 74112,
-      "wall_seconds": 0.5116793880000046,
+      "wall_seconds": 0.5111557530000255,
+      "note": "shrinks=31 m=126"
+    },
+    {
+      "method": "Decoupled-MP-FD",
+      "ell": 256,
+      "covariance_err": 0.03622542694211006,
+      "topk_sigma_err": 0.07563847303390503,
+      "subspace_err": 0.04088754206895828,
+      "persistent_bytes": 99712,
+      "wall_seconds": 0.5489244849999864,
       "note": "shrinks=31 m=126"
     }
   ],
@@ -421,7 +481,7 @@
       "topk_sigma_err": 0.0,
       "subspace_err": 0.0009765625,
       "persistent_bytes": 4824000,
-      "wall_seconds": 0.026860043999988648,
+      "wall_seconds": 0.0306630189999737,
       "note": ""
     },
     {
@@ -431,7 +491,7 @@
       "topk_sigma_err": 0.11919540166854858,
       "subspace_err": 0.0026294749695807695,
       "persistent_bytes": 38400,
-      "wall_seconds": 0.1457956490000356,
+      "wall_seconds": 0.14874527500001022,
       "note": "shrinks=248"
     },
     {
@@ -441,7 +501,7 @@
       "topk_sigma_err": 0.05351323261857033,
       "subspace_err": 0.9778839349746704,
       "persistent_bytes": 19328,
-      "wall_seconds": 0.17832680700001902,
+      "wall_seconds": 0.1680098450000287,
       "note": "shrinks=249"
     },
     {
@@ -451,7 +511,7 @@
       "topk_sigma_err": 1.2293375730514526,
       "subspace_err": 0.9999794363975525,
       "persistent_bytes": 16000,
-      "wall_seconds": 0.19697080400004552,
+      "wall_seconds": 0.19755507299998953,
       "note": "shrinks=249"
     },
     {
@@ -461,7 +521,7 @@
       "topk_sigma_err": 1.9976304769515991,
       "subspace_err": 0.9998659491539001,
       "persistent_bytes": 16000,
-      "wall_seconds": 0.26394464200001266,
+      "wall_seconds": 0.2618120160000217,
       "note": "shrinks=249"
     },
     {
@@ -471,7 +531,7 @@
       "topk_sigma_err": 0.8298845887184143,
       "subspace_err": 0.9984369874000549,
       "persistent_bytes": 17664,
-      "wall_seconds": 0.2197840409999685,
+      "wall_seconds": 0.231062608000002,
       "note": "shrinks=249"
     },
     {
@@ -481,8 +541,18 @@
       "topk_sigma_err": 0.8293361067771912,
       "subspace_err": 0.9960450530052185,
       "persistent_bytes": 17664,
-      "wall_seconds": 0.2477352779999933,
+      "wall_seconds": 0.2589983480000342,
       "note": "shrinks=290 m=16"
+    },
+    {
+      "method": "Decoupled-MP-FD",
+      "ell": 32,
+      "covariance_err": 0.041054196655750275,
+      "topk_sigma_err": 0.8325712084770203,
+      "subspace_err": 0.999346911907196,
+      "persistent_bytes": 20864,
+      "wall_seconds": 0.25301561800000627,
+      "note": "shrinks=250 m=16"
     },
     {
       "method": "FD-fp32",
@@ -491,7 +561,7 @@
       "topk_sigma_err": 0.007013324182480574,
       "subspace_err": 0.001091830083169043,
       "persistent_bytes": 76800,
-      "wall_seconds": 0.3619821830000092,
+      "wall_seconds": 0.3824695680000332,
       "note": "shrinks=123"
     },
     {
@@ -501,7 +571,7 @@
       "topk_sigma_err": 0.03018895722925663,
       "subspace_err": 0.9657878875732422,
       "persistent_bytes": 29056,
-      "wall_seconds": 0.3849521989999971,
+      "wall_seconds": 0.4077485079999974,
       "note": "shrinks=124"
     },
     {
@@ -511,7 +581,7 @@
       "topk_sigma_err": 0.6706430912017822,
       "subspace_err": 0.9999740719795227,
       "persistent_bytes": 22400,
-      "wall_seconds": 0.42073559899995416,
+      "wall_seconds": 0.4358149340000068,
       "note": "shrinks=124"
     },
     {
@@ -521,7 +591,7 @@
       "topk_sigma_err": 1.1297491788864136,
       "subspace_err": 0.9999797344207764,
       "persistent_bytes": 22400,
-      "wall_seconds": 0.49371414299997696,
+      "wall_seconds": 0.5129641069999593,
       "note": "shrinks=124"
     },
     {
@@ -531,7 +601,7 @@
       "topk_sigma_err": 0.4243318736553192,
       "subspace_err": 0.9984607100486755,
       "persistent_bytes": 25728,
-      "wall_seconds": 0.45921612600000117,
+      "wall_seconds": 0.46415222000001677,
       "note": "shrinks=124"
     },
     {
@@ -541,8 +611,18 @@
       "topk_sigma_err": 0.5741024613380432,
       "subspace_err": 0.9986777305603027,
       "persistent_bytes": 25728,
-      "wall_seconds": 0.6208301119999646,
+      "wall_seconds": 0.623766938000017,
       "note": "shrinks=258 m=10"
+    },
+    {
+      "method": "Decoupled-MP-FD",
+      "ell": 64,
+      "covariance_err": 0.03545450419187546,
+      "topk_sigma_err": 0.46615323424339294,
+      "subspace_err": 0.9967981576919556,
+      "persistent_bytes": 32128,
+      "wall_seconds": 0.512310532000015,
+      "note": "shrinks=125 m=12"
     },
     {
       "method": "FD-fp32",
@@ -551,7 +631,7 @@
       "topk_sigma_err": 0.0004296190745662898,
       "subspace_err": 0.0009765625,
       "persistent_bytes": 153600,
-      "wall_seconds": 0.7224024709999526,
+      "wall_seconds": 0.7226114129999814,
       "note": "shrinks=61"
     },
     {
@@ -561,7 +641,7 @@
       "topk_sigma_err": 0.038058213889598846,
       "subspace_err": 0.9504166841506958,
       "persistent_bytes": 48512,
-      "wall_seconds": 0.7540005980000046,
+      "wall_seconds": 0.7509429290000185,
       "note": "shrinks=61"
     },
     {
@@ -571,7 +651,7 @@
       "topk_sigma_err": 1.0551866292953491,
       "subspace_err": 0.9999982118606567,
       "persistent_bytes": 35200,
-      "wall_seconds": 0.7549126160000128,
+      "wall_seconds": 0.7735706179999511,
       "note": "shrinks=61"
     },
     {
@@ -581,7 +661,7 @@
       "topk_sigma_err": 0.9757521152496338,
       "subspace_err": 0.9997805953025818,
       "persistent_bytes": 35200,
-      "wall_seconds": 0.815512818000002,
+      "wall_seconds": 0.8487013710000042,
       "note": "shrinks=61"
     },
     {
@@ -591,7 +671,7 @@
       "topk_sigma_err": 0.22376513481140137,
       "subspace_err": 0.9982454180717468,
       "persistent_bytes": 41856,
-      "wall_seconds": 0.8298218649999853,
+      "wall_seconds": 0.8175408050000215,
       "note": "shrinks=61"
     },
     {
@@ -601,8 +681,18 @@
       "topk_sigma_err": 0.12354415655136108,
       "subspace_err": 0.9993840456008911,
       "persistent_bytes": 41856,
-      "wall_seconds": 1.268530462000058,
+      "wall_seconds": 1.2730536539999662,
       "note": "shrinks=192 m=21"
+    },
+    {
+      "method": "Decoupled-MP-FD",
+      "ell": 128,
+      "covariance_err": 0.029900234192609787,
+      "topk_sigma_err": 0.17054340243339539,
+      "subspace_err": 0.9970605969429016,
+      "persistent_bytes": 54656,
+      "wall_seconds": 0.8421978320000107,
+      "note": "shrinks=62 m=21"
     }
   ],
   "tall_low_rank": [
@@ -623,7 +713,7 @@
       "topk_sigma_err": 7.059627193939377e-08,
       "subspace_err": 0.0009765625,
       "persistent_bytes": 40016000,
-      "wall_seconds": 0.24332252499993956,
+      "wall_seconds": 0.27052073799995924,
       "note": ""
     },
     {
@@ -633,7 +723,7 @@
       "topk_sigma_err": 0.04838816821575165,
       "subspace_err": 0.0009765625,
       "persistent_bytes": 25600,
-      "wall_seconds": 0.9596304300000611,
+      "wall_seconds": 0.9870559359999902,
       "note": "shrinks=3123"
     },
     {
@@ -643,7 +733,7 @@
       "topk_sigma_err": 0.129897341132164,
       "subspace_err": 0.22107401490211487,
       "persistent_bytes": 12928,
-      "wall_seconds": 1.2263099530000545,
+      "wall_seconds": 1.2083023089999756,
       "note": "shrinks=3124"
     },
     {
@@ -653,7 +743,7 @@
       "topk_sigma_err": 48229.9921875,
       "subspace_err": 0.999966561794281,
       "persistent_bytes": 10880,
-      "wall_seconds": 1.536628252000014,
+      "wall_seconds": 1.4047516589999987,
       "note": "shrinks=3124"
     },
     {
@@ -663,7 +753,7 @@
       "topk_sigma_err": 89391.453125,
       "subspace_err": 0.9999710321426392,
       "persistent_bytes": 10880,
-      "wall_seconds": 2.2141913419999355,
+      "wall_seconds": 1.9350145409999868,
       "note": "shrinks=3124"
     },
     {
@@ -673,7 +763,7 @@
       "topk_sigma_err": 0.1090938076376915,
       "subspace_err": 0.262742280960083,
       "persistent_bytes": 11904,
-      "wall_seconds": 1.7116767809999374,
+      "wall_seconds": 1.7792501019999918,
       "note": "shrinks=3124"
     },
     {
@@ -683,8 +773,18 @@
       "topk_sigma_err": 0.1538572758436203,
       "subspace_err": 0.24700939655303955,
       "persistent_bytes": 11904,
-      "wall_seconds": 2.273378297000022,
+      "wall_seconds": 2.2300903469999867,
       "note": "shrinks=3945 m=16"
+    },
+    {
+      "method": "Decoupled-MP-FD",
+      "ell": 32,
+      "covariance_err": 799.7330322265625,
+      "topk_sigma_err": 0.18946021795272827,
+      "subspace_err": 0.2286413162946701,
+      "persistent_bytes": 14144,
+      "wall_seconds": 2.0944614740000134,
+      "note": "shrinks=3125 m=13"
     },
     {
       "method": "FD-fp32",
@@ -693,7 +793,7 @@
       "topk_sigma_err": 0.01635671965777874,
       "subspace_err": 0.0009134905994869769,
       "persistent_bytes": 51200,
-      "wall_seconds": 2.8422881819999475,
+      "wall_seconds": 3.0349945390000244,
       "note": "shrinks=1561"
     },
     {
@@ -703,7 +803,7 @@
       "topk_sigma_err": 0.07579942047595978,
       "subspace_err": 0.15577855706214905,
       "persistent_bytes": 19456,
-      "wall_seconds": 3.084342246999995,
+      "wall_seconds": 3.3755603949999795,
       "note": "shrinks=1561"
     },
     {
@@ -713,7 +813,7 @@
       "topk_sigma_err": 160.28961181640625,
       "subspace_err": 0.999262273311615,
       "persistent_bytes": 15360,
-      "wall_seconds": 3.306204088999948,
+      "wall_seconds": 3.5262829630000283,
       "note": "shrinks=1561"
     },
     {
@@ -723,7 +823,7 @@
       "topk_sigma_err": 474869888.0,
       "subspace_err": 0.9997965693473816,
       "persistent_bytes": 15360,
-      "wall_seconds": 3.9069095380000363,
+      "wall_seconds": 4.051173978999998,
       "note": "shrinks=1561"
     },
     {
@@ -733,7 +833,7 @@
       "topk_sigma_err": 0.13215000927448273,
       "subspace_err": 0.15873853862285614,
       "persistent_bytes": 17408,
-      "wall_seconds": 3.613062882999998,
+      "wall_seconds": 3.841217630000017,
       "note": "shrinks=1561"
     },
     {
@@ -743,8 +843,18 @@
       "topk_sigma_err": 0.3517647981643677,
       "subspace_err": 0.22911228239536285,
       "persistent_bytes": 17408,
-      "wall_seconds": 4.353816278999943,
+      "wall_seconds": 4.310895867999989,
       "note": "shrinks=2846 m=22"
+    },
+    {
+      "method": "Decoupled-MP-FD",
+      "ell": 64,
+      "covariance_err": 515.6582641601562,
+      "topk_sigma_err": 0.1152704581618309,
+      "subspace_err": 0.1468140035867691,
+      "persistent_bytes": 21888,
+      "wall_seconds": 4.207661435999967,
+      "note": "shrinks=1562 m=20"
     },
     {
       "method": "FD-fp32",
@@ -753,7 +863,7 @@
       "topk_sigma_err": 0.007105340715497732,
       "subspace_err": 0.0007720404537394643,
       "persistent_bytes": 102400,
-      "wall_seconds": 5.149166261999994,
+      "wall_seconds": 5.22471385099999,
       "note": "shrinks=780"
     },
     {
@@ -763,7 +873,7 @@
       "topk_sigma_err": 0.0697278305888176,
       "subspace_err": 0.11276944726705551,
       "persistent_bytes": 32512,
-      "wall_seconds": 5.663435602999925,
+      "wall_seconds": 5.364410034999992,
       "note": "shrinks=780"
     },
     {
@@ -773,7 +883,7 @@
       "topk_sigma_err": 11.739958763122559,
       "subspace_err": 0.9998361468315125,
       "persistent_bytes": 24320,
-      "wall_seconds": 6.031335153999976,
+      "wall_seconds": 5.5947064949999685,
       "note": "shrinks=780"
     },
     {
@@ -783,7 +893,7 @@
       "topk_sigma_err": 17.975322723388672,
       "subspace_err": 0.9963703155517578,
       "persistent_bytes": 24320,
-      "wall_seconds": 6.397041282999908,
+      "wall_seconds": 6.232260156999985,
       "note": "shrinks=780"
     },
     {
@@ -793,7 +903,7 @@
       "topk_sigma_err": 0.027615543454885483,
       "subspace_err": 0.12909731268882751,
       "persistent_bytes": 28416,
-      "wall_seconds": 5.806859739999936,
+      "wall_seconds": 5.985912449000011,
       "note": "shrinks=780"
     },
     {
@@ -803,8 +913,18 @@
       "topk_sigma_err": 0.10916081070899963,
       "subspace_err": 0.16791799664497375,
       "persistent_bytes": 28416,
-      "wall_seconds": 9.244404590000045,
+      "wall_seconds": 9.71178039199998,
       "note": "shrinks=2057 m=13"
+    },
+    {
+      "method": "Decoupled-MP-FD",
+      "ell": 128,
+      "covariance_err": 383.9739990234375,
+      "topk_sigma_err": 0.06721353530883789,
+      "subspace_err": 0.10887111723423004,
+      "persistent_bytes": 37376,
+      "wall_seconds": 6.356794561000015,
+      "note": "shrinks=781 m=28"
     }
   ]
 }

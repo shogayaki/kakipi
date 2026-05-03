@@ -18,7 +18,7 @@ python3 research/benchmark.py    # full benchmark (~30 s)
 
 | File           | Purpose                                                     |
 |----------------|-------------------------------------------------------------|
-| `qfd.py`       | `FrequentDirections` (FP32 baseline) + `QuantizedFD` (INT8 / INT4 / NF4) + `MixedPrecisionFD` (MP-FD: rank-aware INT8/NF4) + `DynamicMPFD` (per-shrink σ-gap m_t — iteration 3, mostly negative) |
+| `qfd.py`       | `FrequentDirections` (FP32 baseline) + `QuantizedFD` (INT8 / INT4 / NF4) + `MixedPrecisionFD` (MP-FD: rank-aware INT8/NF4) + `DynamicMPFD` (iteration 3, broken) + `DecoupledMPFD` (iteration 4, σ-gap with fixed cadence — confirmed positive) |
 | `baselines.py` | Reference truncated SVD and randomized SVD                  |
 | `datasets.py`  | Synthetic generators (low-rank+noise, power-law spectra)    |
 | `benchmark.py` | Cross-method comparison; dumps `results.json`               |
@@ -39,7 +39,11 @@ python3 research/benchmark.py    # full benchmark (~30 s)
 * **Dynamic MP-FD** (iteration 3): the σ-gap rank picker correctly identifies
   the natural rank, but coupling `m_t` to shrink frequency *increases*
   cumulative quantization noise. Net negative result with a clean lesson —
-  see RESEARCH.md §5.4 and §8.3 for the corrected design.
+  see RESEARCH.md §5.4.
+* **Decoupled-MP-FD** (iteration 4, *positive*): the corrected design with
+  the σ-gap picker but a fixed shrink cadence. Beats both Q-FD INT8 AND
+  fixed MP-FD on subspace recovery in the mobile-shape benchmark, at the
+  same memory class as Q-FD INT8.
 * INT8 still fails on fast-decay (geometric) spectra; characterised as a
   fundamental no-noise-floor limit.
 

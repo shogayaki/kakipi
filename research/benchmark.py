@@ -23,6 +23,7 @@ from qfd import (  # noqa: E402
     QuantizedFD,
     MixedPrecisionFD,
     DynamicMPFD,
+    DecoupledMPFD,
 )
 from baselines import truncated_svd, randomized_svd  # noqa: E402
 from datasets import low_rank_plus_noise, power_law_spectrum  # noqa: E402
@@ -68,7 +69,7 @@ def evaluate_sketch(
     sub_err = subspace_distance(V_true, V_est)
 
     note = ""
-    if isinstance(sketch, DynamicMPFD):
+    if isinstance(sketch, (DynamicMPFD, DecoupledMPFD)):
         note = f"shrinks={sketch.shrink_count} m={sketch.m_current}"
     elif hasattr(sketch, "shrink_count"):
         note = f"shrinks={sketch.shrink_count}"
@@ -124,6 +125,7 @@ def run_dataset(name: str, A: np.ndarray, k: int, ells: list[int]) -> list[dict]
         out.append(evaluate_sketch("QFD-nf4-g32", QuantizedFD(d, ell, "nf4", group_size=32), A, k, sigma_true, V_true))
         out.append(evaluate_sketch("MP-FD-int8/nf4", MixedPrecisionFD(d, ell, group_size=32), A, k, sigma_true, V_true))
         out.append(evaluate_sketch("Dyn-MP-FD", DynamicMPFD(d, ell, m_min=k, group_size=32), A, k, sigma_true, V_true))
+        out.append(evaluate_sketch("Decoupled-MP-FD", DecoupledMPFD(d, ell, m_min=k, group_size=32), A, k, sigma_true, V_true))
 
     rows = [asdict(r) for r in out]
     for r in rows:

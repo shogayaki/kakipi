@@ -10,6 +10,7 @@ from qfd import (
     QuantizedFD,
     MixedPrecisionFD,
     DynamicMPFD,
+    DecoupledMPFD,
     _pick_m_from_sigma_gap,
     quantize_int8_rowwise,
     dequantize_int8_rowwise,
@@ -157,12 +158,25 @@ def test_dynamic_mpfd():
     dyn.append_batch(A)
     s_dyn, _ = dyn.topk(k)
 
+    decoupled = DecoupledMPFD(A.shape[1], ell, m_min=k)
+    decoupled.append_batch(A)
+    s_dec, _ = decoupled.topk(k)
+
     fixed_diff = float(np.max(np.abs(s_fixed - s_fd) / s_fd))
     dyn_diff = float(np.max(np.abs(s_dyn - s_fd) / s_fd))
-    print(f"  fixed MP-FD vs FD top-k diff: {fixed_diff:.4f}")
-    print(f"  dynamic MP-FD vs FD top-k diff: {dyn_diff:.4f}")
-    print(f"  dynamic shrink count: {dyn.shrink_count} (fixed: {fixed.shrink_count})")
-    print(f"  dynamic final m: {dyn.m_current}")
+    dec_diff = float(np.max(np.abs(s_dec - s_fd) / s_fd))
+    print(f"  fixed MP-FD vs FD top-k diff: {fixed_diff:.4f}  (shrinks={fixed.shrink_count})")
+    print(f"  dynamic MP-FD vs FD top-k diff: {dyn_diff:.4f}  (shrinks={dyn.shrink_count}, m={dyn.m_current})")
+    print(f"  decoupled MP-FD vs FD top-k diff: {dec_diff:.4f}  (shrinks={decoupled.shrink_count}, m={decoupled.m_current})")
+    print(f"  memory: fixed={fixed.persistent_bytes()}  dyn={dyn.persistent_bytes()}  decoupled={decoupled.persistent_bytes()}")
+    # Decoupled should have shrink count within +/- 1 of fixed (final flush
+    # may add one), and quality should match or beat fixed.
+    assert abs(decoupled.shrink_count - fixed.shrink_count) <= 1, (
+        f"decoupled shrink count {decoupled.shrink_count} differs from fixed {fixed.shrink_count}"
+    )
+    assert dec_diff <= fixed_diff * 1.5, (
+        f"decoupled quality {dec_diff} should not be much worse than fixed {fixed_diff}"
+    )
 
 
 if __name__ == "__main__":

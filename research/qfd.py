@@ -676,3 +676,147 @@ class DynamicMPFD:
             + self.bot_codes.nbytes + self.bot_scales.nbytes
             + self.stage.nbytes
         )
+class DecoupledMPFD:
+    """The corrected dynamic MP-FD design (RESEARCH.md, iteration 4).
+
+    Like DynamicMPFD it picks m_t at each shrink from the sigma-gap of the
+    kept top-half rows. Unlike DynamicMPFD, the shrink cadence is held fixed
+    at ell/2 freshly-ingested rows per shrink, regardless of m_t. The
+    corresponding cost is an oversized NF4 bank: c_nf4 = ell rather than
+    ell/2, so it can hold (ell/2 - m_t) overflow kept-rows plus ell/2 new
+    incoming rows simultaneously.
+
+    Memory per element: 0.5 (INT8) + 0.5 (NF4) = 1.0 byte. That is ~33% more
+    than fixed MP-FD (0.75 byte/elem) but identical to plain Q-FD INT8 - so
+    we are paying with bytes that vanilla INT8 already spends, in exchange
+    for the ability to spend them adaptively.
+
+    Hypothesis tested: this version should match or beat fixed MP-FD on
+    quality across all regimes, validating the iteration-3 lesson that the
+    sigma-gap rank signal is real but must be decoupled from shrink cadence.
+    """
+
+    def __init__(
+        self,
+        d: int,
+        ell: int,
+        m_min: int = 4,
+        group_size: int = 32,
+        stage_rows: int = 8,
+    ):
+        assert ell >= 4 and ell % 2 == 0
+        self.d = d
+        self.ell = ell
+        self.half = ell // 2
+        self.m_min = max(1, m_min)
+        self.m_max = self.half
+        self.group_size = group_size
+        self.stage_rows = min(stage_rows, ell)
+        self.shrink_count = 0
+        self.stage = np.zeros((self.stage_rows, d), dtype=np.float32)
+        self.stage_fill = 0
+
+        self.m_current = self.half
+        self.n_top = 0
+        self.n_bot_kept = 0
+        self.n_bot = 0
+
+        self.top_codes = np.zeros((self.half, d), dtype=np.int8)
+        self.top_scales = np.zeros((self.half,), dtype=np.float32)
+        self.n_groups = (d + group_size - 1) // group_size
+        packed_cols = (self.n_groups * group_size + 1) // 2
+        self.bot_codes = np.zeros((self.ell, packed_cols), dtype=np.uint8)
+        self.bot_scales = np.zeros((self.ell, self.n_groups), dtype=np.float32)
+
+    def append(self, row):
+        self.stage[self.stage_fill] = row.astype(np.float32, copy=False)
+        self.stage_fill += 1
+        if self.stage_fill == self.stage_rows:
+            self._flush_stage()
+
+    def append_batch(self, rows):
+        for r in rows:
+            self.append(r)
+
+    def _flush_stage(self):
+        if self.stage_fill == 0:
+            return
+        slab = self.stage[: self.stage_fill]
+        offset = 0
+        while offset < slab.shape[0]:
+            new_rows_so_far = self.n_bot - self.n_bot_kept
+            free = self.half - new_rows_so_far
+            if free == 0:
+                self._shrink()
+                continue
+            take = min(free, slab.shape[0] - offset)
+            chunk = slab[offset : offset + take]
+            codes, scales = quantize_nf4_blockwise(chunk, self.group_size)
+            self.bot_codes[self.n_bot : self.n_bot + take] = codes
+            self.bot_scales[self.n_bot : self.n_bot + take] = scales
+            self.n_bot += take
+            offset += take
+            if (self.n_bot - self.n_bot_kept) == self.half:
+                self._shrink()
+        self.stage_fill = 0
+
+    def _dequantize_full(self):
+        rows = self.n_top + self.n_bot
+        out = np.zeros((rows, self.d), dtype=np.float32)
+        if self.n_top > 0:
+            out[: self.n_top] = dequantize_int8_rowwise(
+                self.top_codes[: self.n_top], self.top_scales[: self.n_top]
+            )
+        if self.n_bot > 0:
+            out[self.n_top :] = dequantize_nf4_blockwise(
+                self.bot_codes[: self.n_bot],
+                self.bot_scales[: self.n_bot],
+                self.d,
+                self.group_size,
+            )
+        return out
+
+    def _shrink(self):
+        B = self._dequantize_full()
+        if B.shape[0] < self.half:
+            return
+        _, s, Vt = np.linalg.svd(B, full_matrices=False)
+        delta = s[self.half - 1] ** 2 if len(s) >= self.half else 0.0
+        s_new = np.sqrt(np.maximum(s ** 2 - delta, 0.0))
+        kept = (s_new[: self.half, None] * Vt[: self.half]).astype(np.float32)
+
+        m_t = _pick_m_from_sigma_gap(s_new[: self.half], self.m_min, self.m_max)
+        self.m_current = m_t
+
+        self.top_codes[:] = 0
+        self.top_scales[:] = 0
+        self.bot_codes[:] = 0
+        self.bot_scales[:] = 0
+        codes, scales = quantize_int8_rowwise(kept[:m_t])
+        self.top_codes[:m_t] = codes
+        self.top_scales[:m_t] = scales
+        self.n_top = m_t
+
+        rest = kept[m_t : self.half]
+        if rest.shape[0] > 0:
+            codes_b, scales_b = quantize_nf4_blockwise(rest, self.group_size)
+            self.bot_codes[: rest.shape[0]] = codes_b
+            self.bot_scales[: rest.shape[0]] = scales_b
+        self.n_bot_kept = rest.shape[0]
+        self.n_bot = self.n_bot_kept
+        self.shrink_count += 1
+
+    def topk(self, k):
+        self._flush_stage()
+        B = self._dequantize_full()
+        if B.shape[0] == 0:
+            return np.zeros(k), np.zeros((k, self.d))
+        _, s, Vt = np.linalg.svd(B, full_matrices=False)
+        return s[:k], Vt[:k]
+
+    def persistent_bytes(self):
+        return (
+            self.top_codes.nbytes + self.top_scales.nbytes
+            + self.bot_codes.nbytes + self.bot_scales.nbytes
+            + self.stage.nbytes
+        )
