@@ -18,7 +18,32 @@ from qfd import (
     dequantize_int4_blockwise,
     quantize_nf4_blockwise,
     dequantize_nf4_blockwise,
+    quantize_int5_blockwise,
+    dequantize_int5_blockwise,
+    quantize_nf5_blockwise,
+    dequantize_nf5_blockwise,
 )
+
+
+def test_int5_roundtrip():
+    rng = np.random.default_rng(0)
+    X = rng.standard_normal((10, 96)).astype(np.float32) * 5.0
+    packed, scales = quantize_int5_blockwise(X, group_size=32)
+    X_hat = dequantize_int5_blockwise(packed, scales, d=96, group_size=32)
+    err = np.linalg.norm(X - X_hat) / np.linalg.norm(X)
+    print(f"  int5-block(g=32) roundtrip rel-err on Gaussian: {err:.4f}")
+    # Theory: 5-bit quantization step is half that of 4-bit, so error ~5%.
+    assert err < 0.07, f"INT5 unexpectedly bad: {err}"
+
+
+def test_nf5_roundtrip():
+    rng = np.random.default_rng(0)
+    X = rng.standard_normal((10, 96)).astype(np.float32) * 5.0
+    packed, scales = quantize_nf5_blockwise(X, group_size=32)
+    X_hat = dequantize_nf5_blockwise(packed, scales, d=96, group_size=32)
+    err = np.linalg.norm(X - X_hat) / np.linalg.norm(X)
+    print(f"  nf5-block(g=32) roundtrip rel-err on Gaussian: {err:.4f}")
+    assert err < 0.07, f"NF5 unexpectedly bad: {err}"
 
 
 def test_nf4_roundtrip():
@@ -182,7 +207,9 @@ def test_dynamic_mpfd():
 if __name__ == "__main__":
     print("test_int8_roundtrip");    test_int8_roundtrip()
     print("test_int4_roundtrip");    test_int4_roundtrip()
+    print("test_int5_roundtrip");    test_int5_roundtrip()
     print("test_nf4_roundtrip");     test_nf4_roundtrip()
+    print("test_nf5_roundtrip");     test_nf5_roundtrip()
     print("test_fd_bound");          test_fd_bound()
     print("test_qfd_int8_close");    test_qfd_int8_close_to_fd()
     print("test_qfd_int4_close");    test_qfd_int4_close_to_fd()

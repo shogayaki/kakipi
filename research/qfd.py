@@ -149,6 +149,159 @@ def dequantize_nf4_blockwise(
 
 
 # -----------------------------------------------------------------------------
+# 5-bit packing: 8 INT5 codes -> 40 bits -> 5 bytes (uint64 intermediate).
+# -----------------------------------------------------------------------------
+# Storage layout: each row is split into groups of `group_size` values; each
+# group has its own FP32 scale. group_size must be a multiple of 8 so that
+# the 5-bit codes pack evenly into bytes (8 codes per 5 bytes).
+
+def _pack_5bit(codes_uint5: np.ndarray) -> np.ndarray:
+    """codes_uint5 has shape (..., 8) with values in [0, 31]. Returns shape
+    (..., 5) uint8."""
+    c = codes_uint5.astype(np.uint64)
+    p = (
+        c[..., 0]
+        | (c[..., 1] << 5)
+        | (c[..., 2] << 10)
+        | (c[..., 3] << 15)
+        | (c[..., 4] << 20)
+        | (c[..., 5] << 25)
+        | (c[..., 6] << 30)
+        | (c[..., 7] << 35)
+    )
+    out = np.empty(c.shape[:-1] + (5,), dtype=np.uint8)
+    out[..., 0] = p & 0xFF
+    out[..., 1] = (p >> 8) & 0xFF
+    out[..., 2] = (p >> 16) & 0xFF
+    out[..., 3] = (p >> 24) & 0xFF
+    out[..., 4] = (p >> 32) & 0xFF
+    return out
+
+
+def _unpack_5bit(packed: np.ndarray) -> np.ndarray:
+    """Inverse of _pack_5bit. Input shape (..., 5) uint8 -> (..., 8) uint8."""
+    p = (
+        packed[..., 0].astype(np.uint64)
+        | (packed[..., 1].astype(np.uint64) << 8)
+        | (packed[..., 2].astype(np.uint64) << 16)
+        | (packed[..., 3].astype(np.uint64) << 24)
+        | (packed[..., 4].astype(np.uint64) << 32)
+    )
+    out = np.empty(packed.shape[:-1] + (8,), dtype=np.uint8)
+    out[..., 0] = (p >>  0) & 0x1F
+    out[..., 1] = (p >>  5) & 0x1F
+    out[..., 2] = (p >> 10) & 0x1F
+    out[..., 3] = (p >> 15) & 0x1F
+    out[..., 4] = (p >> 20) & 0x1F
+    out[..., 5] = (p >> 25) & 0x1F
+    out[..., 6] = (p >> 30) & 0x1F
+    out[..., 7] = (p >> 35) & 0x1F
+    return out
+
+
+def quantize_int5_blockwise(
+    B: np.ndarray, group_size: int = 32
+) -> tuple[np.ndarray, np.ndarray]:
+    """Block-wise symmetric INT5 quantization. 32 levels in [-15, 15]
+    (one level reserved for symmetry; effective range [-15, 15] with step
+    abs_max / 15).
+
+    Returns (packed bytes shape (l, n_groups * group_size * 5 // 8), scales
+    (l, n_groups)). group_size must be a multiple of 8.
+    """
+    assert group_size % 8 == 0, "group_size must be multiple of 8 for 5-bit packing"
+    l, d = B.shape
+    n_groups = (d + group_size - 1) // group_size
+    pad = n_groups * group_size - d
+    if pad > 0:
+        Bp = np.concatenate([B, np.zeros((l, pad), dtype=B.dtype)], axis=1)
+    else:
+        Bp = B
+    Bp = Bp.reshape(l, n_groups, group_size)
+    abs_max = np.max(np.abs(Bp), axis=2)
+    scales = np.where(abs_max > 0, abs_max / 15.0, 1.0).astype(np.float32)
+    safe_scales = np.where(scales > 0, scales, 1.0)
+    q = np.clip(np.round(Bp / safe_scales[:, :, None]), -15, 15).astype(np.int8)
+    qu = (q + 16).astype(np.uint8) & 0x1F  # shift to [1, 31]; -16 unused
+    qu = qu.reshape(l, n_groups, group_size // 8, 8)
+    packed = _pack_5bit(qu).reshape(l, n_groups * (group_size // 8) * 5)
+    return packed, scales
+
+
+def dequantize_int5_blockwise(
+    packed: np.ndarray, scales: np.ndarray, d: int, group_size: int = 32
+) -> np.ndarray:
+    l = packed.shape[0]
+    n_groups = scales.shape[1]
+    sub = group_size // 8
+    packed = packed.reshape(l, n_groups, sub, 5)
+    qu = _unpack_5bit(packed)              # (l, n_groups, sub, 8)
+    qu = qu.reshape(l, n_groups, group_size).astype(np.int8) - 16
+    vals = qu.astype(np.float32) * scales[:, :, None]
+    padded = n_groups * group_size
+    return vals.reshape(l, padded)[:, :d]
+
+
+# -----------------------------------------------------------------------------
+# NF5: 32-level nonuniform codebook matching N(0, 1) quantiles.
+# -----------------------------------------------------------------------------
+
+def _build_nf5_levels() -> np.ndarray:
+    """32 levels at evenly-spaced quantiles of N(0, 1), normalised to [-1, 1].
+    Uses the inverse CDF (norm.ppf) directly rather than the QLoRA-paper
+    asymmetric construction; for 32 levels the symmetric quantile spacing
+    is essentially identical and avoids the ad-hoc offset choice."""
+    from scipy.stats import norm  # local import: optional dependency
+    n = 32
+    qs = np.linspace(0.5 / n, 1.0 - 0.5 / n, n)
+    levels = norm.ppf(qs).astype(np.float32)
+    levels = levels / float(np.max(np.abs(levels)))
+    levels.sort()
+    return levels
+
+
+_NF5_LEVELS = _build_nf5_levels()
+_NF5_BOUNDARIES = ((_NF5_LEVELS[:-1] + _NF5_LEVELS[1:]) / 2).astype(np.float32)
+
+
+def quantize_nf5_blockwise(
+    B: np.ndarray, group_size: int = 32
+) -> tuple[np.ndarray, np.ndarray]:
+    assert group_size % 8 == 0
+    l, d = B.shape
+    n_groups = (d + group_size - 1) // group_size
+    pad = n_groups * group_size - d
+    if pad > 0:
+        Bp = np.concatenate([B, np.zeros((l, pad), dtype=B.dtype)], axis=1)
+    else:
+        Bp = B
+    Bp = Bp.reshape(l, n_groups, group_size)
+    abs_max = np.max(np.abs(Bp), axis=2)
+    scales = np.where(abs_max > 0, abs_max, 1.0).astype(np.float32)
+    safe = np.where(scales > 0, scales, 1.0)
+    norm = np.clip(Bp / safe[:, :, None], -1.0, 1.0)
+    flat = norm.reshape(-1)
+    idx = np.searchsorted(_NF5_BOUNDARIES, flat).astype(np.uint8)
+    idx = idx.reshape(l, n_groups, group_size // 8, 8)
+    packed = _pack_5bit(idx).reshape(l, n_groups * (group_size // 8) * 5)
+    return packed, scales
+
+
+def dequantize_nf5_blockwise(
+    packed: np.ndarray, scales: np.ndarray, d: int, group_size: int = 32
+) -> np.ndarray:
+    l = packed.shape[0]
+    n_groups = scales.shape[1]
+    sub = group_size // 8
+    packed = packed.reshape(l, n_groups, sub, 5)
+    idx = _unpack_5bit(packed).reshape(l, n_groups, group_size)
+    vals = _NF5_LEVELS[idx]
+    vals = vals * scales[:, :, None]
+    padded = n_groups * group_size
+    return vals.reshape(l, padded)[:, :d]
+
+
+# -----------------------------------------------------------------------------
 # Baseline Frequent Directions (Liberty 2013)
 # -----------------------------------------------------------------------------
 
@@ -228,7 +381,9 @@ class QuantizedFD:
         nf4_scale_mode: str = "absmax",
     ):
         assert ell >= 2 and ell % 2 == 0
-        assert mode in ("int8", "int4", "nf4")
+        assert mode in ("int8", "int4", "nf4", "int5", "nf5")
+        if mode in ("int5", "nf5"):
+            assert group_size % 8 == 0, "5-bit modes require group_size multiple of 8"
         self.d = d
         self.ell = ell
         self.mode = mode
@@ -242,9 +397,14 @@ class QuantizedFD:
         if mode == "int8":
             self.codes = np.zeros((ell, d), dtype=np.int8)
             self.scales = np.zeros((ell,), dtype=np.float32)
-        else:
+        elif mode in ("int4", "nf4"):
             self.n_groups = (d + group_size - 1) // group_size
             packed_cols = (self.n_groups * group_size + 1) // 2
+            self.codes = np.zeros((ell, packed_cols), dtype=np.uint8)
+            self.scales = np.zeros((ell, self.n_groups), dtype=np.float32)
+        else:  # int5 / nf5
+            self.n_groups = (d + group_size - 1) // group_size
+            packed_cols = self.n_groups * (group_size // 8) * 5
             self.codes = np.zeros((ell, packed_cols), dtype=np.uint8)
             self.scales = np.zeros((ell, self.n_groups), dtype=np.float32)
 
@@ -284,10 +444,14 @@ class QuantizedFD:
             codes, scales = quantize_int8_rowwise(slab)
         elif self.mode == "int4":
             codes, scales = quantize_int4_blockwise(slab, self.group_size)
-        else:  # nf4
+        elif self.mode == "nf4":
             codes, scales = quantize_nf4_blockwise(
                 slab, self.group_size, self.nf4_scale_mode
             )
+        elif self.mode == "int5":
+            codes, scales = quantize_int5_blockwise(slab, self.group_size)
+        else:  # nf5
+            codes, scales = quantize_nf5_blockwise(slab, self.group_size)
         self.codes[self.next_archive : self.next_archive + n] = codes
         self.scales[self.next_archive : self.next_archive + n] = scales
         self.next_archive += n
@@ -304,7 +468,15 @@ class QuantizedFD:
             return dequantize_int4_blockwise(
                 self.codes[:n], self.scales[:n], self.d, self.group_size
             )
-        return dequantize_nf4_blockwise(
+        if self.mode == "nf4":
+            return dequantize_nf4_blockwise(
+                self.codes[:n], self.scales[:n], self.d, self.group_size
+            )
+        if self.mode == "int5":
+            return dequantize_int5_blockwise(
+                self.codes[:n], self.scales[:n], self.d, self.group_size
+            )
+        return dequantize_nf5_blockwise(
             self.codes[:n], self.scales[:n], self.d, self.group_size
         )
 

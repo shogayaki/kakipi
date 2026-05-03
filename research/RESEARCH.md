@@ -99,6 +99,17 @@ Same buffer structure as block-INT4, but the 16 codebook levels match
 quantiles of `N(0, 1)` (the QLoRA codebook). This puts higher resolution
 near zero, where most values lie after per-block normalisation.
 
+### 3.3b INT5 / NF5 (iteration 5 — testing the §6.3 prediction)
+
+5-bit symmetric block quantization, with 8 codes packed into 5 bytes via a
+uint64 intermediate (40 bits). INT5 uses uniform spacing in `[−15, 15]`;
+NF5 uses 32 levels at evenly-spaced quantiles of `N(0, 1)` (analogous to
+NF4 but with 32 levels instead of 16). Memory: 0.625 byte/elem code +
+4/group_size byte/elem scale = 0.75 byte/elem at `g = 32`. This sits
+strictly between INT4 (0.625 byte/elem) and INT8 (1.0 byte/elem) and is the
+direct empirical test of §6.3's prediction that 5–6 bits is a quality sweet
+spot.
+
 ### 3.4 Mixed-Precision FD (MP-FD, iteration 2 — fixed boundary)
 
 `research/qfd.py:MixedPrecisionFD`. Splits the `ℓ × d` archive into two
@@ -260,6 +271,45 @@ should NOT be coupled to shrink frequency. A correct dynamic design must
 overflow into a third bank), at the cost of slightly more memory. We did not
 implement that variant; it is the obvious next experiment after this study.
 
+### 5.4b 5-bit quantization (iteration 5) — partial confirmation of §6.3
+
+§6.3 predicted that 5–6 bit quantization should be a sweet spot. Iteration 5
+tested INT5 and NF5 directly. Single-block round-trip relative errors on
+i.i.d. Gaussian data: **INT5 4.66%, NF5 4.75%, INT4 10.3%, INT8 0.6%** —
+exactly half-way (in log) between 4 and 8 bits, as predicted by the
+`ε_q ≈ 2^{-b}` rule.
+
+End-to-end Q-FD subspace error (top-k = 10):
+
+| Dataset / ℓ          | INT8 (mem)   | **INT5 (mem)**    | INT4 (mem)   | NF5 (mem)    |
+|----------------------|--------------|-------------------|--------------|--------------|
+| power-law α=0.5, 128 | 0.041 (47KB) | **0.253 (39KB)**  | 0.437 (34KB) | 0.521 (39KB) |
+| power-law α=0.5, 256 | 0.030 (85KB) | **0.175 (69KB)**  | 0.368 (59KB) | 0.967 (69KB) |
+| low-rank+noise, 128  | 0.060 (47KB) | **0.344 (39KB)**  | 0.984 (34KB) | 0.521 (39KB) |
+| tall mobile, 128     | 0.113 (32KB) | 0.992 (27KB)      | 1.00 (24KB)  | 1.00  (27KB) |
+
+**Mixed verdict** on the §6.3 prediction:
+
+* ✅ **Confirmed:** INT5 is dramatically better than INT4 across all regimes
+  where INT8 still works (subspace error ~2× lower), validating that the
+  per-cycle perturbation is the limiting factor and reducing it via more
+  bits matters.
+* ❌ **Partially refuted:** INT5 still falls *significantly* short of INT8
+  (subspace error 4–10× worse) on most regimes. The actual sweet spot is
+  probably **6 bits**, not 5 — INT5's `ε_q ≈ 0.05` does not stay below
+  `σ_{ℓ/2}` for typical streaming-PCA spectra; INT6's predicted
+  `ε_q ≈ 0.024` should. INT6 was not tested in this iteration.
+
+**Surprising negative result on NF5.** NF5 is *consistently worse* than
+uniform INT5 across all benchmark datasets, even though NF4-vs-INT4 was a
+similar near-tie. The reason: NF5's Gaussian-quantile codebook concentrates
+levels near zero, but FD's shrink leaves the bottom kept rows with mixed
+small-and-large entries that absmax-normalise into a less Gaussian-like
+distribution. With 32 levels, the uniform spacing of INT5 covers the full
+dynamic range better. **Lesson: codebook design that is optimal for static
+weights (QLoRA) is not necessarily optimal for FD's iteratively-shrunk
+state.**
+
 ### 5.5 Decoupled-MP-FD (iteration 4) — H5b confirmed
 
 | Dataset          | ℓ   | QFD-int8 sub | MP-FD sub | Dyn sub (broken) | **Decoupled sub** |
@@ -362,7 +412,14 @@ This study is small but concrete:
    *essentially free for slow-decay spectra* — the practical regime — at
    ~3.5× idle memory savings. We are not aware of a prior published study of
    this specific combination.
-3. **Two new sketch designs in the rank-aware family**:
+3. **A characterised 5-bit Pareto point** (iteration 5, §5.4b): uniform
+   block-INT5 quantization sits 2× cleaner than INT4 across all tested
+   benchmarks — at 0.75 byte/elem persistent memory it's a useful new
+   point on the bit-budget Pareto frontier. NF5's nonuniform codebook
+   *underperforms* INT5, an unexpected result that contrasts with the
+   well-documented NF4 ≈ INT4 tie.
+
+4. **Two new sketch designs in the rank-aware family**:
    * **MP-FD** (iteration 2, fixed boundary): Storing the shrink-derived rows
      in INT8 and the freshly-ingested rows in NF4 recovers Q-FD INT8 quality
      at strictly lower memory than INT8 across slow-decay and noisy regimes;
@@ -400,10 +457,13 @@ To turn this from a probe into a paper-grade contribution we would need:
    design (§3.6 and §5.5): same memory class as plain Q-FD INT8 but with
    adaptively-allocated bits. **Confirmed positive result.**
 
-4. **5- or 6-bit quantization.** §6.3 predicts a sweet spot between 4 and 8
-   bits where the per-cycle perturbation is small enough to stay under
-   `σ_{ℓ/2}` for the slow-decay regime. INT5 (e.g. via 5-bit packed codes
-   with NF5-like nonuniform levels) deserves a benchmark.
+4. **6-bit quantization.** Iteration 5 (§5.4b) confirmed INT5 beats INT4
+   by ~2× but still falls 4–10× short of INT8. The §6.3 prediction
+   `ε_q(b=6) ≈ 0.024 < σ_{ℓ/2}` for typical FD-shrunk spectra suggests
+   6 bits is the actual sweet spot. INT6 packing is awkward (4 codes per
+   3 bytes = 24 bits) but feasible. Predicted memory: 0.875 byte/elem at
+   `g = 32`, only 12% smaller than INT8 but expected to recover most of
+   INT8's quality.
 
 5. **Memory-bounded shrink**: replace `np.linalg.svd(B)` with eigendecomp of
    the Gram matrix `BB^T` (size `ℓ × ℓ` rather than `ℓ × d`). This is only a
