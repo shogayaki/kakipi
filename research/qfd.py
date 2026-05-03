@@ -302,6 +302,127 @@ def dequantize_nf5_blockwise(
 
 
 # -----------------------------------------------------------------------------
+# 6-bit packing: 4 INT6 codes -> 24 bits -> 3 bytes (uint32 intermediate).
+# group_size must be a multiple of 4.
+# -----------------------------------------------------------------------------
+
+def _pack_6bit(codes_uint6: np.ndarray) -> np.ndarray:
+    """codes_uint6 shape (..., 4) values in [0, 63] -> shape (..., 3) uint8."""
+    c = codes_uint6.astype(np.uint32)
+    p = c[..., 0] | (c[..., 1] << 6) | (c[..., 2] << 12) | (c[..., 3] << 18)
+    out = np.empty(c.shape[:-1] + (3,), dtype=np.uint8)
+    out[..., 0] = p & 0xFF
+    out[..., 1] = (p >> 8) & 0xFF
+    out[..., 2] = (p >> 16) & 0xFF
+    return out
+
+
+def _unpack_6bit(packed: np.ndarray) -> np.ndarray:
+    p = (
+        packed[..., 0].astype(np.uint32)
+        | (packed[..., 1].astype(np.uint32) << 8)
+        | (packed[..., 2].astype(np.uint32) << 16)
+    )
+    out = np.empty(packed.shape[:-1] + (4,), dtype=np.uint8)
+    out[..., 0] = (p >> 0) & 0x3F
+    out[..., 1] = (p >> 6) & 0x3F
+    out[..., 2] = (p >> 12) & 0x3F
+    out[..., 3] = (p >> 18) & 0x3F
+    return out
+
+
+def quantize_int6_blockwise(
+    B: np.ndarray, group_size: int = 32
+) -> tuple[np.ndarray, np.ndarray]:
+    """Block-wise symmetric INT6: 64 levels, range [-31, 31], step abs_max/31."""
+    assert group_size % 4 == 0
+    l, d = B.shape
+    n_groups = (d + group_size - 1) // group_size
+    pad = n_groups * group_size - d
+    if pad > 0:
+        Bp = np.concatenate([B, np.zeros((l, pad), dtype=B.dtype)], axis=1)
+    else:
+        Bp = B
+    Bp = Bp.reshape(l, n_groups, group_size)
+    abs_max = np.max(np.abs(Bp), axis=2)
+    scales = np.where(abs_max > 0, abs_max / 31.0, 1.0).astype(np.float32)
+    safe = np.where(scales > 0, scales, 1.0)
+    q = np.clip(np.round(Bp / safe[:, :, None]), -31, 31).astype(np.int8)
+    qu = (q + 32).astype(np.uint8) & 0x3F
+    qu = qu.reshape(l, n_groups, group_size // 4, 4)
+    packed = _pack_6bit(qu).reshape(l, n_groups * (group_size // 4) * 3)
+    return packed, scales
+
+
+def dequantize_int6_blockwise(
+    packed: np.ndarray, scales: np.ndarray, d: int, group_size: int = 32
+) -> np.ndarray:
+    l = packed.shape[0]
+    n_groups = scales.shape[1]
+    sub = group_size // 4
+    packed = packed.reshape(l, n_groups, sub, 3)
+    qu = _unpack_6bit(packed).reshape(l, n_groups, group_size).astype(np.int8) - 32
+    vals = qu.astype(np.float32) * scales[:, :, None]
+    padded = n_groups * group_size
+    return vals.reshape(l, padded)[:, :d]
+
+
+# -----------------------------------------------------------------------------
+# NF6: 64-level nonuniform codebook matching N(0, 1) quantiles.
+# -----------------------------------------------------------------------------
+
+def _build_nf6_levels() -> np.ndarray:
+    from scipy.stats import norm
+    n = 64
+    qs = np.linspace(0.5 / n, 1.0 - 0.5 / n, n)
+    levels = norm.ppf(qs).astype(np.float32)
+    levels = levels / float(np.max(np.abs(levels)))
+    levels.sort()
+    return levels
+
+
+_NF6_LEVELS = _build_nf6_levels()
+_NF6_BOUNDARIES = ((_NF6_LEVELS[:-1] + _NF6_LEVELS[1:]) / 2).astype(np.float32)
+
+
+def quantize_nf6_blockwise(
+    B: np.ndarray, group_size: int = 32
+) -> tuple[np.ndarray, np.ndarray]:
+    assert group_size % 4 == 0
+    l, d = B.shape
+    n_groups = (d + group_size - 1) // group_size
+    pad = n_groups * group_size - d
+    if pad > 0:
+        Bp = np.concatenate([B, np.zeros((l, pad), dtype=B.dtype)], axis=1)
+    else:
+        Bp = B
+    Bp = Bp.reshape(l, n_groups, group_size)
+    abs_max = np.max(np.abs(Bp), axis=2)
+    scales = np.where(abs_max > 0, abs_max, 1.0).astype(np.float32)
+    safe = np.where(scales > 0, scales, 1.0)
+    norm_v = np.clip(Bp / safe[:, :, None], -1.0, 1.0)
+    flat = norm_v.reshape(-1)
+    idx = np.searchsorted(_NF6_BOUNDARIES, flat).astype(np.uint8)
+    idx = idx.reshape(l, n_groups, group_size // 4, 4)
+    packed = _pack_6bit(idx).reshape(l, n_groups * (group_size // 4) * 3)
+    return packed, scales
+
+
+def dequantize_nf6_blockwise(
+    packed: np.ndarray, scales: np.ndarray, d: int, group_size: int = 32
+) -> np.ndarray:
+    l = packed.shape[0]
+    n_groups = scales.shape[1]
+    sub = group_size // 4
+    packed = packed.reshape(l, n_groups, sub, 3)
+    idx = _unpack_6bit(packed).reshape(l, n_groups, group_size)
+    vals = _NF6_LEVELS[idx]
+    vals = vals * scales[:, :, None]
+    padded = n_groups * group_size
+    return vals.reshape(l, padded)[:, :d]
+
+
+# -----------------------------------------------------------------------------
 # Baseline Frequent Directions (Liberty 2013)
 # -----------------------------------------------------------------------------
 
@@ -381,9 +502,11 @@ class QuantizedFD:
         nf4_scale_mode: str = "absmax",
     ):
         assert ell >= 2 and ell % 2 == 0
-        assert mode in ("int8", "int4", "nf4", "int5", "nf5")
+        assert mode in ("int8", "int4", "nf4", "int5", "nf5", "int6", "nf6")
         if mode in ("int5", "nf5"):
             assert group_size % 8 == 0, "5-bit modes require group_size multiple of 8"
+        if mode in ("int6", "nf6"):
+            assert group_size % 4 == 0, "6-bit modes require group_size multiple of 4"
         self.d = d
         self.ell = ell
         self.mode = mode
@@ -402,9 +525,14 @@ class QuantizedFD:
             packed_cols = (self.n_groups * group_size + 1) // 2
             self.codes = np.zeros((ell, packed_cols), dtype=np.uint8)
             self.scales = np.zeros((ell, self.n_groups), dtype=np.float32)
-        else:  # int5 / nf5
+        elif mode in ("int5", "nf5"):
             self.n_groups = (d + group_size - 1) // group_size
             packed_cols = self.n_groups * (group_size // 8) * 5
+            self.codes = np.zeros((ell, packed_cols), dtype=np.uint8)
+            self.scales = np.zeros((ell, self.n_groups), dtype=np.float32)
+        else:  # int6 / nf6
+            self.n_groups = (d + group_size - 1) // group_size
+            packed_cols = self.n_groups * (group_size // 4) * 3
             self.codes = np.zeros((ell, packed_cols), dtype=np.uint8)
             self.scales = np.zeros((ell, self.n_groups), dtype=np.float32)
 
@@ -450,8 +578,12 @@ class QuantizedFD:
             )
         elif self.mode == "int5":
             codes, scales = quantize_int5_blockwise(slab, self.group_size)
-        else:  # nf5
+        elif self.mode == "nf5":
             codes, scales = quantize_nf5_blockwise(slab, self.group_size)
+        elif self.mode == "int6":
+            codes, scales = quantize_int6_blockwise(slab, self.group_size)
+        else:  # nf6
+            codes, scales = quantize_nf6_blockwise(slab, self.group_size)
         self.codes[self.next_archive : self.next_archive + n] = codes
         self.scales[self.next_archive : self.next_archive + n] = scales
         self.next_archive += n
@@ -476,7 +608,15 @@ class QuantizedFD:
             return dequantize_int5_blockwise(
                 self.codes[:n], self.scales[:n], self.d, self.group_size
             )
-        return dequantize_nf5_blockwise(
+        if self.mode == "nf5":
+            return dequantize_nf5_blockwise(
+                self.codes[:n], self.scales[:n], self.d, self.group_size
+            )
+        if self.mode == "int6":
+            return dequantize_int6_blockwise(
+                self.codes[:n], self.scales[:n], self.d, self.group_size
+            )
+        return dequantize_nf6_blockwise(
             self.codes[:n], self.scales[:n], self.d, self.group_size
         )
 

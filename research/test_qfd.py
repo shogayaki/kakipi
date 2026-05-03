@@ -22,7 +22,32 @@ from qfd import (
     dequantize_int5_blockwise,
     quantize_nf5_blockwise,
     dequantize_nf5_blockwise,
+    quantize_int6_blockwise,
+    dequantize_int6_blockwise,
+    quantize_nf6_blockwise,
+    dequantize_nf6_blockwise,
 )
+
+
+def test_int6_roundtrip():
+    rng = np.random.default_rng(0)
+    X = rng.standard_normal((10, 96)).astype(np.float32) * 5.0
+    packed, scales = quantize_int6_blockwise(X, group_size=32)
+    X_hat = dequantize_int6_blockwise(packed, scales, d=96, group_size=32)
+    err = np.linalg.norm(X - X_hat) / np.linalg.norm(X)
+    print(f"  int6-block(g=32) roundtrip rel-err on Gaussian: {err:.4f}")
+    # Theory: 2^-6 ~ 1.5%, with quantile finite-sample we measure ~2.3%.
+    assert err < 0.04, f"INT6 unexpectedly bad: {err}"
+
+
+def test_nf6_roundtrip():
+    rng = np.random.default_rng(0)
+    X = rng.standard_normal((10, 96)).astype(np.float32) * 5.0
+    packed, scales = quantize_nf6_blockwise(X, group_size=32)
+    X_hat = dequantize_nf6_blockwise(packed, scales, d=96, group_size=32)
+    err = np.linalg.norm(X - X_hat) / np.linalg.norm(X)
+    print(f"  nf6-block(g=32) roundtrip rel-err on Gaussian: {err:.4f}")
+    assert err < 0.05, f"NF6 unexpectedly bad: {err}"
 
 
 def test_int5_roundtrip():
@@ -208,8 +233,10 @@ if __name__ == "__main__":
     print("test_int8_roundtrip");    test_int8_roundtrip()
     print("test_int4_roundtrip");    test_int4_roundtrip()
     print("test_int5_roundtrip");    test_int5_roundtrip()
+    print("test_int6_roundtrip");    test_int6_roundtrip()
     print("test_nf4_roundtrip");     test_nf4_roundtrip()
     print("test_nf5_roundtrip");     test_nf5_roundtrip()
+    print("test_nf6_roundtrip");     test_nf6_roundtrip()
     print("test_fd_bound");          test_fd_bound()
     print("test_qfd_int8_close");    test_qfd_int8_close_to_fd()
     print("test_qfd_int4_close");    test_qfd_int4_close_to_fd()

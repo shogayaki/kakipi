@@ -121,6 +121,8 @@ def run_dataset(name: str, A: np.ndarray, k: int, ells: list[int]) -> list[dict]
     for ell in ells:
         out.append(evaluate_sketch("FD-fp32", FrequentDirections(d, ell), A, k, sigma_true, V_true))
         out.append(evaluate_sketch("QFD-int8", QuantizedFD(d, ell, "int8"), A, k, sigma_true, V_true))
+        out.append(evaluate_sketch("QFD-int6-g32", QuantizedFD(d, ell, "int6", group_size=32), A, k, sigma_true, V_true))
+        out.append(evaluate_sketch("QFD-nf6-g32", QuantizedFD(d, ell, "nf6", group_size=32), A, k, sigma_true, V_true))
         out.append(evaluate_sketch("QFD-int5-g32", QuantizedFD(d, ell, "int5", group_size=32), A, k, sigma_true, V_true))
         out.append(evaluate_sketch("QFD-nf5-g32", QuantizedFD(d, ell, "nf5", group_size=32), A, k, sigma_true, V_true))
         out.append(evaluate_sketch("QFD-int4-g32", QuantizedFD(d, ell, "int4", group_size=32), A, k, sigma_true, V_true))

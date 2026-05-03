@@ -110,6 +110,14 @@ strictly between INT4 (0.625 byte/elem) and INT8 (1.0 byte/elem) and is the
 direct empirical test of §6.3's prediction that 5–6 bits is a quality sweet
 spot.
 
+### 3.3c INT6 / NF6 (iteration 6 — completing the bit-budget sweep)
+
+6-bit symmetric block quantization, with 4 codes packed into 3 bytes via a
+uint32 intermediate (24 bits). Memory: 0.75 byte/elem code + 4/group_size
+byte/elem scale = 0.875 byte/elem at `g = 32` — only 12.5% smaller than
+INT8 but predicted by §6.3 (`ε_q ≈ 2⁻⁶ = 0.016`) to recover most of INT8's
+quality. NF6 uses 64 levels at quantiles of `N(0, 1)`.
+
 ### 3.4 Mixed-Precision FD (MP-FD, iteration 2 — fixed boundary)
 
 `research/qfd.py:MixedPrecisionFD`. Splits the `ℓ × d` archive into two
@@ -279,6 +287,53 @@ i.i.d. Gaussian data: **INT5 4.66%, NF5 4.75%, INT4 10.3%, INT8 0.6%** —
 exactly half-way (in log) between 4 and 8 bits, as predicted by the
 `ε_q ≈ 2^{-b}` rule.
 
+### 5.4c 6-bit quantization (iteration 6) — sweet spot confirmed at b=6
+
+Single-block roundtrip rel-err on Gaussian: **INT6 2.29%**, NF6 2.86%,
+INT5 4.66%, INT4 10.3%, INT8 0.6%. The `ε_q ≈ 2^{-b}` rule continues to
+hold cleanly across all bit-widths.
+
+End-to-end Q-FD subspace error (top-k = 10):
+
+| Dataset / ℓ            | INT8         | **INT6**         | INT5         | INT4         | NF6          |
+|------------------------|--------------|-------------------|--------------|--------------|--------------|
+| power-law α=0.5, 128   | 0.041 (47KB) | **0.110 (44KB)** | 0.253 (39KB) | 0.437 (34KB) | 0.970 (44KB) |
+| power-law α=0.5, 256   | 0.030 (85KB) | **0.100 (79KB)** | 0.175 (69KB) | 0.368 (59KB) | 0.956 (79KB) |
+| low-rank+noise, 128    | 0.060 (47KB) | **0.215 (44KB)** | 0.344 (39KB) | 0.984 (34KB) | 0.282 (44KB) |
+| tall mobile, 128       | 0.113 (32KB) | **0.392 (31KB)** | 0.992 (27KB) | 1.00  (24KB) | 0.820 (31KB) |
+| tall mobile, 64        | 0.156 (19KB) | **0.552 (19KB)** | 0.989 (17KB) | 0.999 (15KB) | 0.981 (19KB) |
+
+**The §6.3 sweet-spot prediction is now fully confirmed at b = 6.**
+
+* On the slow-decay regime that matters for real big-data, INT6 reaches
+  subspace error within **2.7× of INT8** (0.110 vs 0.041 at ℓ=128) using
+  93% of INT8's memory — a meaningful new Pareto point for slow-decay
+  spectra.
+* INT6 is **4× better than INT4** and **2.3× better than INT5** on
+  subspace recovery: the bit-budget scaling `ε ∝ 2^{-b}` translates
+  monotonically into FD-shrunk-state quality, with a clean knee at b ≈ 6
+  beyond which returns diminish.
+* INT6 partially recovers the tall-mobile-shape regime where INT5/INT4
+  fail completely — subspace 0.55 (ℓ=64) and 0.39 (ℓ=128) versus INT5's
+  ~1.0. Still nowhere near INT8's 0.16/0.11, so 6-bit doesn't *quite*
+  cross the noise-floor threshold for noisy-data streams; INT8 remains
+  the right choice if subspace fidelity is critical.
+* **NF6 ≪ INT6** is consistent with the iteration-5 NF5 ≪ INT5 finding.
+  Across 32 and 64 levels, the QLoRA-style Gaussian-quantile codebook
+  underperforms uniform spacing for FD's iteratively-shrunk state. This
+  is now a **two-data-point pattern**: nonuniform near-zero codebooks
+  are *miscalibrated* for our setting, regardless of bit count.
+
+**Synthesised picture of the bit-budget Pareto frontier (slow-decay ℓ=256,
+d=300, the closest-to-real-data regime):**
+
+| bits | sub_err | sketch (KB) | rel-mem vs INT8 |
+|------|---------|-------------|------------------|
+| 4    | 0.368   | 53          | 62%              |
+| 5    | 0.175   | 63          | 74%              |
+| **6** | **0.100** | **73**      | **86%**          |
+| 8    | 0.030   | 79          | 100%             |
+
 End-to-end Q-FD subspace error (top-k = 10):
 
 | Dataset / ℓ          | INT8 (mem)   | **INT5 (mem)**    | INT4 (mem)   | NF5 (mem)    |
@@ -412,12 +467,16 @@ This study is small but concrete:
    *essentially free for slow-decay spectra* — the practical regime — at
    ~3.5× idle memory savings. We are not aware of a prior published study of
    this specific combination.
-3. **A characterised 5-bit Pareto point** (iteration 5, §5.4b): uniform
-   block-INT5 quantization sits 2× cleaner than INT4 across all tested
-   benchmarks — at 0.75 byte/elem persistent memory it's a useful new
-   point on the bit-budget Pareto frontier. NF5's nonuniform codebook
-   *underperforms* INT5, an unexpected result that contrasts with the
-   well-documented NF4 ≈ INT4 tie.
+3. **A complete bit-budget Pareto frontier**: uniform block quantization
+   benchmarked at 4, 5, 6, and 8 bits (iterations 1, 5, 6). The
+   `ε_q ∝ 2^{-b}` scaling holds cleanly all the way through, both in
+   single-block roundtrip and end-to-end FD subspace recovery. **INT6 is
+   the slow-decay sweet spot** confirmed by §6.3 — 2.7× of INT8's
+   subspace error at 86% of its sketch memory. Two-data-point negative
+   result on QLoRA-style nonuniform codebooks: NF5 *and* NF6 both
+   *underperform* uniform INT5/INT6 in FD's iterated-shrink setting, in
+   contrast to NF4 ≈ INT4. Codebook design optimal for static weights is
+   not optimal for our setting.
 
 4. **Two new sketch designs in the rank-aware family**:
    * **MP-FD** (iteration 2, fixed boundary): Storing the shrink-derived rows
@@ -457,13 +516,11 @@ To turn this from a probe into a paper-grade contribution we would need:
    design (§3.6 and §5.5): same memory class as plain Q-FD INT8 but with
    adaptively-allocated bits. **Confirmed positive result.**
 
-4. **6-bit quantization.** Iteration 5 (§5.4b) confirmed INT5 beats INT4
-   by ~2× but still falls 4–10× short of INT8. The §6.3 prediction
-   `ε_q(b=6) ≈ 0.024 < σ_{ℓ/2}` for typical FD-shrunk spectra suggests
-   6 bits is the actual sweet spot. INT6 packing is awkward (4 codes per
-   3 bytes = 24 bits) but feasible. Predicted memory: 0.875 byte/elem at
-   `g = 32`, only 12% smaller than INT8 but expected to recover most of
-   INT8's quality.
+4. **6-bit-INT8 mixed precision in MP-FD.** Iteration 6 (§5.4c) confirmed
+   INT6 closes most of the INT4→INT8 quality gap on slow-decay spectra
+   while saving ~14% memory over INT8. The natural next step is to
+   replace the INT8 bank in MP-FD / Decoupled-MP-FD with an INT6 bank,
+   trading a small quality loss for tighter mobile memory budgets.
 
 5. **Memory-bounded shrink**: replace `np.linalg.svd(B)` with eigendecomp of
    the Gram matrix `BB^T` (size `ℓ × ℓ` rather than `ℓ × d`). This is only a

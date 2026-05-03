@@ -18,7 +18,7 @@ python3 research/benchmark.py    # full benchmark (~30 s)
 
 | File           | Purpose                                                     |
 |----------------|-------------------------------------------------------------|
-| `qfd.py`       | `FrequentDirections` (FP32 baseline) + `QuantizedFD` (INT8 / INT4 / NF4 / INT5 / NF5) + `MixedPrecisionFD` (MP-FD: rank-aware INT8/NF4) + `DynamicMPFD` (iteration 3, broken) + `DecoupledMPFD` (iteration 4, σ-gap with fixed cadence — confirmed positive) |
+| `qfd.py`       | `FrequentDirections` (FP32 baseline) + `QuantizedFD` (INT8 / INT4 / NF4 / INT5 / NF5 / INT6 / NF6) + `MixedPrecisionFD` (MP-FD: rank-aware INT8/NF4) + `DynamicMPFD` (iteration 3, broken) + `DecoupledMPFD` (iteration 4, σ-gap with fixed cadence — confirmed positive) |
 | `baselines.py` | Reference truncated SVD and randomized SVD                  |
 | `datasets.py`  | Synthetic generators (low-rank+noise, power-law spectra)    |
 | `benchmark.py` | Cross-method comparison; dumps `results.json`               |
@@ -44,12 +44,13 @@ python3 research/benchmark.py    # full benchmark (~30 s)
   the σ-gap picker but a fixed shrink cadence. Beats both Q-FD INT8 AND
   fixed MP-FD on subspace recovery in the mobile-shape benchmark, at the
   same memory class as Q-FD INT8.
-* **INT5 / NF5** (iteration 5, *partial-positive*): 5-bit quantization
-  beats INT4 by ~2× and fits 0.625 byte/elem of code (INT4: 0.5, INT8: 1.0).
-  Useful Pareto point between INT4 and INT8 but still 4–10× worse than
-  INT8 — the actual sweet spot is probably 6 bits. NF5's Gaussian-quantile
-  codebook is *consistently worse* than uniform INT5, an unexpected
-  negative result on QLoRA-style codebook design.
+* **INT5 / NF5** (iteration 5, *partial-positive*): 5-bit beats INT4 by 2×
+  but still 4-10× worse than INT8.
+* **INT6 / NF6** (iteration 6, *positive — the §6.3 sweet spot*): 6-bit
+  uniform reaches **2.7× of INT8 subspace quality at 86% of its memory**
+  on slow-decay spectra, fully confirming §6.3's `ε_q ∝ 2⁻ᵇ` analysis.
+  NF6 again *underperforms* uniform INT6 — the nonuniform-codebook
+  miscalibration is now a two-data-point negative result.
 * INT8 still fails on fast-decay (geometric) spectra; characterised as a
   fundamental no-noise-floor limit.
 

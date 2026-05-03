@@ -17,7 +17,7 @@
       "topk_sigma_err": 0.0,
       "subspace_err": 0.0011451210593804717,
       "persistent_bytes": 12024000,
-      "wall_seconds": 0.0632280220000041,
+      "wall_seconds": 0.049919670999997834,
       "note": ""
     },
     {
@@ -27,7 +27,7 @@
       "topk_sigma_err": 0.014360196888446808,
       "subspace_err": 0.0008457279182039201,
       "persistent_bytes": 38400,
-      "wall_seconds": 0.38994755900000655,
+      "wall_seconds": 0.40012463699997625,
       "note": "shrinks=623"
     },
     {
@@ -37,7 +37,27 @@
       "topk_sigma_err": 0.07591839879751205,
       "subspace_err": 0.11043309420347214,
       "persistent_bytes": 19328,
-      "wall_seconds": 0.4393851750000124,
+      "wall_seconds": 0.46266461100003653,
+      "note": "shrinks=624"
+    },
+    {
+      "method": "QFD-int6-g32",
+      "ell": 32,
+      "covariance_err": 1251.787841796875,
+      "topk_sigma_err": 0.13068565726280212,
+      "subspace_err": 0.40818363428115845,
+      "persistent_bytes": 18560,
+      "wall_seconds": 0.6043289990000176,
+      "note": "shrinks=624"
+    },
+    {
+      "method": "QFD-nf6-g32",
+      "ell": 32,
+      "covariance_err": 3193.630859375,
+      "topk_sigma_err": 0.40170401334762573,
+      "subspace_err": 0.9929676651954651,
+      "persistent_bytes": 18560,
+      "wall_seconds": 1.0107098629999882,
       "note": "shrinks=624"
     },
     {
@@ -47,7 +67,7 @@
       "topk_sigma_err": 0.42951056361198425,
       "subspace_err": 0.9985875487327576,
       "persistent_bytes": 17280,
-      "wall_seconds": 0.6012825380000208,
+      "wall_seconds": 0.6008467739999332,
       "note": "shrinks=624"
     },
     {
@@ -57,7 +77,7 @@
       "topk_sigma_err": 1.9515186548233032,
       "subspace_err": 0.9968177080154419,
       "persistent_bytes": 17280,
-      "wall_seconds": 0.8765149339999994,
+      "wall_seconds": 0.8720472479999444,
       "note": "shrinks=624"
     },
     {
@@ -67,7 +87,7 @@
       "topk_sigma_err": 3.8191802501678467,
       "subspace_err": 0.999994158744812,
       "persistent_bytes": 16000,
-      "wall_seconds": 0.515911554000013,
+      "wall_seconds": 0.5281568179999567,
       "note": "shrinks=624"
     },
     {
@@ -77,7 +97,7 @@
       "topk_sigma_err": 6.453887462615967,
       "subspace_err": 0.9996228218078613,
       "persistent_bytes": 16000,
-      "wall_seconds": 0.7316472859999976,
+      "wall_seconds": 0.7132309769999665,
       "note": "shrinks=624"
     },
     {
@@ -87,7 +107,7 @@
       "topk_sigma_err": 0.06481517851352692,
       "subspace_err": 0.11012257635593414,
       "persistent_bytes": 17664,
-      "wall_seconds": 0.6008450060000143,
+      "wall_seconds": 0.6134191400000191,
       "note": "shrinks=624"
     },
     {
@@ -97,7 +117,7 @@
       "topk_sigma_err": 0.06789510697126389,
       "subspace_err": 0.1135883778333664,
       "persistent_bytes": 17664,
-      "wall_seconds": 0.6941673110000011,
+      "wall_seconds": 0.6862257749999117,
       "note": "shrinks=778 m=12"
     },
     {
@@ -107,7 +127,7 @@
       "topk_sigma_err": 0.08347491919994354,
       "subspace_err": 0.1140531376004219,
       "persistent_bytes": 20864,
-      "wall_seconds": 0.6877877640000065,
+      "wall_seconds": 0.6870407740000246,
       "note": "shrinks=625 m=14"
     },
     {
@@ -117,7 +137,7 @@
       "topk_sigma_err": 0.004972711205482483,
       "subspace_err": 0.0007720404537394643,
       "persistent_bytes": 76800,
-      "wall_seconds": 0.8466340969999919,
+      "wall_seconds": 0.8243087600000081,
       "note": "shrinks=311"
     },
     {
@@ -127,7 +147,27 @@
       "topk_sigma_err": 0.020205169916152954,
       "subspace_err": 0.07848124206066132,
       "persistent_bytes": 29056,
-      "wall_seconds": 0.8802766539999993,
+      "wall_seconds": 0.8594289730000355,
+      "note": "shrinks=311"
+    },
+    {
+      "method": "QFD-int6-g32",
+      "ell": 64,
+      "covariance_err": 672.9312133789062,
+      "topk_sigma_err": 0.0981118232011795,
+      "subspace_err": 0.24627980589866638,
+      "persistent_bytes": 27520,
+      "wall_seconds": 0.9970379310000226,
+      "note": "shrinks=311"
+    },
+    {
+      "method": "QFD-nf6-g32",
+      "ell": 64,
+      "covariance_err": 1608.62158203125,
+      "topk_sigma_err": 0.2789674997329712,
+      "subspace_err": 0.5808704495429993,
+      "persistent_bytes": 27520,
+      "wall_seconds": 1.3293673919999947,
       "note": "shrinks=311"
     },
     {
@@ -137,7 +177,7 @@
       "topk_sigma_err": 0.2711811363697052,
       "subspace_err": 0.5509278178215027,
       "persistent_bytes": 24960,
-      "wall_seconds": 0.9770804469999916,
+      "wall_seconds": 1.0472165840000116,
       "note": "shrinks=311"
     },
     {
@@ -147,7 +187,7 @@
       "topk_sigma_err": 0.7494402527809143,
       "subspace_err": 0.9998857378959656,
       "persistent_bytes": 24960,
-      "wall_seconds": 1.2764086309999811,
+      "wall_seconds": 1.3066135179999492,
       "note": "shrinks=311"
     },
     {
@@ -157,7 +197,7 @@
       "topk_sigma_err": 1.7666642665863037,
       "subspace_err": 0.9947431087493896,
       "persistent_bytes": 22400,
-      "wall_seconds": 0.9553736689999823,
+      "wall_seconds": 0.936525581000069,
       "note": "shrinks=311"
     },
     {
@@ -167,7 +207,7 @@
       "topk_sigma_err": 1.5426087379455566,
       "subspace_err": 0.9998964071273804,
       "persistent_bytes": 22400,
-      "wall_seconds": 1.1522886400000516,
+      "wall_seconds": 1.1520390509999743,
       "note": "shrinks=311"
     },
     {
@@ -177,7 +217,7 @@
       "topk_sigma_err": 0.03074091300368309,
       "subspace_err": 0.07613156735897064,
       "persistent_bytes": 25728,
-      "wall_seconds": 1.0388612369999919,
+      "wall_seconds": 1.087927714999978,
       "note": "shrinks=311"
     },
     {
@@ -187,7 +227,7 @@
       "topk_sigma_err": 0.03375710919499397,
       "subspace_err": 0.12435004860162735,
       "persistent_bytes": 25728,
-      "wall_seconds": 1.5177819010000348,
+      "wall_seconds": 1.6628012900000613,
       "note": "shrinks=690 m=20"
     },
     {
@@ -197,7 +237,7 @@
       "topk_sigma_err": 0.016635874286293983,
       "subspace_err": 0.08156270533800125,
       "persistent_bytes": 32128,
-      "wall_seconds": 1.1429898789999697,
+      "wall_seconds": 1.1802625509999416,
       "note": "shrinks=312 m=13"
     },
     {
@@ -207,7 +247,7 @@
       "topk_sigma_err": 0.00209731119684875,
       "subspace_err": 0.0008457279182039201,
       "persistent_bytes": 153600,
-      "wall_seconds": 1.5356709829999886,
+      "wall_seconds": 1.5204240240000217,
       "note": "shrinks=155"
     },
     {
@@ -217,7 +257,27 @@
       "topk_sigma_err": 0.008293041959404945,
       "subspace_err": 0.059688761830329895,
       "persistent_bytes": 48512,
-      "wall_seconds": 1.5925645250000002,
+      "wall_seconds": 1.5395405869999195,
+      "note": "shrinks=155"
+    },
+    {
+      "method": "QFD-int6-g32",
+      "ell": 128,
+      "covariance_err": 464.5248718261719,
+      "topk_sigma_err": 0.04815470054745674,
+      "subspace_err": 0.21527859568595886,
+      "persistent_bytes": 45440,
+      "wall_seconds": 1.676110240000071,
+      "note": "shrinks=155"
+    },
+    {
+      "method": "QFD-nf6-g32",
+      "ell": 128,
+      "covariance_err": 972.1871337890625,
+      "topk_sigma_err": 0.08172808587551117,
+      "subspace_err": 0.28228020668029785,
+      "persistent_bytes": 45440,
+      "wall_seconds": 2.0086461979999513,
       "note": "shrinks=155"
     },
     {
@@ -227,7 +287,7 @@
       "topk_sigma_err": 0.1304733157157898,
       "subspace_err": 0.34356769919395447,
       "persistent_bytes": 40320,
-      "wall_seconds": 1.6682481080000002,
+      "wall_seconds": 1.7090359630000194,
       "note": "shrinks=155"
     },
     {
@@ -237,7 +297,7 @@
       "topk_sigma_err": 0.33651798963546753,
       "subspace_err": 0.5215059518814087,
       "persistent_bytes": 40320,
-      "wall_seconds": 2.0007494669999915,
+      "wall_seconds": 1.89998076400002,
       "note": "shrinks=155"
     },
     {
@@ -247,7 +307,7 @@
       "topk_sigma_err": 0.6135790348052979,
       "subspace_err": 0.9838070869445801,
       "persistent_bytes": 35200,
-      "wall_seconds": 1.6621278110000048,
+      "wall_seconds": 1.6015607659999205,
       "note": "shrinks=155"
     },
     {
@@ -257,7 +317,7 @@
       "topk_sigma_err": 0.8768793344497681,
       "subspace_err": 0.9242321848869324,
       "persistent_bytes": 35200,
-      "wall_seconds": 1.8594144560000245,
+      "wall_seconds": 1.8588073860000804,
       "note": "shrinks=155"
     },
     {
@@ -267,7 +327,7 @@
       "topk_sigma_err": 0.012256115674972534,
       "subspace_err": 0.06212647259235382,
       "persistent_bytes": 41856,
-      "wall_seconds": 1.699525284999993,
+      "wall_seconds": 1.7074116860000004,
       "note": "shrinks=155"
     },
     {
@@ -277,7 +337,7 @@
       "topk_sigma_err": 0.06205566227436066,
       "subspace_err": 0.09729363769292831,
       "persistent_bytes": 41856,
-      "wall_seconds": 3.108050278999997,
+      "wall_seconds": 3.0671320509999305,
       "note": "shrinks=597 m=22"
     },
     {
@@ -287,7 +347,7 @@
       "topk_sigma_err": 0.009190753102302551,
       "subspace_err": 0.06441982090473175,
       "persistent_bytes": 54656,
-      "wall_seconds": 1.9509011569999757,
+      "wall_seconds": 1.8153085109998983,
       "note": "shrinks=156 m=13"
     }
   ],
@@ -309,7 +369,7 @@
       "topk_sigma_err": 0.0005041069816797972,
       "subspace_err": 0.03604775667190552,
       "persistent_bytes": 4824000,
-      "wall_seconds": 0.026421203999973386,
+      "wall_seconds": 0.024533689000008962,
       "note": ""
     },
     {
@@ -319,7 +379,7 @@
       "topk_sigma_err": 0.5867441296577454,
       "subspace_err": 0.16055472195148468,
       "persistent_bytes": 76800,
-      "wall_seconds": 0.36359285399998953,
+      "wall_seconds": 0.3424109409999119,
       "note": "shrinks=123"
     },
     {
@@ -329,7 +389,27 @@
       "topk_sigma_err": 0.5961858034133911,
       "subspace_err": 0.16514430940151215,
       "persistent_bytes": 29056,
-      "wall_seconds": 0.3605725909999933,
+      "wall_seconds": 0.35475148000000445,
+      "note": "shrinks=124"
+    },
+    {
+      "method": "QFD-int6-g32",
+      "ell": 64,
+      "covariance_err": 0.14684543013572693,
+      "topk_sigma_err": 0.597690999507904,
+      "subspace_err": 0.17584176361560822,
+      "persistent_bytes": 27520,
+      "wall_seconds": 0.3812285739999197,
+      "note": "shrinks=124"
+    },
+    {
+      "method": "QFD-nf6-g32",
+      "ell": 64,
+      "covariance_err": 2.11350679397583,
+      "topk_sigma_err": 0.5304111242294312,
+      "subspace_err": 0.9678671956062317,
+      "persistent_bytes": 27520,
+      "wall_seconds": 0.5282261770000787,
       "note": "shrinks=124"
     },
     {
@@ -339,7 +419,7 @@
       "topk_sigma_err": 0.5903359055519104,
       "subspace_err": 0.23302388191223145,
       "persistent_bytes": 24960,
-      "wall_seconds": 0.42144949999999426,
+      "wall_seconds": 0.3993025529999841,
       "note": "shrinks=124"
     },
     {
@@ -349,7 +429,7 @@
       "topk_sigma_err": 2.55367112159729,
       "subspace_err": 0.968941330909729,
       "persistent_bytes": 24960,
-      "wall_seconds": 0.5472602219999771,
+      "wall_seconds": 0.514249886000016,
       "note": "shrinks=124"
     },
     {
@@ -359,7 +439,7 @@
       "topk_sigma_err": 0.5963517427444458,
       "subspace_err": 0.5006117224693298,
       "persistent_bytes": 22400,
-      "wall_seconds": 0.39419392700000344,
+      "wall_seconds": 0.3814525619999358,
       "note": "shrinks=124"
     },
     {
@@ -369,7 +449,7 @@
       "topk_sigma_err": 0.6502585411071777,
       "subspace_err": 0.5642245411872864,
       "persistent_bytes": 22400,
-      "wall_seconds": 0.518650220999973,
+      "wall_seconds": 0.46828319500002635,
       "note": "shrinks=124"
     },
     {
@@ -379,7 +459,7 @@
       "topk_sigma_err": 0.6087012887001038,
       "subspace_err": 0.16884155571460724,
       "persistent_bytes": 25728,
-      "wall_seconds": 0.43757804799997757,
+      "wall_seconds": 0.4080866640000522,
       "note": "shrinks=124"
     },
     {
@@ -389,7 +469,7 @@
       "topk_sigma_err": 0.6953264474868774,
       "subspace_err": 0.237745463848114,
       "persistent_bytes": 25728,
-      "wall_seconds": 0.5288716719999798,
+      "wall_seconds": 0.49940346599998975,
       "note": "shrinks=173 m=30"
     },
     {
@@ -399,7 +479,7 @@
       "topk_sigma_err": 0.6093271970748901,
       "subspace_err": 0.17080511152744293,
       "persistent_bytes": 32128,
-      "wall_seconds": 0.45815214999998943,
+      "wall_seconds": 0.4544890280000118,
       "note": "shrinks=125 m=30"
     },
     {
@@ -409,7 +489,7 @@
       "topk_sigma_err": 0.19514255225658417,
       "subspace_err": 0.023321500048041344,
       "persistent_bytes": 153600,
-      "wall_seconds": 0.6000626709999892,
+      "wall_seconds": 0.6023772869999675,
       "note": "shrinks=61"
     },
     {
@@ -419,7 +499,27 @@
       "topk_sigma_err": 0.19438765943050385,
       "subspace_err": 0.040641166269779205,
       "persistent_bytes": 48512,
-      "wall_seconds": 0.6240542560000222,
+      "wall_seconds": 0.6014509389999603,
+      "note": "shrinks=61"
+    },
+    {
+      "method": "QFD-int6-g32",
+      "ell": 128,
+      "covariance_err": 0.09602334350347519,
+      "topk_sigma_err": 0.18680070340633392,
+      "subspace_err": 0.11009794473648071,
+      "persistent_bytes": 45440,
+      "wall_seconds": 0.6868112610000026,
+      "note": "shrinks=61"
+    },
+    {
+      "method": "QFD-nf6-g32",
+      "ell": 128,
+      "covariance_err": 1.245461106300354,
+      "topk_sigma_err": 0.36106911301612854,
+      "subspace_err": 0.970317542552948,
+      "persistent_bytes": 45440,
+      "wall_seconds": 0.8520447710000099,
       "note": "shrinks=61"
     },
     {
@@ -429,7 +529,7 @@
       "topk_sigma_err": 0.16338738799095154,
       "subspace_err": 0.2530076801776886,
       "persistent_bytes": 40320,
-      "wall_seconds": 0.668568381,
+      "wall_seconds": 0.722764876000042,
       "note": "shrinks=61"
     },
     {
@@ -439,7 +539,7 @@
       "topk_sigma_err": 1.5064902305603027,
       "subspace_err": 0.9725728034973145,
       "persistent_bytes": 40320,
-      "wall_seconds": 0.7679875860000038,
+      "wall_seconds": 0.8091585230000646,
       "note": "shrinks=61"
     },
     {
@@ -449,7 +549,7 @@
       "topk_sigma_err": 0.09914903342723846,
       "subspace_err": 0.43707165122032166,
       "persistent_bytes": 35200,
-      "wall_seconds": 0.6787222110000357,
+      "wall_seconds": 0.6764020620000792,
       "note": "shrinks=61"
     },
     {
@@ -459,7 +559,7 @@
       "topk_sigma_err": 0.18832208216190338,
       "subspace_err": 0.7709265947341919,
       "persistent_bytes": 35200,
-      "wall_seconds": 0.7597299340000063,
+      "wall_seconds": 0.7569037920000028,
       "note": "shrinks=61"
     },
     {
@@ -469,7 +569,7 @@
       "topk_sigma_err": 0.2036333978176117,
       "subspace_err": 0.05695021525025368,
       "persistent_bytes": 41856,
-      "wall_seconds": 0.6971667060000186,
+      "wall_seconds": 0.6856872800000247,
       "note": "shrinks=61"
     },
     {
@@ -479,7 +579,7 @@
       "topk_sigma_err": 0.20660525560379028,
       "subspace_err": 0.052235253155231476,
       "persistent_bytes": 41856,
-      "wall_seconds": 0.7165739410000356,
+      "wall_seconds": 0.6811368669999638,
       "note": "shrinks=65 m=59"
     },
     {
@@ -489,7 +589,7 @@
       "topk_sigma_err": 0.20347215235233307,
       "subspace_err": 0.043504323810338974,
       "persistent_bytes": 54656,
-      "wall_seconds": 0.7138740569999982,
+      "wall_seconds": 0.7024565960000473,
       "note": "shrinks=62 m=62"
     },
     {
@@ -499,7 +599,7 @@
       "topk_sigma_err": 0.07089323550462723,
       "subspace_err": 0.004846053197979927,
       "persistent_bytes": 307200,
-      "wall_seconds": 0.4407608600000117,
+      "wall_seconds": 0.43322219599997425,
       "note": "shrinks=30"
     },
     {
@@ -509,7 +609,27 @@
       "topk_sigma_err": 0.07039327919483185,
       "subspace_err": 0.029732078313827515,
       "persistent_bytes": 87424,
-      "wall_seconds": 0.45795736299999135,
+      "wall_seconds": 0.44780592400002206,
+      "note": "shrinks=30"
+    },
+    {
+      "method": "QFD-int6-g32",
+      "ell": 256,
+      "covariance_err": 0.0608799122273922,
+      "topk_sigma_err": 0.07383296638727188,
+      "subspace_err": 0.10024105757474899,
+      "persistent_bytes": 81280,
+      "wall_seconds": 0.482461126999965,
+      "note": "shrinks=30"
+    },
+    {
+      "method": "QFD-nf6-g32",
+      "ell": 256,
+      "covariance_err": 0.5875882506370544,
+      "topk_sigma_err": 0.20493003726005554,
+      "subspace_err": 0.9563767313957214,
+      "persistent_bytes": 81280,
+      "wall_seconds": 0.6016581659999929,
       "note": "shrinks=30"
     },
     {
@@ -519,7 +639,7 @@
       "topk_sigma_err": 0.06054411828517914,
       "subspace_err": 0.1750946193933487,
       "persistent_bytes": 71040,
-      "wall_seconds": 0.47879362100002254,
+      "wall_seconds": 0.48210022099999605,
       "note": "shrinks=30"
     },
     {
@@ -529,7 +649,7 @@
       "topk_sigma_err": 0.674172043800354,
       "subspace_err": 0.9671088457107544,
       "persistent_bytes": 71040,
-      "wall_seconds": 0.5941796540000155,
+      "wall_seconds": 0.5822391299999481,
       "note": "shrinks=30"
     },
     {
@@ -539,7 +659,7 @@
       "topk_sigma_err": 0.04498469829559326,
       "subspace_err": 0.3675655424594879,
       "persistent_bytes": 60800,
-      "wall_seconds": 0.4603935750000119,
+      "wall_seconds": 0.4892169310001009,
       "note": "shrinks=30"
     },
     {
@@ -549,7 +669,7 @@
       "topk_sigma_err": 0.05746936798095703,
       "subspace_err": 0.7931833863258362,
       "persistent_bytes": 60800,
-      "wall_seconds": 0.5710726649999742,
+      "wall_seconds": 0.5549566699999104,
       "note": "shrinks=30"
     },
     {
@@ -559,7 +679,7 @@
       "topk_sigma_err": 0.0765417069196701,
       "subspace_err": 0.03192552924156189,
       "persistent_bytes": 74112,
-      "wall_seconds": 0.5027652189999685,
+      "wall_seconds": 0.5081528000000617,
       "note": "shrinks=30"
     },
     {
@@ -569,7 +689,7 @@
       "topk_sigma_err": 0.07451104372739792,
       "subspace_err": 0.043074045330286026,
       "persistent_bytes": 74112,
-      "wall_seconds": 0.4820715239999913,
+      "wall_seconds": 0.4901630809999915,
       "note": "shrinks=31 m=126"
     },
     {
@@ -579,7 +699,7 @@
       "topk_sigma_err": 0.07563847303390503,
       "subspace_err": 0.04088754206895828,
       "persistent_bytes": 99712,
-      "wall_seconds": 0.5297355440000047,
+      "wall_seconds": 0.5487172220000502,
       "note": "shrinks=31 m=126"
     }
   ],
@@ -601,7 +721,7 @@
       "topk_sigma_err": 0.0,
       "subspace_err": 0.0009765625,
       "persistent_bytes": 4824000,
-      "wall_seconds": 0.026248318999989806,
+      "wall_seconds": 0.023730215999989923,
       "note": ""
     },
     {
@@ -611,7 +731,7 @@
       "topk_sigma_err": 0.11919540166854858,
       "subspace_err": 0.0026294749695807695,
       "persistent_bytes": 38400,
-      "wall_seconds": 0.15711529399999336,
+      "wall_seconds": 0.15892869399999654,
       "note": "shrinks=248"
     },
     {
@@ -621,7 +741,27 @@
       "topk_sigma_err": 0.05351323261857033,
       "subspace_err": 0.9778839349746704,
       "persistent_bytes": 19328,
-      "wall_seconds": 0.17159239400001525,
+      "wall_seconds": 0.18461600699993141,
+      "note": "shrinks=249"
+    },
+    {
+      "method": "QFD-int6-g32",
+      "ell": 32,
+      "covariance_err": 0.048976995050907135,
+      "topk_sigma_err": 0.2135258913040161,
+      "subspace_err": 0.9963567852973938,
+      "persistent_bytes": 18560,
+      "wall_seconds": 0.2285478259999536,
+      "note": "shrinks=249"
+    },
+    {
+      "method": "QFD-nf6-g32",
+      "ell": 32,
+      "covariance_err": 4.7069501876831055,
+      "topk_sigma_err": 2.9680333137512207,
+      "subspace_err": 0.9999998211860657,
+      "persistent_bytes": 18560,
+      "wall_seconds": 0.3644391520000454,
       "note": "shrinks=249"
     },
     {
@@ -631,7 +771,7 @@
       "topk_sigma_err": 0.5739808082580566,
       "subspace_err": 0.9983314275741577,
       "persistent_bytes": 17280,
-      "wall_seconds": 0.24206799699999237,
+      "wall_seconds": 0.23595580899996094,
       "note": "shrinks=249"
     },
     {
@@ -641,7 +781,7 @@
       "topk_sigma_err": 4.031222820281982,
       "subspace_err": 0.9998417496681213,
       "persistent_bytes": 17280,
-      "wall_seconds": 0.3563418459999639,
+      "wall_seconds": 0.35142526200002067,
       "note": "shrinks=249"
     },
     {
@@ -651,7 +791,7 @@
       "topk_sigma_err": 1.2293375730514526,
       "subspace_err": 0.9999794363975525,
       "persistent_bytes": 16000,
-      "wall_seconds": 0.2083469699999796,
+      "wall_seconds": 0.2169681650000257,
       "note": "shrinks=249"
     },
     {
@@ -661,7 +801,7 @@
       "topk_sigma_err": 1.9976304769515991,
       "subspace_err": 0.9998659491539001,
       "persistent_bytes": 16000,
-      "wall_seconds": 0.3038315239999747,
+      "wall_seconds": 0.2959991190000437,
       "note": "shrinks=249"
     },
     {
@@ -671,7 +811,7 @@
       "topk_sigma_err": 0.8298845887184143,
       "subspace_err": 0.9984369874000549,
       "persistent_bytes": 17664,
-      "wall_seconds": 0.24254085299997996,
+      "wall_seconds": 0.2587481220000427,
       "note": "shrinks=249"
     },
     {
@@ -681,7 +821,7 @@
       "topk_sigma_err": 0.8293361067771912,
       "subspace_err": 0.9960450530052185,
       "persistent_bytes": 17664,
-      "wall_seconds": 0.2786394469999891,
+      "wall_seconds": 0.27607582699999966,
       "note": "shrinks=290 m=16"
     },
     {
@@ -691,7 +831,7 @@
       "topk_sigma_err": 0.8325712084770203,
       "subspace_err": 0.999346911907196,
       "persistent_bytes": 20864,
-      "wall_seconds": 0.27868714700002784,
+      "wall_seconds": 0.2696131569999807,
       "note": "shrinks=250 m=16"
     },
     {
@@ -701,7 +841,7 @@
       "topk_sigma_err": 0.007013324182480574,
       "subspace_err": 0.001091830083169043,
       "persistent_bytes": 76800,
-      "wall_seconds": 0.3287645389999625,
+      "wall_seconds": 0.3272416490000296,
       "note": "shrinks=123"
     },
     {
@@ -711,7 +851,27 @@
       "topk_sigma_err": 0.03018895722925663,
       "subspace_err": 0.9657878875732422,
       "persistent_bytes": 29056,
-      "wall_seconds": 0.3513315099999659,
+      "wall_seconds": 0.36285188200008633,
+      "note": "shrinks=124"
+    },
+    {
+      "method": "QFD-int6-g32",
+      "ell": 64,
+      "covariance_err": 0.04352449253201485,
+      "topk_sigma_err": 0.3055124282836914,
+      "subspace_err": 0.9875257015228271,
+      "persistent_bytes": 27520,
+      "wall_seconds": 0.4057766720000018,
+      "note": "shrinks=124"
+    },
+    {
+      "method": "QFD-nf6-g32",
+      "ell": 64,
+      "covariance_err": 2.3687260150909424,
+      "topk_sigma_err": 2.99543833732605,
+      "subspace_err": 0.9997572898864746,
+      "persistent_bytes": 27520,
+      "wall_seconds": 0.5379845400000249,
       "note": "shrinks=124"
     },
     {
@@ -721,7 +881,7 @@
       "topk_sigma_err": 0.5721173286437988,
       "subspace_err": 0.9983543157577515,
       "persistent_bytes": 24960,
-      "wall_seconds": 0.3841045830000098,
+      "wall_seconds": 0.41370466499995473,
       "note": "shrinks=124"
     },
     {
@@ -731,7 +891,7 @@
       "topk_sigma_err": 2.944600820541382,
       "subspace_err": 0.9999421238899231,
       "persistent_bytes": 24960,
-      "wall_seconds": 0.5237795199999482,
+      "wall_seconds": 0.5304666970000653,
       "note": "shrinks=124"
     },
     {
@@ -741,7 +901,7 @@
       "topk_sigma_err": 0.6706430912017822,
       "subspace_err": 0.9999740719795227,
       "persistent_bytes": 22400,
-      "wall_seconds": 0.3858360540000376,
+      "wall_seconds": 0.3835053239999979,
       "note": "shrinks=124"
     },
     {
@@ -751,7 +911,7 @@
       "topk_sigma_err": 1.1297491788864136,
       "subspace_err": 0.9999797344207764,
       "persistent_bytes": 22400,
-      "wall_seconds": 0.4526432659999955,
+      "wall_seconds": 0.46350258899997243,
       "note": "shrinks=124"
     },
     {
@@ -761,7 +921,7 @@
       "topk_sigma_err": 0.4243318736553192,
       "subspace_err": 0.9984607100486755,
       "persistent_bytes": 25728,
-      "wall_seconds": 0.4300956199999746,
+      "wall_seconds": 0.4133234520000997,
       "note": "shrinks=124"
     },
     {
@@ -771,7 +931,7 @@
       "topk_sigma_err": 0.5741024613380432,
       "subspace_err": 0.9986777305603027,
       "persistent_bytes": 25728,
-      "wall_seconds": 0.5693775810000261,
+      "wall_seconds": 0.5740171950000104,
       "note": "shrinks=258 m=10"
     },
     {
@@ -781,7 +941,7 @@
       "topk_sigma_err": 0.46615323424339294,
       "subspace_err": 0.9967981576919556,
       "persistent_bytes": 32128,
-      "wall_seconds": 0.45521975100001555,
+      "wall_seconds": 0.4581919909999215,
       "note": "shrinks=125 m=12"
     },
     {
@@ -791,7 +951,7 @@
       "topk_sigma_err": 0.0004296190745662898,
       "subspace_err": 0.0009765625,
       "persistent_bytes": 153600,
-      "wall_seconds": 0.5923513190000449,
+      "wall_seconds": 0.588854404000017,
       "note": "shrinks=61"
     },
     {
@@ -801,7 +961,27 @@
       "topk_sigma_err": 0.038058213889598846,
       "subspace_err": 0.9504166841506958,
       "persistent_bytes": 48512,
-      "wall_seconds": 0.6114989250000349,
+      "wall_seconds": 0.5922084609999274,
+      "note": "shrinks=61"
+    },
+    {
+      "method": "QFD-int6-g32",
+      "ell": 128,
+      "covariance_err": 0.03362448140978813,
+      "topk_sigma_err": 0.30760931968688965,
+      "subspace_err": 0.9961617588996887,
+      "persistent_bytes": 45440,
+      "wall_seconds": 0.657525641999996,
+      "note": "shrinks=61"
+    },
+    {
+      "method": "QFD-nf6-g32",
+      "ell": 128,
+      "covariance_err": 1.3182110786437988,
+      "topk_sigma_err": 2.8013036251068115,
+      "subspace_err": 0.9993116855621338,
+      "persistent_bytes": 45440,
+      "wall_seconds": 0.774009867000018,
       "note": "shrinks=61"
     },
     {
@@ -811,7 +991,7 @@
       "topk_sigma_err": 0.5150189995765686,
       "subspace_err": 0.9998405575752258,
       "persistent_bytes": 40320,
-      "wall_seconds": 0.7040509489999636,
+      "wall_seconds": 0.6723083709999855,
       "note": "shrinks=61"
     },
     {
@@ -821,7 +1001,7 @@
       "topk_sigma_err": 3.0207133293151855,
       "subspace_err": 0.9999982118606567,
       "persistent_bytes": 40320,
-      "wall_seconds": 0.7643798900000434,
+      "wall_seconds": 0.8036083849999613,
       "note": "shrinks=61"
     },
     {
@@ -831,7 +1011,7 @@
       "topk_sigma_err": 1.0551866292953491,
       "subspace_err": 0.9999982118606567,
       "persistent_bytes": 35200,
-      "wall_seconds": 0.6242093089999798,
+      "wall_seconds": 0.6486496520000173,
       "note": "shrinks=61"
     },
     {
@@ -841,7 +1021,7 @@
       "topk_sigma_err": 0.9757521152496338,
       "subspace_err": 0.9997805953025818,
       "persistent_bytes": 35200,
-      "wall_seconds": 0.715530512999976,
+      "wall_seconds": 0.7171849029999748,
       "note": "shrinks=61"
     },
     {
@@ -851,7 +1031,7 @@
       "topk_sigma_err": 0.22376513481140137,
       "subspace_err": 0.9982454180717468,
       "persistent_bytes": 41856,
-      "wall_seconds": 0.6992109900000401,
+      "wall_seconds": 0.6669767180000008,
       "note": "shrinks=61"
     },
     {
@@ -861,7 +1041,7 @@
       "topk_sigma_err": 0.12354415655136108,
       "subspace_err": 0.9993840456008911,
       "persistent_bytes": 41856,
-      "wall_seconds": 1.1117812680000156,
+      "wall_seconds": 1.0737045010000656,
       "note": "shrinks=192 m=21"
     },
     {
@@ -871,7 +1051,7 @@
       "topk_sigma_err": 0.17054340243339539,
       "subspace_err": 0.9970605969429016,
       "persistent_bytes": 54656,
-      "wall_seconds": 0.720963485000027,
+      "wall_seconds": 0.7009813049999138,
       "note": "shrinks=62 m=21"
     }
   ],
@@ -893,7 +1073,7 @@
       "topk_sigma_err": 7.059627193939377e-08,
       "subspace_err": 0.0009765625,
       "persistent_bytes": 40016000,
-      "wall_seconds": 0.24704644600001302,
+      "wall_seconds": 0.21173444599992308,
       "note": ""
     },
     {
@@ -903,7 +1083,7 @@
       "topk_sigma_err": 0.04838816821575165,
       "subspace_err": 0.0009765625,
       "persistent_bytes": 25600,
-      "wall_seconds": 1.121278712999981,
+      "wall_seconds": 1.1418240229999128,
       "note": "shrinks=3123"
     },
     {
@@ -913,7 +1093,27 @@
       "topk_sigma_err": 0.129897341132164,
       "subspace_err": 0.22107401490211487,
       "persistent_bytes": 12928,
-      "wall_seconds": 1.3964019400000325,
+      "wall_seconds": 1.4027672389998997,
+      "note": "shrinks=3124"
+    },
+    {
+      "method": "QFD-int6-g32",
+      "ell": 32,
+      "covariance_err": 12844.416015625,
+      "topk_sigma_err": 1.0725305080413818,
+      "subspace_err": 0.9836844205856323,
+      "persistent_bytes": 12672,
+      "wall_seconds": 1.910942514999988,
+      "note": "shrinks=3124"
+    },
+    {
+      "method": "QFD-nf6-g32",
+      "ell": 32,
+      "covariance_err": 74925.140625,
+      "topk_sigma_err": 3.8104207515716553,
+      "subspace_err": 0.9960445165634155,
+      "persistent_bytes": 12672,
+      "wall_seconds": 3.130237862000058,
       "note": "shrinks=3124"
     },
     {
@@ -923,7 +1123,7 @@
       "topk_sigma_err": 5.763417720794678,
       "subspace_err": 0.9992656707763672,
       "persistent_bytes": 11776,
-      "wall_seconds": 2.1004035379999664,
+      "wall_seconds": 2.1560035029999653,
       "note": "shrinks=3124"
     },
     {
@@ -933,7 +1133,7 @@
       "topk_sigma_err": 75.11567687988281,
       "subspace_err": 0.9998193383216858,
       "persistent_bytes": 11776,
-      "wall_seconds": 3.1006971999999564,
+      "wall_seconds": 3.027623974999983,
       "note": "shrinks=3124"
     },
     {
@@ -943,7 +1143,7 @@
       "topk_sigma_err": 48229.9921875,
       "subspace_err": 0.999966561794281,
       "persistent_bytes": 10880,
-      "wall_seconds": 1.7462746989999687,
+      "wall_seconds": 1.6226944460000823,
       "note": "shrinks=3124"
     },
     {
@@ -953,7 +1153,7 @@
       "topk_sigma_err": 89391.453125,
       "subspace_err": 0.9999710321426392,
       "persistent_bytes": 10880,
-      "wall_seconds": 2.3901635359999887,
+      "wall_seconds": 2.3618301379999593,
       "note": "shrinks=3124"
     },
     {
@@ -963,7 +1163,7 @@
       "topk_sigma_err": 0.1090938076376915,
       "subspace_err": 0.262742280960083,
       "persistent_bytes": 11904,
-      "wall_seconds": 2.063878369000008,
+      "wall_seconds": 2.055266125000003,
       "note": "shrinks=3124"
     },
     {
@@ -973,7 +1173,7 @@
       "topk_sigma_err": 0.1538572758436203,
       "subspace_err": 0.24700939655303955,
       "persistent_bytes": 11904,
-      "wall_seconds": 2.789344533000019,
+      "wall_seconds": 2.775658531999966,
       "note": "shrinks=3945 m=16"
     },
     {
@@ -983,7 +1183,7 @@
       "topk_sigma_err": 0.18946021795272827,
       "subspace_err": 0.2286413162946701,
       "persistent_bytes": 14144,
-      "wall_seconds": 2.5467329649999897,
+      "wall_seconds": 2.4197479660000454,
       "note": "shrinks=3125 m=13"
     },
     {
@@ -993,7 +1193,7 @@
       "topk_sigma_err": 0.01635671965777874,
       "subspace_err": 0.0009134905994869769,
       "persistent_bytes": 51200,
-      "wall_seconds": 2.8203416120000497,
+      "wall_seconds": 2.5343993049999654,
       "note": "shrinks=1561"
     },
     {
@@ -1003,7 +1203,27 @@
       "topk_sigma_err": 0.07579942047595978,
       "subspace_err": 0.15577855706214905,
       "persistent_bytes": 19456,
-      "wall_seconds": 3.0558309080000186,
+      "wall_seconds": 2.9320953279999458,
+      "note": "shrinks=1561"
+    },
+    {
+      "method": "QFD-int6-g32",
+      "ell": 64,
+      "covariance_err": 3148.560546875,
+      "topk_sigma_err": 0.30789002776145935,
+      "subspace_err": 0.5516429543495178,
+      "persistent_bytes": 18944,
+      "wall_seconds": 3.397992705999968,
+      "note": "shrinks=1561"
+    },
+    {
+      "method": "QFD-nf6-g32",
+      "ell": 64,
+      "covariance_err": 7690.74560546875,
+      "topk_sigma_err": 1.5842519998550415,
+      "subspace_err": 0.980643630027771,
+      "persistent_bytes": 18944,
+      "wall_seconds": 4.540206388000001,
       "note": "shrinks=1561"
     },
     {
@@ -1013,7 +1233,7 @@
       "topk_sigma_err": 2.035876512527466,
       "subspace_err": 0.9888166785240173,
       "persistent_bytes": 17152,
-      "wall_seconds": 3.705755415999988,
+      "wall_seconds": 3.4952320360000613,
       "note": "shrinks=1561"
     },
     {
@@ -1023,7 +1243,7 @@
       "topk_sigma_err": 3.95316481590271,
       "subspace_err": 0.9993373155593872,
       "persistent_bytes": 17152,
-      "wall_seconds": 4.741472559000044,
+      "wall_seconds": 4.429466766000019,
       "note": "shrinks=1561"
     },
     {
@@ -1033,7 +1253,7 @@
       "topk_sigma_err": 160.28961181640625,
       "subspace_err": 0.999262273311615,
       "persistent_bytes": 15360,
-      "wall_seconds": 3.3095735790000163,
+      "wall_seconds": 3.142456528000139,
       "note": "shrinks=1561"
     },
     {
@@ -1043,7 +1263,7 @@
       "topk_sigma_err": 474869888.0,
       "subspace_err": 0.9997965693473816,
       "persistent_bytes": 15360,
-      "wall_seconds": 3.9092607489999978,
+      "wall_seconds": 3.7733565380001437,
       "note": "shrinks=1561"
     },
     {
@@ -1053,7 +1273,7 @@
       "topk_sigma_err": 0.13215000927448273,
       "subspace_err": 0.15873853862285614,
       "persistent_bytes": 17408,
-      "wall_seconds": 3.542092309999987,
+      "wall_seconds": 3.3964138189999176,
       "note": "shrinks=1561"
     },
     {
@@ -1063,7 +1283,7 @@
       "topk_sigma_err": 0.3517647981643677,
       "subspace_err": 0.22911228239536285,
       "persistent_bytes": 17408,
-      "wall_seconds": 4.430840954000018,
+      "wall_seconds": 4.3972440019999794,
       "note": "shrinks=2846 m=22"
     },
     {
@@ -1073,7 +1293,7 @@
       "topk_sigma_err": 0.1152704581618309,
       "subspace_err": 0.1468140035867691,
       "persistent_bytes": 21888,
-      "wall_seconds": 4.01373001099995,
+      "wall_seconds": 3.8866000709999753,
       "note": "shrinks=1562 m=20"
     },
     {
@@ -1083,7 +1303,7 @@
       "topk_sigma_err": 0.007105340715497732,
       "subspace_err": 0.0007720404537394643,
       "persistent_bytes": 102400,
-      "wall_seconds": 4.558851881999999,
+      "wall_seconds": 4.613272886999994,
       "note": "shrinks=780"
     },
     {
@@ -1093,7 +1313,27 @@
       "topk_sigma_err": 0.0697278305888176,
       "subspace_err": 0.11276944726705551,
       "persistent_bytes": 32512,
-      "wall_seconds": 4.7315521860000445,
+      "wall_seconds": 4.807943190999822,
+      "note": "shrinks=780"
+    },
+    {
+      "method": "QFD-int6-g32",
+      "ell": 128,
+      "covariance_err": 1461.143310546875,
+      "topk_sigma_err": 0.17397618293762207,
+      "subspace_err": 0.391463041305542,
+      "persistent_bytes": 31488,
+      "wall_seconds": 5.131295624000131,
+      "note": "shrinks=780"
+    },
+    {
+      "method": "QFD-nf6-g32",
+      "ell": 128,
+      "covariance_err": 2913.953125,
+      "topk_sigma_err": 0.3738325536251068,
+      "subspace_err": 0.8201149702072144,
+      "persistent_bytes": 31488,
+      "wall_seconds": 6.141278896000131,
       "note": "shrinks=780"
     },
     {
@@ -1103,7 +1343,7 @@
       "topk_sigma_err": 0.5925406217575073,
       "subspace_err": 0.9918777942657471,
       "persistent_bytes": 27904,
-      "wall_seconds": 5.2443525749999935,
+      "wall_seconds": 5.234436033000065,
       "note": "shrinks=780"
     },
     {
@@ -1113,7 +1353,7 @@
       "topk_sigma_err": 2.049058198928833,
       "subspace_err": 0.999603271484375,
       "persistent_bytes": 27904,
-      "wall_seconds": 5.961399856000014,
+      "wall_seconds": 6.020829310999943,
       "note": "shrinks=780"
     },
     {
@@ -1123,7 +1363,7 @@
       "topk_sigma_err": 11.739958763122559,
       "subspace_err": 0.9998361468315125,
       "persistent_bytes": 24320,
-      "wall_seconds": 4.84315229799995,
+      "wall_seconds": 4.957902903000104,
       "note": "shrinks=780"
     },
     {
@@ -1133,7 +1373,7 @@
       "topk_sigma_err": 17.975322723388672,
       "subspace_err": 0.9963703155517578,
       "persistent_bytes": 24320,
-      "wall_seconds": 5.455100493999964,
+      "wall_seconds": 5.762728232999962,
       "note": "shrinks=780"
     },
     {
@@ -1143,7 +1383,7 @@
       "topk_sigma_err": 0.027615543454885483,
       "subspace_err": 0.12909731268882751,
       "persistent_bytes": 28416,
-      "wall_seconds": 5.157886283000039,
+      "wall_seconds": 5.255599532999895,
       "note": "shrinks=780"
     },
     {
@@ -1153,7 +1393,7 @@
       "topk_sigma_err": 0.10916081070899963,
       "subspace_err": 0.16791799664497375,
       "persistent_bytes": 28416,
-      "wall_seconds": 8.727247838999972,
+      "wall_seconds": 9.169450417999997,
       "note": "shrinks=2057 m=13"
     },
     {
@@ -1163,7 +1403,7 @@
       "topk_sigma_err": 0.06721353530883789,
       "subspace_err": 0.10887111723423004,
       "persistent_bytes": 37376,
-      "wall_seconds": 5.6748497099999895,
+      "wall_seconds": 5.60463812099988,
       "note": "shrinks=781 m=28"
     }
   ]
