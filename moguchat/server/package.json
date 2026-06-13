@@ -1,0 +1,17 @@
+{
+  "name": "moguchat-server",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "MoguChat AI relay server (keeps the Claude API key server-side)",
+  "main": "index.js",
+  "scripts": {
+    "start": "node --env-file-if-exists=.env index.js",
+    "dev": "node --env-file-if-exists=.env --watch index.js"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.69.0",
+    "cors": "^2.8.5",
+    "express": "^5.1.0"
+  }
+}
